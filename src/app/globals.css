@@ -342,6 +342,29 @@ p {
     object-fit: cover;
     z-index: 0;
     filter: blur(1px);
+    pointer-events: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Verstecke Play-Button-Overlay auf mobilen Geräten */
+.hero-video::-webkit-media-controls {
+    display: none !important;
+}
+
+.hero-video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+.hero-video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.hero-video::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+.hero-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
 }
 
 .hero-overlay {
@@ -1511,6 +1534,29 @@ p {
     .hero-video {
         /* Video auf mobilen Geräten optimieren */
         object-position: center;
+        /* Verstecke alle Steuerelemente */
+        pointer-events: none;
+    }
+    
+    /* Verstecke Play-Button auf mobilen Geräten */
+    .hero video::-webkit-media-controls {
+        display: none !important;
+    }
+    
+    .hero video::-webkit-media-controls-enclosure {
+        display: none !important;
+    }
+    
+    .hero video::-webkit-media-controls-panel {
+        display: none !important;
+    }
+    
+    .hero video::-webkit-media-controls-play-button {
+        display: none !important;
+    }
+    
+    .hero video::-webkit-media-controls-start-playback-button {
+        display: none !important;
     }
 
     .section-title {

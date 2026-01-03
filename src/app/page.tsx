@@ -15,20 +15,58 @@ export default function Home() {
     // Sicherstellen, dass das Video auf mobilen Geräten abgespielt wird
     const video = videoRef.current;
     if (video) {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          // Autoplay wurde verhindert, versuche es erneut nach Benutzerinteraktion
-          console.log('Video autoplay prevented, will retry on interaction');
-        });
+      // Video-Eigenschaften setzen
+      video.muted = true;
+      video.playsInline = true;
+      
+      // Versuche das Video abzuspielen
+      const playVideo = async () => {
+        try {
+          await video.play();
+        } catch (error) {
+          // Autoplay wurde verhindert - wird nach Benutzerinteraktion gestartet
+          console.log('Video autoplay prevented');
+        }
+      };
+
+      // Warte bis das Video geladen ist
+      if (video.readyState >= 2) {
+        playVideo();
+      } else {
+        video.addEventListener('loadeddata', playVideo, { once: true });
       }
+
+      // Starte Video nach Benutzerinteraktion
+      const handleUserInteraction = () => {
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+      };
+
+      // Event-Listener für Benutzerinteraktionen
+      document.addEventListener('touchstart', handleUserInteraction, { once: true });
+      document.addEventListener('click', handleUserInteraction, { once: true });
+
+      return () => {
+        video.removeEventListener('loadeddata', playVideo);
+        document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('click', handleUserInteraction);
+      };
     }
   }, []);
+
+  const handleHeroClick = () => {
+    // Starte Video wenn auf Hero-Section geklickt wird
+    const video = videoRef.current;
+    if (video && video.paused) {
+      video.play().catch(() => {});
+    }
+  };
 
   return (
     <>
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero" onClick={handleHeroClick}>
         <video 
           ref={videoRef}
           className="hero-video" 
@@ -37,6 +75,8 @@ export default function Home() {
           loop 
           playsInline
           preload="auto"
+          disablePictureInPicture
+          controlsList="nodownload nofullscreen noremoteplayback"
         >
           <source src="/video/highlightfilm.mp4" type="video/mp4" />
         </video>
