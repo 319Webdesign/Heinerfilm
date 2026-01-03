@@ -1159,6 +1159,14 @@ p {
 
 .social-media-contact-modern {
     margin-top: 1rem;
+    text-align: center;
+}
+
+.social-media-contact-modern .social-links {
+    justify-content: center;
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
 }
 
 .social-links-modern {
@@ -1269,6 +1277,17 @@ p {
 
     .contact-details-grid {
         grid-template-columns: 1fr;
+    }
+
+    .social-media-contact-modern {
+        text-align: center;
+    }
+
+    .social-media-contact-modern .social-links {
+        justify-content: center;
+        display: flex;
+        gap: var(--spacing-sm);
+        flex-wrap: wrap;
     }
 }
 

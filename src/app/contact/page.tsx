@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Facebook, Instagram, Youtube, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { FaInstagram, FaYoutube, FaLinkedin, FaTiktok } from 'react-icons/fa';
 import ContactForm from '@/components/ContactForm';
 
 export default function Contact() {
@@ -114,9 +115,8 @@ export default function Contact() {
                     </div>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>Adresse</h3>
                     <p style={{ color: 'rgba(156, 163, 175, 1)', margin: 0, lineHeight: '1.6' }}>
-                      Heinerfilm<br />
-                      Straße, Hausnummer<br />
-                      PLZ Ort
+                      Numrichstraße 10<br />
+                      64319 Pfungstadt
                     </p>
                   </div>
                 </motion.div>
@@ -150,20 +150,28 @@ export default function Contact() {
                 className="social-media-contact-modern"
               >
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1.5rem' }}>Folgen Sie uns</h3>
-                <div className="social-links-modern">
-                  <a href="#" aria-label="Facebook" className="social-link-modern">
-                    <Facebook style={{ width: '1.5rem', height: '1.5rem' }} />
-                  </a>
-                  <a href="#" aria-label="Instagram" className="social-link-modern">
-                    <Instagram style={{ width: '1.5rem', height: '1.5rem' }} />
-                  </a>
-                  <a href="#" aria-label="YouTube" className="social-link-modern">
-                    <Youtube style={{ width: '1.5rem', height: '1.5rem' }} />
-                  </a>
-                  <a href="#" aria-label="LinkedIn" className="social-link-modern">
-                    <Linkedin style={{ width: '1.5rem', height: '1.5rem' }} />
-                  </a>
-                </div>
+                <ul className="social-links">
+                  <li>
+                    <a href="https://www.youtube.com/@Heinerfilm" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="social-icon">
+                      <FaYoutube />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/heinerfilm.de/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">
+                      <FaInstagram />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.tiktok.com/@heinerfilm" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="social-icon">
+                      <FaTiktok />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/in/tim-pfeifer-b8a858203/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
+                      <FaLinkedin />
+                    </a>
+                  </li>
+                </ul>
               </motion.div>
             </motion.div>
 
