@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { TrendingUp, Heart, UserCheck, Zap, Target, BarChart, Star, Quote, ArrowRight } from 'lucide-react';
@@ -8,11 +9,35 @@ import FeatureSection from '@/components/FeatureSection';
 import StrategyProcessSection from '@/components/StrategyProcessSection';
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Sicherstellen, dass das Video auf mobilen Geräten abgespielt wird
+    const video = videoRef.current;
+    if (video) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Autoplay wurde verhindert, versuche es erneut nach Benutzerinteraktion
+          console.log('Video autoplay prevented, will retry on interaction');
+        });
+      }
+    }
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
       <section className="hero">
-        <video className="hero-video" autoPlay muted loop playsInline>
+        <video 
+          ref={videoRef}
+          className="hero-video" 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          preload="auto"
+        >
           <source src="/video/highlightfilm.mp4" type="video/mp4" />
         </video>
         <div className="hero-overlay"></div>

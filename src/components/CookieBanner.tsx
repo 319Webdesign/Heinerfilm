@@ -57,14 +57,14 @@ export default function CookieBanner() {
       }}
       style={{
         position: 'fixed',
-        bottom: '1.5rem',
-        right: '1.5rem',
+        bottom: '1rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
         zIndex: 9999,
         maxWidth: '28rem',
-        width: '100%',
-        margin: '0 1rem',
+        width: 'calc(100% - 2rem)',
+        margin: '0 auto',
       }}
-      className="md:mx-0"
     >
       <div
         style={{

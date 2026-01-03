@@ -1769,6 +1769,18 @@ p {
     }
 }
 
+/* Cookie Banner Styles */
+@media (max-width: 768px) {
+    /* Cookie Banner zentrieren auf mobilen Geräten */
+    [style*="position: fixed"][style*="bottom"] {
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: calc(100% - 2rem) !important;
+        max-width: 28rem !important;
+    }
+}
+
 /* Small Mobile */
 @media (max-width: 480px) {
     .container {
