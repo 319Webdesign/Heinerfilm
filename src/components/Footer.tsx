@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaYoutube, FaLinkedin, FaTiktok } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -32,30 +32,48 @@ export default function Footer() {
           <div className="footer-column">
             <h4>Kontakt</h4>
             <ul>
-              <li>Email: info@heinerfilm.de</li>
-              <li>Tel: +49 (0) XXX XXX XXX</li>
+              <li>Email: <a 
+                href="mailto:info@heinerfilm.de" 
+                style={{ 
+                  color: 'rgba(255, 255, 255, 0.7)', 
+                  textDecoration: 'none',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#ff0000'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)'}
+              >info@heinerfilm.de</a></li>
+              <li>Tel: <a 
+                href="tel:+4917656792783" 
+                style={{ 
+                  color: 'rgba(255, 255, 255, 0.7)', 
+                  textDecoration: 'none',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#ff0000'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)'}
+              >0176 5679 2783</a></li>
             </ul>
           </div>
           <div className="footer-column">
             <h4>Social Media</h4>
             <ul className="social-links">
               <li>
-                <a href="#" aria-label="Facebook" className="social-icon">
-                  <FaFacebook />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="Instagram" className="social-icon">
-                  <FaInstagram />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="YouTube" className="social-icon">
+                <a href="https://www.youtube.com/@Heinerfilm" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="social-icon">
                   <FaYoutube />
                 </a>
               </li>
               <li>
-                <a href="#" aria-label="LinkedIn" className="social-icon">
+                <a href="https://www.instagram.com/heinerfilm.de/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">
+                  <FaInstagram />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@heinerfilm" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="social-icon">
+                  <FaTiktok />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/tim-pfeifer-b8a858203/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
                   <FaLinkedin />
                 </a>
               </li>

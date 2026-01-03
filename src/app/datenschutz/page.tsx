@@ -199,7 +199,7 @@ export default function Datenschutz() {
               {/* PLATZHALTER: Kontakt */}
               <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>Kontakt:</strong><br />
               E-Mail: info@heinerfilm.de<br />
-              Telefon: 0176/56792783
+              Telefon: 0176 5679 2783
             </p>
           </div>
         </motion.section>

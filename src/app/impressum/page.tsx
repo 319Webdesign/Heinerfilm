@@ -334,7 +334,7 @@ export default function Impressum() {
                   color: '#ffffff',
                   fontFamily: 'var(--font-inter)',
                 }}>
-                  0176/56792783
+                  0176 5679 2783
                 </div>
               </div>
             </div>

@@ -93,8 +93,8 @@ export default function Contact() {
                     </div>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>Telefon</h3>
                     <p style={{ color: 'rgba(156, 163, 175, 1)', margin: 0 }}>
-                      <a href="tel:+49XXXXXXXXX" style={{ color: 'rgba(156, 163, 175, 1)', textDecoration: 'none' }}>
-                        +49 (0) XXX XXX XXX
+                      <a href="tel:+4917656792783" style={{ color: 'rgba(156, 163, 175, 1)', textDecoration: 'none' }}>
+                        0176 5679 2783
                       </a>
                     </p>
                   </div>
