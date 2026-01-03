@@ -12,31 +12,38 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Sicherstellen, dass das Video auf mobilen Geräten abgespielt wird
+    // Sicherstellen, dass das Video auf mobilen Geräten sofort abgespielt wird
     const video = videoRef.current;
     if (video) {
-      // Video-Eigenschaften setzen
+      // Video-Eigenschaften setzen (kritisch für Autoplay auf Mobile)
       video.muted = true;
       video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
       
-      // Versuche das Video abzuspielen
+      // Versuche das Video sofort abzuspielen
       const playVideo = async () => {
         try {
+          // Setze Volume auf 0, um sicherzustellen, dass es stumm ist
+          video.volume = 0;
           await video.play();
         } catch (error) {
           // Autoplay wurde verhindert - wird nach Benutzerinteraktion gestartet
-          console.log('Video autoplay prevented');
+          console.log('Video autoplay prevented:', error);
         }
       };
 
-      // Warte bis das Video geladen ist
+      // Versuche sofort zu starten, wenn das Video bereits geladen ist
       if (video.readyState >= 2) {
         playVideo();
       } else {
+        // Warte auf verschiedene Events, um Kompatibilität zu maximieren
+        video.addEventListener('loadedmetadata', playVideo, { once: true });
         video.addEventListener('loadeddata', playVideo, { once: true });
+        video.addEventListener('canplay', playVideo, { once: true });
       }
 
-      // Starte Video nach Benutzerinteraktion
+      // Fallback: Starte Video nach Benutzerinteraktion, falls Autoplay fehlschlägt
       const handleUserInteraction = () => {
         if (video.paused) {
           video.play().catch(() => {});
@@ -44,11 +51,13 @@ export default function Home() {
       };
 
       // Event-Listener für Benutzerinteraktionen
-      document.addEventListener('touchstart', handleUserInteraction, { once: true });
+      document.addEventListener('touchstart', handleUserInteraction, { once: true, passive: true });
       document.addEventListener('click', handleUserInteraction, { once: true });
 
       return () => {
+        video.removeEventListener('loadedmetadata', playVideo);
         video.removeEventListener('loadeddata', playVideo);
+        video.removeEventListener('canplay', playVideo);
         document.removeEventListener('touchstart', handleUserInteraction);
         document.removeEventListener('click', handleUserInteraction);
       };
@@ -70,11 +79,12 @@ export default function Home() {
         <video 
           ref={videoRef}
           className="hero-video" 
-          autoPlay 
-          muted 
-          loop 
+          autoPlay
+          muted
+          loop
           playsInline
           preload="auto"
+          poster="/img/ueberuns.jpg"
           disablePictureInPicture
           controlsList="nodownload nofullscreen noremoteplayback"
         >

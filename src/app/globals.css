@@ -341,10 +341,17 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     z-index: 0;
     filter: blur(1px);
     pointer-events: none;
     -webkit-tap-highlight-color: transparent;
+    /* Optimierungen für mobile Performance */
+    -webkit-playsinline: true;
+    -webkit-touch-callout: none;
+    user-select: none;
+    /* Verhindere Flackern beim Laden */
+    background-color: #000;
 }
 
 /* Verstecke Play-Button-Overlay auf mobilen Geräten */
