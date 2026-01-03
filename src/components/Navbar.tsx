@@ -68,8 +68,11 @@ export default function Navbar() {
     { href: '/contact', label: 'Kontakt' },
   ];
 
+  const isHomePage = pathname === '/';
+  const isHomeHero = isHomePage && !isScrolled;
+
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isHomeHero ? 'home-hero' : ''}`}>
       <div className="container">
         <div className="nav-wrapper">
           <Link href="/" className="logo">

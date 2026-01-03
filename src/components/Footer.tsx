@@ -63,10 +63,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2024 Heinerfilm. Alle Rechte vorbehalten.</p>
+          <p>&copy; {new Date().getFullYear()} Heinerfilm. Alle Rechte vorbehalten.</p>
           <ul>
-            <li><a href="#">Impressum</a></li>
-            <li><a href="#">Datenschutz</a></li>
+            <li><Link href="/impressum">Impressum</Link></li>
+            <li><Link href="/datenschutz">Datenschutz</Link></li>
           </ul>
         </div>
         <div style={{ textAlign: 'center', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
