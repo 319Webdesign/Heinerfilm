@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="footer-content">
           <div className="footer-column">
             <Image
-              src="/img/Logo_weis.png"
+              src="/img/Heinerfilm_Schriftzug_weiss.png"
               alt="Heinerfilm Logo"
               width={200}
               height={67}

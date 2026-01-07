@@ -77,7 +77,7 @@ export default function Navbar() {
         <div className="nav-wrapper">
           <Link href="/" className="logo">
             <Image
-              src="/img/Logo_weis.png"
+              src="/img/Heinerfilm_Schriftzug_weiss.png"
               alt="Heinerfilm Logo"
               width={250}
               height={80}

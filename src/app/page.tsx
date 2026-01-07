@@ -129,7 +129,7 @@ export default function Home() {
             </div>
             <div className="about-image">
               <Image
-                src="/img/DSC06760.jpg"
+                src="/img/DSC01407.jpg"
                 alt="Heiner - Filmemacher aus Darmstadt"
                 width={600}
                 height={800}
@@ -441,7 +441,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Testimonial 2: Tobias Meckel */}
+            {/* Testimonial 2: Robin Steitz */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -497,7 +497,7 @@ export default function Home() {
                 position: 'relative',
                 zIndex: 10
               }}>
-                "Was heinerfilm auszeichnet, ist die unbedingte Einsatzbereitschaft, bis das Ziel erreicht ist. Für mein Business-Shooting hat das Team nicht nachgelassen, bis jedes Detail perfekt war. Die Ergebnisse haben meine Erwartungen übertroffen und haben maßgeblich zum Erfolg meines Projekts beigetragen. Absolute Empfehlung!"
+                "Ich bin begeistert! Tim arbeitet äußerst professionell, von der ersten Kontaktaufnahme bis hin zur finalen Umsetzung. Die Kommunikation war immer klar, offen und sehr angenehm, sodass ich mich jederzeit gut aufgehoben fühlte."
               </p>
               
               {/* Author Info */}
@@ -515,16 +515,16 @@ export default function Home() {
                   fontWeight: 'bold',
                   fontSize: '1.125rem'
                 }}>
-                  TM
+                  RS
                 </div>
                 <div>
-                  <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Tobias Meckel</p>
-                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>Kunde</p>
+                  <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Robin Steitz</p>
+                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>Klangversprechen</p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Testimonial 3: Benno Dembowski */}
+            {/* Testimonial 3: Dirk Stumpf */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -580,7 +580,7 @@ export default function Home() {
                 position: 'relative',
                 zIndex: 10
               }}>
-                "Der Unterschied zwischen Handy-Videos und dem, was heinerfilm produziert, ist enorm. Bei der Dokumentation unseres Events wurden die Emotionen des Moments meisterhaft festgehalten. Jede Aufnahme erzählt eine Geschichte und transportiert das Gefühl des Moments authentisch. Das ist echte Filmkunst."
+                "Die Ergebnisse sprechen für sich: Die Bilder sind modern, hochwertig und spiegeln perfekt den Charakter unseres Teams wider. Wir freuen uns, diese Fotos sowohl auf unserer Website als auch in anderen Firmenpräsentationen nutzen zu können."
               </p>
               
               {/* Author Info */}
@@ -598,11 +598,11 @@ export default function Home() {
                   fontWeight: 'bold',
                   fontSize: '1.125rem'
                 }}>
-                  BD
+                  DS
                 </div>
                 <div>
-                  <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Benno Dembowski</p>
-                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>Kunde</p>
+                  <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Dirk Stumpf</p>
+                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>Noveo</p>
                 </div>
               </div>
             </motion.div>
@@ -670,7 +670,7 @@ export default function Home() {
               Aktuelle Projekte
             </h2>
             <p className="section-subtitle" style={{ color: 'rgba(156, 163, 175, 1)' }}>
-              Einblicke in unsere neuesten Arbeiten
+            Einblicke in unsere aktuellen Projekte
             </p>
           </motion.div>
           <div className="portfolio-grid portfolio-grid-modern">
@@ -684,15 +684,18 @@ export default function Home() {
               <div className="portfolio-card-glow"></div>
               <div style={{ position: 'relative', zIndex: 10 }}>
                 <div className="portfolio-image-modern">
-                  <div className="placeholder-image-modern">
-                    <span>Projekt 1</span>
-                  </div>
+                  <Image
+                    src="/img/Sprotpresseball.png"
+                    alt="Deutscher SportPresseBall"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
                 <div className="portfolio-info-modern">
                   <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>
-                    Projekt Titel
+                    Deutscher SportPresseBall
                   </h3>
-                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '1rem', margin: 0 }}>Kategorie</p>
+                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '1rem', margin: 0 }}>Event Highlightfilm</p>
                 </div>
               </div>
             </motion.div>
@@ -706,15 +709,18 @@ export default function Home() {
               <div className="portfolio-card-glow"></div>
               <div style={{ position: 'relative', zIndex: 10 }}>
                 <div className="portfolio-image-modern">
-                  <div className="placeholder-image-modern">
-                    <span>Projekt 2</span>
-                  </div>
+                  <Image
+                    src="/img/Xtreme.png"
+                    alt="Xtreme"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
                 <div className="portfolio-info-modern">
                   <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>
-                    Projekt Titel
+                    Xtreme
                   </h3>
-                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '1rem', margin: 0 }}>Kategorie</p>
+                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '1rem', margin: 0 }}>Social Media Content</p>
                 </div>
               </div>
             </motion.div>
@@ -728,15 +734,18 @@ export default function Home() {
               <div className="portfolio-card-glow"></div>
               <div style={{ position: 'relative', zIndex: 10 }}>
                 <div className="portfolio-image-modern">
-                  <div className="placeholder-image-modern">
-                    <span>Projekt 3</span>
-                  </div>
+                  <Image
+                    src="/img/Heinerwiesn.png"
+                    alt="Heinerwiesn"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
                 <div className="portfolio-info-modern">
                   <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>
-                    Projekt Titel
+                    Heinerwiesn
                   </h3>
-                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '1rem', margin: 0 }}>Kategorie</p>
+                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '1rem', margin: 0 }}>Fotografie</p>
                 </div>
               </div>
             </motion.div>
