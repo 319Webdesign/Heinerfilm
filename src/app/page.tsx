@@ -1,95 +1,35 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { lazy, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { TrendingUp, Heart, UserCheck, Zap, Target, BarChart, Star, Quote, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import FeatureSection from '@/components/FeatureSection';
-import StrategyProcessSection from '@/components/StrategyProcessSection';
+import LazyVideo from '@/components/LazyVideo';
+
+const FeatureSection = lazy(() => import('@/components/FeatureSection'));
+const StrategyProcessSection = lazy(() => import('@/components/StrategyProcessSection'));
 
 export default function Home() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    // Sicherstellen, dass das Video auf mobilen Geräten sofort abgespielt wird
-    const video = videoRef.current;
-    if (video) {
-      // Video-Eigenschaften setzen (kritisch für Autoplay auf Mobile)
-      video.muted = true;
-      video.playsInline = true;
-      video.setAttribute('muted', '');
-      video.setAttribute('playsinline', '');
-      
-      // Versuche das Video sofort abzuspielen
-      const playVideo = async () => {
-        try {
-          // Setze Volume auf 0, um sicherzustellen, dass es stumm ist
-          video.volume = 0;
-          await video.play();
-        } catch (error) {
-          // Autoplay wurde verhindert - wird nach Benutzerinteraktion gestartet
-          console.log('Video autoplay prevented:', error);
-        }
-      };
-
-      // Versuche sofort zu starten, wenn das Video bereits geladen ist
-      if (video.readyState >= 2) {
-        playVideo();
-      } else {
-        // Warte auf verschiedene Events, um Kompatibilität zu maximieren
-        video.addEventListener('loadedmetadata', playVideo, { once: true });
-        video.addEventListener('loadeddata', playVideo, { once: true });
-        video.addEventListener('canplay', playVideo, { once: true });
-      }
-
-      // Fallback: Starte Video nach Benutzerinteraktion, falls Autoplay fehlschlägt
-      const handleUserInteraction = () => {
-        if (video.paused) {
-          video.play().catch(() => {});
-        }
-      };
-
-      // Event-Listener für Benutzerinteraktionen
-      document.addEventListener('touchstart', handleUserInteraction, { once: true, passive: true });
-      document.addEventListener('click', handleUserInteraction, { once: true });
-
-      return () => {
-        video.removeEventListener('loadedmetadata', playVideo);
-        video.removeEventListener('loadeddata', playVideo);
-        video.removeEventListener('canplay', playVideo);
-        document.removeEventListener('touchstart', handleUserInteraction);
-        document.removeEventListener('click', handleUserInteraction);
-      };
-    }
-  }, []);
-
   const handleHeroClick = () => {
-    // Starte Video wenn auf Hero-Section geklickt wird
-    const video = videoRef.current;
-    if (video && video.paused) {
-      video.play().catch(() => {});
-    }
+    // Video wird durch LazyVideo Komponente gehandhabt
   };
 
   return (
     <>
       {/* Hero Section */}
       <section className="hero" onClick={handleHeroClick}>
-        <video 
-          ref={videoRef}
-          className="hero-video" 
+        <LazyVideo
+          src="/video/highlightfilm.mp4"
+          className="hero-video"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
           poster="/img/ueberuns.jpg"
           disablePictureInPicture
           controlsList="nodownload nofullscreen noremoteplayback"
-        >
-          <source src="/video/highlightfilm.mp4" type="video/mp4" />
-        </video>
+        />
         <div className="hero-overlay"></div>
         <div className="container">
           <div className="hero-content">
@@ -135,6 +75,8 @@ export default function Home() {
                 height={800}
                 className="about-image-photo"
                 style={{ objectFit: 'cover', borderRadius: '12px' }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                loading="lazy"
               />
             </div>
           </div>
@@ -242,7 +184,9 @@ export default function Home() {
       </section>
 
       {/* Feature Section */}
-      <FeatureSection />
+      <Suspense fallback={<div style={{ minHeight: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>Lade Inhalte...</div>}>
+        <FeatureSection />
+      </Suspense>
 
       {/* Services Preview */}
       <section className="services-preview section section-dark">
@@ -300,7 +244,9 @@ export default function Home() {
       </section>
 
       {/* Strategy & Process Section */}
-      <StrategyProcessSection />
+      <Suspense fallback={<div style={{ minHeight: '400px' }}></div>}>
+        <StrategyProcessSection />
+      </Suspense>
 
       {/* Kundenstimmen Section */}
       <section className="testimonials-section" style={{ backgroundColor: '#050505', padding: '6rem 0', width: '100%', minHeight: 'auto' }}>
@@ -683,12 +629,14 @@ export default function Home() {
             >
               <div className="portfolio-card-glow"></div>
               <div style={{ position: 'relative', zIndex: 10 }}>
-                <div className="portfolio-image-modern">
+                <div className="portfolio-image-modern" style={{ aspectRatio: '16/9', position: 'relative' }}>
                   <Image
                     src="/img/Sprotpresseball.png"
                     alt="Deutscher SportPresseBall"
                     fill
                     style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="portfolio-info-modern">
@@ -708,12 +656,14 @@ export default function Home() {
             >
               <div className="portfolio-card-glow"></div>
               <div style={{ position: 'relative', zIndex: 10 }}>
-                <div className="portfolio-image-modern">
+                <div className="portfolio-image-modern" style={{ aspectRatio: '16/9', position: 'relative' }}>
                   <Image
                     src="/img/Xtreme.png"
                     alt="Xtreme"
                     fill
                     style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="portfolio-info-modern">
@@ -733,12 +683,14 @@ export default function Home() {
             >
               <div className="portfolio-card-glow"></div>
               <div style={{ position: 'relative', zIndex: 10 }}>
-                <div className="portfolio-image-modern">
+                <div className="portfolio-image-modern" style={{ aspectRatio: '16/9', position: 'relative' }}>
                   <Image
                     src="/img/Heinerwiesn.png"
                     alt="Heinerwiesn"
                     fill
                     style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="portfolio-info-modern">

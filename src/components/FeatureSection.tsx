@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import LazyVideo from '@/components/LazyVideo';
 
 export default function FeatureSection() {
   return (
@@ -34,10 +35,15 @@ export default function FeatureSection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            <div className="video-tile video-tile-full">
-              <video autoPlay muted loop playsInline>
-                <source src="/video/Slideshow.mp4" type="video/mp4" />
-              </video>
+            <div className="video-tile video-tile-full" style={{ aspectRatio: '16/9' }}>
+              <LazyVideo
+                src="/video/Slideshow.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
         </div>

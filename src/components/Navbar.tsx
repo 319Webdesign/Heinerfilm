@@ -79,8 +79,9 @@ export default function Navbar() {
             <Image
               src="/img/Heinerfilm_Schriftzug_weiss.png"
               alt="Heinerfilm Logo"
-              width={250}
-              height={80}
+              width={320}
+              height={100}
+              sizes="(max-width: 768px) 200px, 320px"
               priority
             />
           </Link>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Leistungen - Heinerfilm',
@@ -10,6 +11,17 @@ export default function Services() {
   return (
     <>
       <section className="page-header">
+        <div className="page-header-background">
+          <Image
+            src="/img/Headerbild_Leistungen_unscharf.png"
+            alt="Leistungen Header"
+            fill
+            className="page-header-image"
+            sizes="100vw"
+            priority
+          />
+        </div>
+        <div className="page-header-overlay"></div>
         <div className="container">
           <h1>Unsere Leistungen</h1>
           <p>Von der Konzeption bis zur finalen Auslieferung</p>
@@ -30,12 +42,17 @@ export default function Services() {
                   <li>Regie und Produktionsleitung</li>
                   <li>Drehbuch für Imagefilme, Werbefilme, Dokumentationen</li>
                 </ul>
-                <Link href="/contact" className="btn btn-primary">Anfrage stellen</Link>
+                <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
-              <div className="service-detail-image">
-                <div className="placeholder-image">
-                  <span>Filmproduktion</span>
-                </div>
+              <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative' }}>
+                <Image
+                  src="/img/Behindthescenes-37.jpg"
+                  alt="Filmproduktion"
+                  fill
+                  style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -52,7 +69,7 @@ export default function Services() {
                   <li>Event-Videos und Livestreaming</li>
                   <li>Video-Marketing Strategie und Beratung</li>
                 </ul>
-                <Link href="/contact" className="btn btn-primary">Anfrage stellen</Link>
+                <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
               <div className="service-detail-image">
                 <div className="placeholder-image">
@@ -65,28 +82,6 @@ export default function Services() {
           <div className="service-detail-item">
             <div className="service-detail-content">
               <div className="service-detail-text">
-                <h2>Post-Production</h2>
-                <p>Schnitt, Farbkorrektur, Motion Graphics und visuelle Effekte für ein perfektes Ergebnis:</p>
-                <ul>
-                  <li>Professioneller Videoschnitt</li>
-                  <li>Farbkorrektur und Grading</li>
-                  <li>Motion Graphics und Animationen</li>
-                  <li>Visuelle Effekte (VFX)</li>
-                  <li>Sounddesign und Musikuntermalung</li>
-                </ul>
-                <Link href="/contact" className="btn btn-primary">Anfrage stellen</Link>
-              </div>
-              <div className="service-detail-image">
-                <div className="placeholder-image">
-                  <span>Post-Production</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="service-detail-item service-detail-reverse">
-            <div className="service-detail-content">
-              <div className="service-detail-text">
                 <h2>Fotografie</h2>
                 <p>Professionelle Fotografie für alle Anlässe:</p>
                 <ul>
@@ -96,12 +91,17 @@ export default function Services() {
                   <li>Image-Kampagnen</li>
                   <li>Retusche und Bildbearbeitung</li>
                 </ul>
-                <Link href="/contact" className="btn btn-primary">Anfrage stellen</Link>
+                <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
-              <div className="service-detail-image">
-                <div className="placeholder-image">
-                  <span>Fotografie</span>
-                </div>
+              <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative' }}>
+                <Image
+                  src="/img/Leistung_Fotografie.png"
+                  alt="Fotografie"
+                  fill
+                  style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>

@@ -16,6 +16,8 @@ export default function Footer() {
               width={200}
               height={67}
               style={{ width: '200px', height: 'auto', objectFit: 'contain', marginBottom: '1rem' }}
+              sizes="200px"
+              loading="lazy"
             />
             <p>Ihre Medienagentur für professionelle Filmproduktion und visuelle Medienlösungen.</p>
           </div>

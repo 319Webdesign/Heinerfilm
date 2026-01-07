@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import PortfolioFilter from '@/components/PortfolioFilter';
+import { lazy, Suspense } from 'react';
+
+const PortfolioFilter = lazy(() => import('@/components/PortfolioFilter'));
 
 export const metadata: Metadata = {
   title: 'Portfolio - Heinerfilm',
@@ -16,7 +18,9 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <PortfolioFilter />
+      <Suspense fallback={<div style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>Lade Portfolio...</div>}>
+        <PortfolioFilter />
+      </Suspense>
 
       <section className="testimonials section section-dark">
         <div className="container">
@@ -25,34 +29,32 @@ export default function Portfolio() {
             <div className="testimonial">
               <div className="testimonial-content">
                 <p>
-                  "Die Zusammenarbeit mit Heinerfilm war außergewöhnlich. Professionell, kreativ und termingerecht.
-                  Unser Imagefilm hat alle Erwartungen übertroffen."
+                  "Die Zusammenarbeit mit heinerfilm war außergewöhnlich professionell. Besonders beeindruckt hat mich die präzise Planung und Pünktlichkeit – wichtige Faktoren, wenn man Termine koordinieren muss. Die Kunst, zum richtigen Zeitpunkt am Auslöser zu drücken, beherrscht das Team perfekt, auch bei herausfordernden Lichtverhältnissen. Das Ergebnis spricht für sich."
                 </p>
               </div>
               <div className="testimonial-author">
-                <strong>Name</strong>
-                <span>Firma/Position</span>
+                <strong>ID-PLUS</strong>
+                <span>Kunde</span>
               </div>
             </div>
             <div className="testimonial">
               <div className="testimonial-content">
                 <p>
-                  "Ein absolut zuverlässiger Partner für unsere Video-Projekte. Die kreative Umsetzung und die
-                  Kommunikation waren jederzeit auf höchstem Niveau."
+                  "Ich bin begeistert! Tim arbeitet äußerst professionell, von der ersten Kontaktaufnahme bis hin zur finalen Umsetzung. Die Kommunikation war immer klar, offen und sehr angenehm, sodass ich mich jederzeit gut aufgehoben fühlte."
                 </p>
               </div>
               <div className="testimonial-author">
-                <strong>Name</strong>
-                <span>Firma/Position</span>
+                <strong>Robin Steitz</strong>
+                <span>Klangversprechen</span>
               </div>
             </div>
             <div className="testimonial">
               <div className="testimonial-content">
-                <p>"Heinerfilm hat unsere Vision perfekt verstanden und in beeindruckende Bilder umgesetzt. Sehr empfehlenswert!"</p>
+                <p>"Die Ergebnisse sprechen für sich: Die Bilder sind modern, hochwertig und spiegeln perfekt den Charakter unseres Teams wider. Wir freuen uns, diese Fotos sowohl auf unserer Website als auch in anderen Firmenpräsentationen nutzen zu können."</p>
               </div>
               <div className="testimonial-author">
-                <strong>Name</strong>
-                <span>Firma/Position</span>
+                <strong>Dirk Stumpf</strong>
+                <span>Noveo</span>
               </div>
             </div>
           </div>

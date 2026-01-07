@@ -1,10 +1,12 @@
 'use client';
 
+import { lazy, Suspense } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, Phone, Clock } from 'lucide-react';
 import { FaInstagram, FaYoutube, FaLinkedin, FaTiktok } from 'react-icons/fa';
-import ContactForm from '@/components/ContactForm';
+
+const ContactForm = lazy(() => import('@/components/ContactForm'));
 
 export default function Contact() {
   return (
@@ -12,11 +14,12 @@ export default function Contact() {
       <section className="page-header">
         <div className="page-header-background">
           <Image
-            src="/img/bannerevent.png"
-            alt="Event Banner"
+            src="/img/Kontakt_headerbild01.png"
+            alt="Kontakt Header"
             fill
             className="page-header-image"
             style={{ objectFit: 'cover' }}
+            sizes="100vw"
             priority
           />
           <div className="page-header-overlay"></div>
@@ -95,7 +98,7 @@ export default function Contact() {
                     <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>Telefon</h3>
                     <p style={{ color: 'rgba(156, 163, 175, 1)', margin: 0 }}>
                       <a href="tel:+4917656792783" style={{ color: 'rgba(156, 163, 175, 1)', textDecoration: 'none' }}>
-                        0176 5679 2783
+                        0176 56792783
                       </a>
                     </p>
                   </div>
@@ -111,31 +114,11 @@ export default function Contact() {
                   <div className="contact-card-glow"></div>
                   <div style={{ position: 'relative', zIndex: 10 }}>
                     <div className="contact-icon">
-                      <MapPin style={{ width: '1.5rem', height: '1.5rem', color: '#ef4444' }} />
-                    </div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>Adresse</h3>
-                    <p style={{ color: 'rgba(156, 163, 175, 1)', margin: 0, lineHeight: '1.6' }}>
-                      Numrichstraße 10<br />
-                      64319 Pfungstadt
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="contact-card-modern"
-                >
-                  <div className="contact-card-glow"></div>
-                  <div style={{ position: 'relative', zIndex: 10 }}>
-                    <div className="contact-icon">
                       <Clock style={{ width: '1.5rem', height: '1.5rem', color: '#ef4444' }} />
                     </div>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>Geschäftszeiten</h3>
-                    <p style={{ color: 'rgba(156, 163, 175, 1)', margin: 0, lineHeight: '1.6' }}>
-                      Montag - Freitag: 9:00 - 18:00 Uhr<br />
+                    <p style={{ color: 'rgba(156, 163, 175, 1)', margin: 0, lineHeight: '1.8', paddingBottom: '0.25rem' }}>
+                      Montag - Freitag: <span style={{ whiteSpace: 'nowrap' }}>10 - 19 Uhr</span><br />
                       Samstag - Sonntag: Geschlossen
                     </p>
                   </div>
@@ -146,7 +129,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
                 className="social-media-contact-modern"
               >
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1.5rem' }}>Folgen Sie uns</h3>
@@ -182,7 +165,9 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               className="contact-form-wrapper"
             >
-              <ContactForm />
+              <Suspense fallback={<div style={{ color: 'white', padding: '2rem', textAlign: 'center' }}>Lade Formular...</div>}>
+                <ContactForm />
+              </Suspense>
             </motion.div>
           </div>
         </div>

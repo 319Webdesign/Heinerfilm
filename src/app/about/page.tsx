@@ -5,6 +5,62 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
+// Komponente für Team-Mitglieder mit Platzhalter
+function TeamMemberCard({ 
+  imageSrc, 
+  alt, 
+  name, 
+  role, 
+  delay,
+  objectPosition = 'center'
+}: { 
+  imageSrc: string; 
+  alt: string; 
+  name: string; 
+  role: string; 
+  delay: number;
+  objectPosition?: string;
+}) {
+  const [imageError, setImageError] = useState(!imageSrc || imageSrc === '');
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay }}
+      className="portfolio-item-modern"
+    >
+      <div className="portfolio-card-glow"></div>
+      <div style={{ position: 'relative', zIndex: 10 }}>
+        <div className="portfolio-image-modern" style={{ aspectRatio: '3/4' }}>
+          {!imageError && imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={alt}
+              fill
+              style={{ objectFit: 'cover', objectPosition: objectPosition }}
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="placeholder-image-modern" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>
+              Kein Bild
+            </div>
+          )}
+        </div>
+        <div className="portfolio-info-modern" style={{ textAlign: 'left' }}>
+          <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '0.5rem' }}>
+            {name}
+          </h3>
+          <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '1rem', margin: 0 }}>
+            {role}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function About() {
   const [countProjects, setCountProjects] = useState(0);
   const [countClients, setCountClients] = useState(0);
@@ -82,6 +138,7 @@ export default function About() {
             fill
             className="about-hero-image"
             style={{ objectFit: 'cover' }}
+            sizes="100vw"
             priority
           />
           <div className="about-hero-overlay"></div>
@@ -158,6 +215,8 @@ export default function About() {
                   height={400}
                   className="zigzag-img"
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  loading="lazy"
                 />
               </div>
               <div className="zigzag-text">
@@ -173,25 +232,6 @@ export default function About() {
                 </p>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Story-Box für Namensentstehung */}
-      <section className="about-story-box section section-dark">
-        <div className="container">
-          <motion.div
-            className="story-box"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2>Die Geschichte hinter Heinerfilm</h2>
-            <p className="story-box-text">
-              Der Name „Heinerfilm" entstand nach einem Filmdreh auf einer sehr langen Autofahrt von Berlin nach Darmstadt, 
-              als auf einmal der Satz fiel: „Berlin war schön aber ich bin Stolz ein Heiner zu sein." Und der Rest ist Geschichte...
-            </p>
           </motion.div>
         </div>
       </section>
@@ -223,15 +263,84 @@ export default function About() {
             </div>
             <div className="zigzag-image">
               <Image
-                src="/img/DSC06760.jpg"
+                src="/img/Tim_zoom.png"
                 alt="Professionelle Videoproduktion Darmstadt"
                 width={600}
                 height={400}
                 className="zigzag-img"
                 style={{ objectFit: 'cover', borderRadius: '12px' }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                loading="lazy"
               />
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Gemeinsame Stärke - Team Sektion */}
+      <section className="section section-dark">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <div className="zigzag-text" style={{ textAlign: 'center' }}>
+              <h2>Gemeinsame Stärke</h2>
+              <p>
+                Ohne ein starkes Netzwerk wäre Heinerfilm nicht das geworden, was wir heute sind. Ein eingespieltes Team aus langjährigen Partnern und eine vertrauensvolle Zusammenarbeit prägen unsere Arbeit. Gemeinsam schaffen wir das gewisse Etwas, das Ihre Marke unverwechselbar macht.
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="portfolio-grid portfolio-grid-modern" style={{ marginTop: '4rem' }}>
+            <TeamMemberCard
+              imageSrc="/img/svendrohne.jpg"
+              alt="Sven Perske"
+              name="Sven Perske"
+              role="Fotograf"
+              delay={0.1}
+            />
+            <TeamMemberCard
+              imageSrc="/img/pxe-team-stefan.jpg"
+              alt="Stefan Reinhardt"
+              name="Stefan Reinhardt"
+              role="strategisches Marketing"
+              delay={0.2}
+            />
+            <TeamMemberCard
+              imageSrc="/img/Himken_idplus.jpg"
+              alt="Annette Himken"
+              name="Annette Himken"
+              role="Corporate Design & Grafikdesign"
+              delay={0.3}
+              objectPosition="center"
+            />
+            <TeamMemberCard
+              imageSrc="/img/DamianDomin.webp"
+              alt="Damian Domin"
+              name="Damian Domin"
+              role="FPV-Drohne + Videograf"
+              delay={0.4}
+            />
+            <TeamMemberCard
+              imageSrc="/img/Volker.JPEG"
+              alt="Volker Pleil"
+              name="Volker Pleil"
+              role="Videograf"
+              delay={0.5}
+              objectPosition="left center"
+            />
+            <TeamMemberCard
+              imageSrc=""
+              alt="Maik Schmidt"
+              name="Maik Schmidt"
+              role="Webdesign"
+              delay={0.6}
+            />
+          </div>
         </div>
       </section>
     </>
