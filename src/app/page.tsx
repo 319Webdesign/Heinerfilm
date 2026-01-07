@@ -26,7 +26,6 @@ export default function Home() {
           muted
           loop
           playsInline
-          poster="/img/ueberuns.jpg"
           disablePictureInPicture
           controlsList="nodownload nofullscreen noremoteplayback"
         />
@@ -69,7 +68,7 @@ export default function Home() {
             </div>
             <div className="about-image">
               <Image
-                src="/img/DSC01407.jpg"
+                src="/img/DSC01407.webp"
                 alt="Heiner - Filmemacher aus Darmstadt"
                 width={600}
                 height={800}
@@ -631,7 +630,7 @@ export default function Home() {
               <div style={{ position: 'relative', zIndex: 10 }}>
                 <div className="portfolio-image-modern" style={{ aspectRatio: '16/9', position: 'relative' }}>
                   <Image
-                    src="/img/Sprotpresseball.png"
+                    src="/img/Sprotpresseball.webp"
                     alt="Deutscher SportPresseBall"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -658,7 +657,7 @@ export default function Home() {
               <div style={{ position: 'relative', zIndex: 10 }}>
                 <div className="portfolio-image-modern" style={{ aspectRatio: '16/9', position: 'relative' }}>
                   <Image
-                    src="/img/Xtreme.png"
+                    src="/img/Xtreme.webp"
                     alt="Xtreme"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -685,7 +684,7 @@ export default function Home() {
               <div style={{ position: 'relative', zIndex: 10 }}>
                 <div className="portfolio-image-modern" style={{ aspectRatio: '16/9', position: 'relative' }}>
                   <Image
-                    src="/img/Heinerwiesn.png"
+                    src="/img/Heinerwiesn.webp"
                     alt="Heinerwiesn"
                     fill
                     style={{ objectFit: 'cover' }}

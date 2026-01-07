@@ -83,6 +83,7 @@ export default function Navbar() {
               height={100}
               sizes="(max-width: 768px) 200px, 320px"
               priority
+              unoptimized
             />
           </Link>
           <button

@@ -582,7 +582,6 @@ p {
 }
 
 .page-header-about {
-    background-image: url('/img/ueberuns.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2101,10 +2100,11 @@ p {
 }
 
 .btn-feature:hover {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
+    background-color: var(--color-secondary);
+    color: #ffffff;
+    border-color: var(--color-secondary);
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
 }
 
 .feature-video-grid {

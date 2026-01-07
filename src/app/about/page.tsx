@@ -131,18 +131,6 @@ export default function About() {
     <>
       {/* Hero Section */}
       <section className="about-hero">
-        <div className="about-hero-background">
-          <Image
-            src="/img/ueberuns.jpg"
-            alt="Heinerfilm Team"
-            fill
-            className="about-hero-image"
-            style={{ objectFit: 'cover' }}
-            sizes="100vw"
-            priority
-          />
-          <div className="about-hero-overlay"></div>
-        </div>
         <div className="container">
           <motion.div
             className="about-hero-content"
@@ -207,12 +195,11 @@ export default function About() {
             transition={{ duration: 0.8 }}
           >
             <div className="zigzag-item">
-              <div className="zigzag-image">
+              <div className="zigzag-image" style={{ aspectRatio: '3/2', position: 'relative', overflow: 'hidden' }}>
                 <Image
                   src="/img/TimKamera.jpg"
                   alt="Videoproduktion und Social Media Marketing Darmstadt"
-                  width={600}
-                  height={400}
+                  fill
                   className="zigzag-img"
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
@@ -263,7 +250,7 @@ export default function About() {
             </div>
             <div className="zigzag-image">
               <Image
-                src="/img/Tim_zoom.png"
+                src="/img/Tim_zoom.webp"
                 alt="Professionelle Videoproduktion Darmstadt"
                 width={600}
                 height={400}
@@ -297,21 +284,21 @@ export default function About() {
 
           <div className="portfolio-grid portfolio-grid-modern" style={{ marginTop: '4rem' }}>
             <TeamMemberCard
-              imageSrc="/img/svendrohne.jpg"
+              imageSrc="/img/svendrohne.webp"
               alt="Sven Perske"
               name="Sven Perske"
               role="Fotograf"
               delay={0.1}
             />
             <TeamMemberCard
-              imageSrc="/img/pxe-team-stefan.jpg"
+              imageSrc="/img/pxe-team-stefan.webp"
               alt="Stefan Reinhardt"
               name="Stefan Reinhardt"
               role="strategisches Marketing"
               delay={0.2}
             />
             <TeamMemberCard
-              imageSrc="/img/Himken_idplus.jpg"
+              imageSrc="/img/Himken_idplus.webp"
               alt="Annette Himken"
               name="Annette Himken"
               role="Corporate Design & Grafikdesign"
@@ -326,7 +313,7 @@ export default function About() {
               delay={0.4}
             />
             <TeamMemberCard
-              imageSrc="/img/Volker.JPEG"
+              imageSrc="/img/Volker.webp"
               alt="Volker Pleil"
               name="Volker Pleil"
               role="Videograf"

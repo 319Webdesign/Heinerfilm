@@ -15,12 +15,12 @@ interface PortfolioItem {
 }
 
 const portfolioItems: PortfolioItem[] = [
-  { id: 1, title: 'Klangversprechen', category: 'video', categoryLabel: 'Videomarketing', imageSrc: '/img/Klangversprechen-311.jpg' },
-  { id: 2, title: 'Loop 5 Influecer Event', category: 'photo', categoryLabel: 'Fotografie', imageSrc: '/img/Loop5_SocialMall73.jpg' },
-  { id: 3, title: 'Fibo x Smilodox', category: 'photo', categoryLabel: 'Fotografie', imageSrc: '/img/Fibo-5.jpg' },
-  { id: 4, title: 'Sportpresseball', category: 'film', categoryLabel: 'Filmproduktion', imageSrc: '/img/Sportpresseball2025_30.jpg' },
-  { id: 5, title: 'TimeWarp', category: 'film', categoryLabel: 'Filmproduktion', imageSrc: '/img/TimeWarp82_mitLogo.png' },
-  { id: 6, title: 'Eicke H+', category: 'video', categoryLabel: 'Videomarketing', imageSrc: '' },
+  { id: 1, title: 'Klangversprechen', category: 'video', categoryLabel: 'Videomarketing', imageSrc: '/img/Klangversprechen-311.webp' },
+  { id: 2, title: 'Loop 5 Influecer Event', category: 'photo', categoryLabel: 'Fotografie', imageSrc: '/img/Loop5_SocialMall73.webp' },
+  { id: 3, title: 'Fibo x Smilodox', category: 'photo', categoryLabel: 'Fotografie', imageSrc: '/img/Fibo-5.webp' },
+  { id: 4, title: 'Sportpresseball', category: 'film', categoryLabel: 'Filmproduktion', imageSrc: '/img/Sportpresseball2025_30.webp' },
+  { id: 5, title: 'TimeWarp', category: 'film', categoryLabel: 'Filmproduktion', imageSrc: '/img/TimeWarp82_mitLogo.webp' },
+  { id: 6, title: 'Eicke H+', category: 'video', categoryLabel: 'Videomarketing', imageSrc: '/img/Eicke-Upscale.webp' },
 ];
 
 const filters: { value: Category; label: string }[] = [
@@ -61,7 +61,7 @@ export default function PortfolioFilter() {
           <div className="portfolio-items">
             {filteredItems.map((item) => (
               <div key={item.id} className="portfolio-item" data-category={item.category}>
-                <div className="portfolio-image" style={{ aspectRatio: '4/3', position: 'relative', overflow: 'hidden' }}>
+                <div className="portfolio-image" style={{ aspectRatio: '4/3', position: 'relative', overflow: 'hidden', backgroundColor: '#000' }}>
                   {item.imageSrc && !imageErrors[item.id] ? (
                     <Image
                       src={item.imageSrc}
@@ -70,9 +70,13 @@ export default function PortfolioFilter() {
                       className="portfolio-img"
                       style={{ objectFit: 'cover' }}
                       loading="lazy"
-                      quality={85}
+                      quality={90}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      onError={() => setImageErrors(prev => ({ ...prev, [item.id]: true }))}
+                      onError={(e) => {
+                        console.error('Image load error for', item.imageSrc);
+                        setImageErrors(prev => ({ ...prev, [item.id]: true }));
+                      }}
+                      unoptimized={item.id === 6}
                     />
                   ) : (
                     <div className="placeholder-image" style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: 'rgba(255, 255, 255, 0.7)', fontSize: '1.125rem' }}>

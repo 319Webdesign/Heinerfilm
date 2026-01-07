@@ -13,7 +13,7 @@ export default function Services() {
       <section className="page-header">
         <div className="page-header-background">
           <Image
-            src="/img/Headerbild_Leistungen_unscharf.png"
+            src="/img/Headerbild_Leistungen_unscharf.webp"
             alt="Leistungen Header"
             fill
             className="page-header-image"
@@ -46,7 +46,7 @@ export default function Services() {
               </div>
               <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative' }}>
                 <Image
-                  src="/img/Behindthescenes-37.jpg"
+                  src="/img/Behindthescenes-37.webp"
                   alt="Filmproduktion"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
@@ -71,10 +71,15 @@ export default function Services() {
                 </ul>
                 <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
-              <div className="service-detail-image">
-                <div className="placeholder-image">
-                  <span>Videomarketing</span>
-                </div>
+              <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative' }}>
+                <Image
+                  src="/img/videomarketing.webp"
+                  alt="Videomarketing"
+                  fill
+                  style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -95,7 +100,7 @@ export default function Services() {
               </div>
               <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative' }}>
                 <Image
-                  src="/img/Leistung_Fotografie.png"
+                  src="/img/Leistung_Fotografie.webp"
                   alt="Fotografie"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
