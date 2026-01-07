@@ -17,6 +17,7 @@ export default function Services() {
             alt="Leistungen Header"
             fill
             className="page-header-image"
+            quality={75}
             sizes="100vw"
             priority
           />
@@ -50,6 +51,7 @@ export default function Services() {
                   alt="Filmproduktion"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
                 />
@@ -77,6 +79,7 @@ export default function Services() {
                   alt="Videomarketing"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
                 />
@@ -104,6 +107,7 @@ export default function Services() {
                   alt="Fotografie"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
                 />

@@ -70,7 +70,7 @@ export default function PortfolioFilter() {
                       className="portfolio-img"
                       style={{ objectFit: 'cover' }}
                       loading="lazy"
-                      quality={90}
+                      quality={75}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       onError={(e) => {
                         console.error('Image load error for', item.imageSrc);

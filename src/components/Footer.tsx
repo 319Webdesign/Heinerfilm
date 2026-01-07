@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { FaInstagram, FaYoutube, FaLinkedin, FaTiktok } from 'react-icons/fa';
 
 export default function Footer() {
@@ -10,15 +9,14 @@ export default function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-column">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/img/Heinerfilm_Schriftzug_weiss.png"
               alt="Heinerfilm Logo"
               width={200}
               height={67}
               style={{ width: '200px', height: 'auto', objectFit: 'contain', marginBottom: '1rem' }}
-              sizes="200px"
               loading="lazy"
-              unoptimized
             />
             <p>Ihre Medienagentur für professionelle Filmproduktion und visuelle Medienlösungen.</p>
           </div>

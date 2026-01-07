@@ -209,7 +209,7 @@ p {
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
-    background-color: var(--color-primary);
+    background-color: white;
     transition: var(--transition-fast);
 }
 
@@ -728,12 +728,18 @@ p {
     color: #ffffff;
 }
 
+.service-detail-text {
+    text-align: left;
+}
+
 .service-detail-text h2 {
     color: var(--color-secondary);
+    text-align: left;
 }
 
 .service-detail-text p {
     color: #ffffff;
+    text-align: left;
 }
 
 /* ============================================
@@ -1326,11 +1332,15 @@ p {
     }
 
     .social-media-contact-modern {
-        text-align: left;
+        text-align: center;
+    }
+
+    .social-media-contact-modern h3 {
+        text-align: center;
     }
 
     .social-media-contact-modern .social-links {
-        justify-content: flex-start;
+        justify-content: center;
         display: flex;
         gap: var(--spacing-sm);
         flex-wrap: wrap;
@@ -1538,6 +1548,16 @@ p {
         direction: ltr;
     }
 
+    .service-detail-text {
+        text-align: left !important;
+    }
+
+    .service-detail-text h2,
+    .service-detail-text p,
+    .service-detail-text ul {
+        text-align: left;
+    }
+
     .page-header {
         padding: 120px 0 60px;
     }
@@ -1549,6 +1569,10 @@ p {
 
 /* Mobile */
 @media (max-width: 768px) {
+    .navbar {
+        top: 0;
+    }
+
     .section {
         padding: 5rem 0;
     }
@@ -1561,15 +1585,33 @@ p {
         display: flex;
     }
 
+    .nav-wrapper {
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    .logo {
+        width: auto;
+        height: 50px;
+        flex-shrink: 0;
+    }
+
+    .logo img {
+        height: 50px;
+        width: auto;
+        max-width: 180px;
+    }
+
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 0;
         left: -100%;
         width: 100%;
         background-color: rgba(26, 26, 26, 0.95);
         backdrop-filter: blur(10px);
         flex-direction: column;
         padding: var(--spacing-md);
+        padding-top: 80px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: var(--transition-normal);
         gap: 0;
@@ -2940,6 +2982,11 @@ p {
     .about-hero {
         height: 60vh;
         min-height: 400px;
+        padding-top: 100px;
+    }
+
+    .about-hero-content {
+        padding-top: 2rem;
     }
 
     .about-hero-title {
@@ -2980,6 +3027,12 @@ p {
     .zigzag-text {
         order: 2;
         padding: var(--spacing-md) 0;
+        text-align: center;
+    }
+
+    .zigzag-text .btn {
+        display: block;
+        margin: 0 auto;
     }
 
     .zigzag-image {

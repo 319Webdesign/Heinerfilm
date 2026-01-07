@@ -66,14 +66,14 @@ export default function Home() {
                 Mehr über Heinerfilm <span className="btn-icon">→</span>
               </Link>
             </div>
-            <div className="about-image">
+            <div className="about-image" style={{ aspectRatio: '3/4', position: 'relative', overflow: 'hidden' }}>
               <Image
                 src="/img/DSC01407.webp"
                 alt="Heiner - Filmemacher aus Darmstadt"
-                width={600}
-                height={800}
+                fill
                 className="about-image-photo"
                 style={{ objectFit: 'cover', borderRadius: '12px' }}
+                quality={75}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 loading="lazy"
               />
@@ -634,6 +634,7 @@ export default function Home() {
                     alt="Deutscher SportPresseBall"
                     fill
                     style={{ objectFit: 'cover' }}
+                    quality={75}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading="lazy"
                   />
@@ -661,6 +662,7 @@ export default function Home() {
                     alt="Xtreme"
                     fill
                     style={{ objectFit: 'cover' }}
+                    quality={75}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading="lazy"
                   />
@@ -688,6 +690,7 @@ export default function Home() {
                     alt="Heinerwiesn"
                     fill
                     style={{ objectFit: 'cover' }}
+                    quality={75}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading="lazy"
                   />

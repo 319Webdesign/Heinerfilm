@@ -40,6 +40,8 @@ function TeamMemberCard({
               alt={alt}
               fill
               style={{ objectFit: 'cover', objectPosition: objectPosition }}
+              quality={75}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 450px"
               onError={() => setImageError(true)}
             />
           ) : (
@@ -195,13 +197,14 @@ export default function About() {
             transition={{ duration: 0.8 }}
           >
             <div className="zigzag-item">
-              <div className="zigzag-image" style={{ aspectRatio: '3/2', position: 'relative', overflow: 'hidden' }}>
+              <div className="zigzag-image" style={{ aspectRatio: '3/4', position: 'relative', overflow: 'hidden' }}>
                 <Image
                   src="/img/TimKamera.jpg"
                   alt="Videoproduktion und Social Media Marketing Darmstadt"
                   fill
                   className="zigzag-img"
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
+                  quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
                 />
@@ -248,14 +251,14 @@ export default function About() {
                 Kostenloses Erstgespräch vereinbaren
               </Link>
             </div>
-            <div className="zigzag-image">
+            <div className="zigzag-image" style={{ aspectRatio: '3/4', position: 'relative', overflow: 'hidden' }}>
               <Image
                 src="/img/Tim_zoom.webp"
                 alt="Professionelle Videoproduktion Darmstadt"
-                width={600}
-                height={400}
+                fill
                 className="zigzag-img"
                 style={{ objectFit: 'cover', borderRadius: '12px' }}
+                quality={75}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 loading="lazy"
               />

@@ -19,6 +19,7 @@ export default function Contact() {
             fill
             className="page-header-image"
             style={{ objectFit: 'cover' }}
+            quality={75}
             sizes="100vw"
             priority
           />

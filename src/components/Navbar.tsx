@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
@@ -76,14 +75,13 @@ export default function Navbar() {
       <div className="container">
         <div className="nav-wrapper">
           <Link href="/" className="logo">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/img/Heinerfilm_Schriftzug_weiss.png"
               alt="Heinerfilm Logo"
               width={320}
               height={100}
-              sizes="(max-width: 768px) 200px, 320px"
-              priority
-              unoptimized
+              style={{ maxWidth: '320px', height: 'auto' }}
             />
           </Link>
           <button

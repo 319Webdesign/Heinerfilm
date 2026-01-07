@@ -8,6 +8,8 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Hinweis: Quality wird pro Image-Komponente gesetzt (Standard: 75)
+    // Next.js unterstützt kein globales quality-Setting in next.config.js
   },
   compress: true,
   poweredByHeader: false,
