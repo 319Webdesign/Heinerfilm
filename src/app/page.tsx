@@ -26,6 +26,7 @@ export default function Home() {
           muted
           loop
           playsInline
+          poster="/img/hero-video-poster.webp"
           disablePictureInPicture
           controlsList="nodownload nofullscreen noremoteplayback"
         />
