@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { lazy, Suspense } from 'react';
-
-const PortfolioFilter = lazy(() => import('@/components/PortfolioFilter'));
+import { Suspense } from 'react';
+import PortfolioFilter from '@/components/PortfolioFilter';
 
 export const metadata: Metadata = {
   title: 'Portfolio - Heinerfilm',
