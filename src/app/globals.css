@@ -151,7 +151,7 @@ p {
 .nav-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     padding: 0.5rem 0;
 }
 
@@ -160,7 +160,7 @@ p {
     align-items: center;
     width: 320px;
     height: auto;
-    padding-top: 0.25rem;
+    padding-top: 0;
 }
 
 .logo img {
@@ -174,7 +174,7 @@ p {
     display: flex;
     gap: var(--spacing-md);
     align-items: center;
-    padding-top: 0.25rem;
+    padding-top: 0;
 }
 
 .nav-menu a {
@@ -219,6 +219,15 @@ p {
 
 .navbar.home-hero .mobile-menu-toggle span {
     background-color: white;
+}
+
+/* Mobile Menu Logo - auf Desktop verstecken */
+.mobile-menu-logo {
+    display: none;
+}
+
+.mobile-menu-close {
+    display: none;
 }
 
 /* ============================================
@@ -1631,6 +1640,7 @@ p {
     }
 
     .mobile-menu-close {
+        display: block;
         position: absolute;
         top: 1rem;
         right: 1rem;
@@ -1638,23 +1648,30 @@ p {
     }
 
     .mobile-menu-logo {
+        display: flex;
         position: absolute;
         top: 1rem;
         left: 50%;
         transform: translateX(-50%);
         width: auto !important;
         height: 28px;
+        justify-content: center;
+        align-items: center;
     }
 
     .mobile-menu-logo a {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100%;
+        width: 100%;
     }
 
     .mobile-menu-logo img {
         height: 28px;
         width: auto;
         max-width: 200px;
+        margin: 0 auto;
     }
 
     .mobile-close-button {
