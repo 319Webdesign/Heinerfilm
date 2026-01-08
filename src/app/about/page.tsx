@@ -5,6 +5,11 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
+// Liste der Bilder, die nicht optimiert werden sollen (verursachen 400-Fehler bei Next.js Image Optimization)
+const unoptimizedTeamImages = [
+  'damiandomin'
+];
+
 // Komponente für Team-Mitglieder mit Platzhalter
 function TeamMemberCard({ 
   imageSrc, 
@@ -22,6 +27,7 @@ function TeamMemberCard({
   objectPosition?: string;
 }) {
   const [imageError, setImageError] = useState(!imageSrc || imageSrc === '');
+  const shouldUnoptimize = unoptimizedTeamImages.some(img => imageSrc.includes(img));
 
   return (
     <motion.div
@@ -43,6 +49,7 @@ function TeamMemberCard({
               quality={75}
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 450px"
               onError={() => setImageError(true)}
+              unoptimized={shouldUnoptimize}
             />
           ) : (
             <div className="placeholder-image-modern" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>
