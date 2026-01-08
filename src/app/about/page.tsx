@@ -309,7 +309,7 @@ export default function About() {
               objectPosition="center"
             />
             <TeamMemberCard
-              imageSrc="/img/DamianDomin.webp"
+              imageSrc="/img/damiandomin.webp"
               alt="Damian Domin"
               name="Damian Domin"
               role="FPV-Drohne + Videograf"

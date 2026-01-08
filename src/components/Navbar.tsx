@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
@@ -75,13 +76,13 @@ export default function Navbar() {
       <div className="container">
         <div className="nav-wrapper">
           <Link href="/" className="logo">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/img/Heinerfilm_Schriftzug_weiss.png"
               alt="Heinerfilm Logo"
               width={320}
               height={100}
-              style={{ maxWidth: '320px', height: 'auto' }}
+              priority
+              unoptimized
             />
           </Link>
           <button
@@ -94,6 +95,28 @@ export default function Navbar() {
             <span style={{ transform: isMenuOpen ? 'rotate(-45deg) translate(7px, -6px)' : 'none' }}></span>
           </button>
           <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+            <li className="mobile-menu-close">
+              <button
+                className="mobile-close-button"
+                aria-label="Menü schließen"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span></span>
+                <span></span>
+              </button>
+            </li>
+            <li className="mobile-menu-logo">
+              <Link href="/" onClick={() => setIsMenuOpen(false)}>
+                <Image
+                  src="/img/Heinerfilm_Schriftzug_weiss.png"
+                  alt="Heinerfilm Logo"
+                  width={320}
+                  height={100}
+                  priority
+                  unoptimized
+                />
+              </Link>
+            </li>
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link

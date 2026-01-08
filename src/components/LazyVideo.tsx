@@ -14,6 +14,7 @@ interface LazyVideoProps {
   controlsList?: string;
   disablePictureInPicture?: boolean;
   onPlay?: () => void;
+  eager?: boolean; // Wenn true, lädt das Video sofort ohne Intersection Observer
 }
 
 export default function LazyVideo({
@@ -28,12 +29,24 @@ export default function LazyVideo({
   controlsList,
   disablePictureInPicture = false,
   onPlay,
+  eager = false,
 }: LazyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [posterExists, setPosterExists] = useState<boolean | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Hydration-safe: Setze mounted Flag und eager Loading
+  useEffect(() => {
+    setMounted(true);
+    if (eager) {
+      setShouldLoad(true);
+      setIsIntersecting(true);
+    }
+  }, [eager]);
 
   // Erkenne mobile Geräte
   useEffect(() => {
@@ -45,9 +58,32 @@ export default function LazyVideo({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Prüfe, ob Poster-Image existiert
+  useEffect(() => {
+    if (!poster) {
+      setPosterExists(false);
+      return;
+    }
+
+    // Prüfe, ob das Bild existiert, ohne es zu laden
+    const img = new Image();
+    const checkImage = () => {
+      img.onload = () => setPosterExists(true);
+      img.onerror = () => setPosterExists(false);
+      img.src = poster;
+    };
+    
+    checkImage();
+  }, [poster]);
+
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !mounted) return;
+
+    // Wenn eager=true, überspringe Intersection Observer
+    if (eager) {
+      return;
+    }
 
     // Intersection Observer für Lazy Loading
     const observer = new IntersectionObserver(
@@ -71,7 +107,7 @@ export default function LazyVideo({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [eager, mounted]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -171,25 +207,25 @@ export default function LazyVideo({
         loop={loop}
         playsInline
         autoPlay={autoPlay}
-        preload={shouldLoad ? 'metadata' : 'none'}
-        poster={poster}
+        preload={mounted && eager ? 'auto' : shouldLoad ? 'metadata' : 'none'}
+        {...(poster && posterExists === true ? { poster } : {})}
         disablePictureInPicture={disablePictureInPicture}
         controlsList={controlsList}
         style={{
-          ...(videoFailed && poster ? {
+          ...(videoFailed && poster && posterExists === true ? {
             // Verstecke Video-Element wenn Fallback verwendet wird
             display: 'none'
           } : {})
         }}
       >
-        {shouldLoad && !videoFailed && (
+        {mounted && shouldLoad && !videoFailed && (
           <>
             <source src={videoSource} type="video/mp4" />
             Ihr Browser unterstützt keine Videos.
           </>
         )}
       </video>
-      {videoFailed && poster && (
+      {videoFailed && poster && posterExists === true && (
         // Fallback: Zeige Poster-Image wenn Video nicht lädt
         <img 
           src={poster} 

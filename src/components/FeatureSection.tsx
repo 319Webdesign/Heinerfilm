@@ -42,7 +42,6 @@ export default function FeatureSection() {
                 muted
                 loop
                 playsInline
-                poster="/img/slideshow-video-poster.webp"
                 className="w-full h-full object-cover"
               />
             </div>
