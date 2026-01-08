@@ -7,7 +7,8 @@ import { useEffect, useRef, useState } from 'react';
 
 // Liste der Bilder, die nicht optimiert werden sollen (verursachen 400-Fehler bei Next.js Image Optimization)
 const unoptimizedTeamImages = [
-  'damiandomin'
+  'DamianDomin',
+  'damiandomin' // Fallback für eventuelle lokale Varianten
 ];
 
 // Komponente für Team-Mitglieder mit Platzhalter
@@ -47,7 +48,7 @@ function TeamMemberCard({
               fill
               style={{ objectFit: 'cover', objectPosition: objectPosition }}
               quality={75}
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 450px"
+              sizes={shouldUnoptimize ? undefined : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 450px"}
               onError={() => setImageError(true)}
               unoptimized={shouldUnoptimize}
             />
@@ -317,7 +318,7 @@ export default function About() {
               objectPosition="center"
             />
             <TeamMemberCard
-              imageSrc="/img/damiandomin.webp"
+              imageSrc="/img/DamianDomin.webp"
               alt="Damian Domin"
               name="Damian Domin"
               role="FPV-Drohne + Videograf"
