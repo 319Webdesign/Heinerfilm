@@ -207,6 +207,7 @@ export default function About() {
                   quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
+                  unoptimized
                 />
               </div>
               <div className="zigzag-text">
