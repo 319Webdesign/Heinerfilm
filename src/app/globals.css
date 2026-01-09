@@ -356,7 +356,6 @@ p {
     object-fit: cover;
     object-position: center;
     z-index: 0;
-    filter: blur(1px);
     pointer-events: none;
     -webkit-tap-highlight-color: transparent;
     /* Optimierungen für mobile Performance */
@@ -365,6 +364,17 @@ p {
     user-select: none;
     /* Verhindere Flackern beim Laden */
     background-color: #000;
+    /* Optimierungen für Videoqualität */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    /* Hardware-Beschleunigung für Video */
+    -webkit-transform: translateZ(0);
+    -webkit-perspective: 1000;
+    -webkit-font-smoothing: antialiased;
+    /* Verhindere automatische Bildqualitätsreduktion */
+    -webkit-transform-style: preserve-3d;
 }
 
 /* Verstecke Play-Button-Overlay auf mobilen Geräten */
@@ -1766,6 +1776,17 @@ p {
         object-position: center;
         /* Verstecke alle Steuerelemente */
         pointer-events: none;
+        /* Entferne Blur-Filter auf mobilen Geräten für maximale Schärfe */
+        filter: none !important;
+        /* Zusätzliche Optimierungen für mobile Videoqualität */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        /* Verhindere Downscaling durch Browser */
+        min-width: 100%;
+        min-height: 100%;
+        /* Hardware-Beschleunigung für bessere Performance */
+        -webkit-transform-style: preserve-3d;
+        will-change: transform;
     }
     
     /* Verstecke Play-Button auf mobilen Geräten */
