@@ -21,6 +21,7 @@ export default function Home() {
       <section className="hero" onClick={handleHeroClick}>
         <LazyVideo
           src="/video/headervideo.mp4"
+          srcMobile="/video/headervideomobile.mp4"
           className="hero-video"
           autoPlay
           muted

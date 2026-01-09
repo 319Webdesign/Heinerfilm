@@ -37,7 +37,7 @@ export default function FeatureSection() {
           >
             <div className="video-tile video-tile-full" style={{ aspectRatio: '16/9' }}>
               <LazyVideo
-                src="/video/Slideshow.mp4"
+                src="/video/Slideshow.webm"
                 autoPlay
                 muted
                 loop
