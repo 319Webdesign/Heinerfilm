@@ -35,4 +35,4 @@ yarn-error.log*
 next-env.d.ts
 
 # large image files
-public/img/Eicke-Upscale.png
+# public/img/Eicke-Upscale.png (alt - wird nicht mehr verwendet)
