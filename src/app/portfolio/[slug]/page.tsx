@@ -56,7 +56,7 @@ export default function PortfolioDetailPage({ params }: Props) {
       {/* Hero Section */}
       <section className="portfolio-detail-hero">
         <div className="portfolio-hero-background">
-          {heroMedia.type === 'video' ? (
+          {heroMedia.type === 'video' && heroMedia.src ? (
             <LazyVideo
               src={heroMedia.src}
               poster={heroMedia.poster}
@@ -67,7 +67,7 @@ export default function PortfolioDetailPage({ params }: Props) {
               playsInline
               eager
             />
-          ) : (
+          ) : heroMedia.src ? (
             <Image
               src={heroMedia.src}
               alt={heroMedia.alt || project.title}
@@ -80,7 +80,7 @@ export default function PortfolioDetailPage({ params }: Props) {
               fetchPriority="high"
               unoptimized={heroMedia.src.endsWith('.webp')}
             />
-          )}
+          ) : null}
         </div>
         <div className="portfolio-hero-overlay"></div>
         <div className="container">
