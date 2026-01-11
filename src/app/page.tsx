@@ -75,9 +75,10 @@ export default function Home() {
                 fill
                 className="about-image-photo"
                 style={{ objectFit: 'cover', borderRadius: '12px' }}
-                quality={75}
+                quality={80}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 loading="lazy"
+                fetchPriority="auto"
               />
             </div>
           </div>
@@ -636,9 +637,10 @@ export default function Home() {
                     alt="Deutscher SportPresseBall"
                     fill
                     style={{ objectFit: 'cover' }}
-                    quality={75}
+                    quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading="lazy"
+                    fetchPriority="auto"
                   />
                 </div>
                 <div className="portfolio-info-modern">
@@ -664,9 +666,10 @@ export default function Home() {
                     alt="Xtreme"
                     fill
                     style={{ objectFit: 'cover' }}
-                    quality={75}
+                    quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading="lazy"
+                    fetchPriority="auto"
                   />
                 </div>
                 <div className="portfolio-info-modern">
@@ -692,9 +695,10 @@ export default function Home() {
                     alt="Heinerwiesn"
                     fill
                     style={{ objectFit: 'cover' }}
-                    quality={75}
+                    quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading="lazy"
+                    fetchPriority="auto"
                   />
                 </div>
                 <div className="portfolio-info-modern">

@@ -19,9 +19,11 @@ export default function Contact() {
             fill
             className="page-header-image"
             style={{ objectFit: 'cover' }}
-            quality={75}
+            quality={85}
             sizes="100vw"
             priority
+            fetchPriority="high"
+            unoptimized
           />
           <div className="page-header-overlay"></div>
         </div>

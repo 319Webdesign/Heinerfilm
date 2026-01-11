@@ -74,7 +74,7 @@ export default function PortfolioDetailPage({ params }: Props) {
               fill
               className="portfolio-hero-image"
               priority
-              quality={80}
+              quality={85}
               sizes="100vw"
               style={{ objectFit: 'cover' }}
               fetchPriority="high"
@@ -181,16 +181,18 @@ export default function PortfolioDetailPage({ params }: Props) {
                   ) : (
                     <div className="portfolio-media-image-wrapper">
                       {media.src && (
-                        <Image
-                          src={media.src}
-                          alt={media.alt || `${project.title} - Bild ${index + 2}`}
-                          fill
-                          className="portfolio-media-image"
-                          quality={85}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          loading="lazy"
-                          style={{ objectFit: 'cover' }}
-                        />
+                      <Image
+                        src={media.src}
+                        alt={media.alt || `${project.title} - Bild ${index + 2}`}
+                        fill
+                        className="portfolio-media-image"
+                        quality={80}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        loading="lazy"
+                        style={{ objectFit: 'cover' }}
+                        fetchPriority="auto"
+                        unoptimized={media.src?.endsWith('.webp')}
+                      />
                       )}
                     </div>
                   )}

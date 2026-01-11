@@ -5,11 +5,13 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 31536000, // 1 Jahr Cache für optimierte Bilder
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Hinweis: Quality wird pro Image-Komponente gesetzt (Standard: 75)
-    // Next.js unterstützt kein globales quality-Setting in next.config.js
+    // Performance-Optimierungen
+    unoptimized: false,
+    // Domain-Whitelist falls externe Bilder verwendet werden
+    remotePatterns: [],
   },
   compress: true,
   poweredByHeader: false,

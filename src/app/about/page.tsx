@@ -47,10 +47,11 @@ function TeamMemberCard({
               alt={alt}
               fill
               style={{ objectFit: 'cover', objectPosition: objectPosition }}
-              quality={75}
+              quality={80}
               sizes={shouldUnoptimize ? undefined : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 450px"}
               onError={() => setImageError(true)}
               unoptimized={shouldUnoptimize}
+              fetchPriority="auto"
             />
           ) : (
             <div className="placeholder-image-modern" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>
@@ -212,10 +213,10 @@ export default function About() {
                   fill
                   className="zigzag-img"
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
-                  quality={75}
+                  quality={85}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
-                  unoptimized
+                  fetchPriority="auto"
                 />
               </div>
               <div className="zigzag-text">

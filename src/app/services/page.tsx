@@ -17,9 +17,11 @@ export default function Services() {
             alt="Leistungen Header"
             fill
             className="page-header-image"
-            quality={75}
+            quality={85}
             sizes="100vw"
             priority
+            fetchPriority="high"
+            unoptimized
           />
         </div>
         <div className="page-header-overlay"></div>
@@ -51,9 +53,11 @@ export default function Services() {
                   alt="Filmproduktion"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
-                  quality={75}
+                  quality={80}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
+                  fetchPriority="auto"
+                  unoptimized
                 />
               </div>
             </div>
@@ -79,9 +83,11 @@ export default function Services() {
                   alt="Videomarketing"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
-                  quality={75}
+                  quality={80}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
+                  fetchPriority="auto"
+                  unoptimized
                 />
               </div>
             </div>
@@ -107,9 +113,11 @@ export default function Services() {
                   alt="Fotografie"
                   fill
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
-                  quality={75}
+                  quality={80}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   loading="lazy"
+                  fetchPriority="auto"
+                  unoptimized
                 />
               </div>
             </div>

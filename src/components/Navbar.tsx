@@ -82,6 +82,8 @@ export default function Navbar() {
               width={320}
               height={100}
               priority
+              fetchPriority="high"
+              quality={90}
               unoptimized
             />
           </Link>
@@ -113,6 +115,8 @@ export default function Navbar() {
                   width={320}
                   height={100}
                   priority
+                  fetchPriority="high"
+                  quality={90}
                   unoptimized
                 />
               </Link>
