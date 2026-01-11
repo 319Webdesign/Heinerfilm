@@ -42,7 +42,11 @@ export default function PortfolioDetailPage({ params }: Props) {
   }
 
   // Hauptprojektbild immer im Hero verwenden
-  const heroMedia = { type: 'image' as const, src: project.imageSrc, alt: project.title };
+  const heroMedia: { type: 'image' | 'video'; src?: string; alt?: string; poster?: string } = { 
+    type: 'image', 
+    src: project.imageSrc, 
+    alt: project.title 
+  };
 
   // Alle zusätzlichen Media-Dateien in der Galerie
   const remainingMedia = project.additionalMedia || [];
