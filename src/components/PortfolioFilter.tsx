@@ -3,25 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-type Category = 'all' | 'film' | 'video' | 'photo';
-
-interface PortfolioItem {
-  id: number;
-  title: string;
-  category: Category;
-  categoryLabel: string;
-  imageSrc: string;
-}
-
-const portfolioItems: PortfolioItem[] = [
-  { id: 1, title: 'Klangversprechen', category: 'video', categoryLabel: 'Videomarketing', imageSrc: '/img/Klangversprechen-311.webp' },
-  { id: 2, title: 'Loop 5 Influecer Event', category: 'photo', categoryLabel: 'Fotografie', imageSrc: '/img/Loop5_SocialMall73.webp' },
-  { id: 3, title: 'Fibo x Smilodox', category: 'photo', categoryLabel: 'Fotografie', imageSrc: '/img/Fibo-5.webp' },
-  { id: 4, title: 'Sportpresseball', category: 'film', categoryLabel: 'Filmproduktion', imageSrc: '/img/Sportpresseball2025_30.webp' },
-  { id: 5, title: 'TimeWarp', category: 'film', categoryLabel: 'Filmproduktion', imageSrc: '/img/TimeWarp82_mitLogo.webp' },
-  { id: 6, title: 'Eicke H+', category: 'video', categoryLabel: 'Videomarketing', imageSrc: '/img/Eicke-Upscale.webp' },
-];
+import { portfolioItems, type Category } from '@/data/portfolio';
 
 const filters: { value: Category; label: string }[] = [
   { value: 'all', label: 'Alle' },
@@ -87,7 +69,7 @@ export default function PortfolioFilter() {
                   <div className="portfolio-overlay">
                     <h3>{item.title}</h3>
                     <p>{item.categoryLabel}</p>
-                    <Link href="#" className="btn btn-primary">
+                    <Link href={`/portfolio/${item.slug}`} className="btn btn-primary">
                       Details ansehen
                     </Link>
                   </div>
