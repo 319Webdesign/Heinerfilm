@@ -166,11 +166,12 @@ export default function PortfolioDetailPage({ params }: Props) {
                           src={media.src}
                           poster={media.poster}
                           className="portfolio-media-video"
-                          autoPlay={false}
-                          muted
-                          loop={false}
+                          autoPlay={media.autoPlay ?? false}
+                          muted={media.muted !== undefined ? media.muted : true}
+                          loop={media.loop ?? false}
                           playsInline
                           controlsList="nodownload nofullscreen"
+                          eager={media.autoPlay === true}
                         />
                       )}
                     </div>

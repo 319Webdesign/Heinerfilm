@@ -9,6 +9,9 @@ export interface MediaItem {
   poster?: string; // Für Videos
   isPlaceholder?: boolean; // Flag für Platzhalter
   placeholderLabel?: string; // Text für Platzhalter
+  autoPlay?: boolean; // Für Videos - automatisches Abspielen
+  loop?: boolean; // Für Videos - Loop
+  muted?: boolean; // Für Videos - Stumm
 }
 
 export interface PortfolioItem {
@@ -119,6 +122,7 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'TimeWrap',
     year: '2025',
     additionalMedia: [
+      { type: 'video', src: '/img/TimeWarp/timewarp_1.webm', alt: 'TimeWrap Video', autoPlay: true, loop: true, muted: true },
       { type: 'image', src: '/img/TimeWarp/tw1.webp', alt: 'TimeWrap Event' },
       { type: 'image', src: '/img/TimeWarp/tw2.webp', alt: 'TimeWrap Event' },
       { type: 'image', src: '/img/TimeWarp/tw3.webp', alt: 'TimeWrap Event' },
