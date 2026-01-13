@@ -2530,7 +2530,7 @@ p {
 }
 
 .process-phase-keywords {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 500;
     color: rgba(255, 0, 0, 0.7);
     text-transform: uppercase;
@@ -3475,8 +3475,30 @@ p {
 
 .portfolio-media-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    grid-auto-rows: auto;
+}
+
+/* Modernes variierendes Grid für bessere visuelle Dynamik */
+@media (min-width: 1024px) {
+    .portfolio-media-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    
+    /* Abwechselnde Bildgrößen für visuelles Interesse */
+    .portfolio-media-item:nth-child(3n+1) {
+        grid-row: span 1;
+    }
+    
+    .portfolio-media-item:nth-child(3n+2) {
+        grid-row: span 1;
+    }
+    
+    .portfolio-media-item:nth-child(3n+3) {
+        grid-row: span 1;
+    }
 }
 
 .portfolio-media-item {

@@ -94,7 +94,6 @@ export default function PortfolioDetailPage({ params }: Props) {
             </Link>
             <div className="portfolio-hero-meta">
               <span className="portfolio-category-badge">{project.categoryLabel}</span>
-              {project.year && <span className="portfolio-year">{project.year}</span>}
             </div>
             <h1 className="portfolio-hero-title">{project.title}</h1>
             {project.client && (
@@ -109,7 +108,10 @@ export default function PortfolioDetailPage({ params }: Props) {
         <div className="container">
           <div className="portfolio-detail-grid">
             <div className="portfolio-detail-text">
-              <h2 className="portfolio-section-title">Über das Projekt</h2>
+              <h2 className="portfolio-section-title">
+                {project.slug === 'loop-5-influencer-event' ? 'Loop5 The Social Mall' : 
+                 project.slug === 'timewarp' ? 'TimeWrap' : 'Über das Projekt'}
+              </h2>
               <p className="portfolio-description">{project.longDescription}</p>
             </div>
             <div className="portfolio-detail-info">
@@ -121,12 +123,6 @@ export default function PortfolioDetailPage({ params }: Props) {
                 <div className="portfolio-info-card">
                   <h3>Kunde</h3>
                   <p>{project.client}</p>
-                </div>
-              )}
-              {project.year && (
-                <div className="portfolio-info-card">
-                  <h3>Jahr</h3>
-                  <p>{project.year}</p>
                 </div>
               )}
             </div>

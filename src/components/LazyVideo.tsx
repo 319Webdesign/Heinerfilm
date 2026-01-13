@@ -128,7 +128,7 @@ export default function LazyVideo({
     video.setAttribute('x-webkit-airplay', 'deny');
 
     // Versuche das Video abzuspielen, wenn autoPlay aktiviert ist
-    if (autoPlay && isIntersecting) {
+    if (autoPlay && (isIntersecting || eager)) {
       const playVideo = async () => {
         try {
           // Warte bis genug Daten geladen sind
@@ -139,17 +139,23 @@ export default function LazyVideo({
                 resolve(null);
               };
               video.addEventListener('canplay', handleCanPlay);
+              // Timeout falls canplay nicht ausgelöst wird
+              setTimeout(() => {
+                video.removeEventListener('canplay', handleCanPlay);
+                resolve(null);
+              }, 2000);
             });
           }
 
           // Mehrere Versuche für mobile Geräte
           let attempts = 0;
-          const maxAttempts = 3;
+          const maxAttempts = 5;
           
           const tryPlay = async () => {
             try {
               video.volume = 0;
               video.muted = true;
+              video.setAttribute('muted', '');
               await video.play();
               onPlay?.();
               setVideoFailed(false);
@@ -157,7 +163,7 @@ export default function LazyVideo({
               attempts++;
               if (attempts < maxAttempts) {
                 // Kurze Pause zwischen Versuchen
-                setTimeout(tryPlay, 300);
+                setTimeout(tryPlay, 200);
               } else {
                 console.log('Video autoplay failed after', maxAttempts, 'attempts. Showing poster image fallback.');
                 setVideoFailed(true);
@@ -176,9 +182,22 @@ export default function LazyVideo({
       if (video.readyState >= 2) {
         playVideo();
       } else {
-        video.addEventListener('loadeddata', playVideo, { once: true });
-        video.addEventListener('canplay', playVideo, { once: true });
-        video.addEventListener('canplaythrough', playVideo, { once: true });
+        // Mehrere Event-Listener für bessere Kompatibilität
+        const playOnce = () => {
+          video.removeEventListener('loadeddata', playOnce);
+          video.removeEventListener('canplay', playOnce);
+          video.removeEventListener('canplaythrough', playOnce);
+          playVideo();
+        };
+        video.addEventListener('loadeddata', playOnce, { once: true });
+        video.addEventListener('canplay', playOnce, { once: true });
+        video.addEventListener('canplaythrough', playOnce, { once: true });
+        // Fallback: Starte nach max 1 Sekunde auch wenn Events nicht feuern
+        setTimeout(() => {
+          if (video.readyState > 0) {
+            playOnce();
+          }
+        }, 1000);
       }
     }
 
@@ -193,10 +212,25 @@ export default function LazyVideo({
     return () => {
       video.removeEventListener('error', handleError);
     };
-  }, [shouldLoad, isIntersecting, autoPlay, muted, playsInline, onPlay]);
+  }, [shouldLoad, isIntersecting, autoPlay, muted, playsInline, onPlay, eager]);
 
   // Wähle die richtige Video-Quelle (mobile oder desktop)
   const videoSource = isMobile && srcMobile ? srcMobile : src;
+
+  // Bestimme den MIME-Type basierend auf der Dateiendung
+  const getVideoType = (source: string): string => {
+    const ext = source.toLowerCase().split('.').pop();
+    switch (ext) {
+      case 'webm':
+        return 'video/webm';
+      case 'mp4':
+        return 'video/mp4';
+      case 'ogg':
+        return 'video/ogg';
+      default:
+        return 'video/mp4';
+    }
+  };
 
   return (
     <>
@@ -207,7 +241,7 @@ export default function LazyVideo({
         loop={loop}
         playsInline
         autoPlay={autoPlay}
-        preload={mounted && eager ? 'auto' : shouldLoad ? 'metadata' : 'none'}
+        preload={mounted && eager ? 'auto' : shouldLoad ? 'auto' : 'none'}
         {...(poster && posterExists === true ? { poster } : {})}
         disablePictureInPicture={disablePictureInPicture}
         controlsList={controlsList}
@@ -220,7 +254,7 @@ export default function LazyVideo({
       >
         {mounted && shouldLoad && !videoFailed && (
           <>
-            <source src={videoSource} type="video/mp4" />
+            <source src={videoSource} type={getVideoType(videoSource)} />
             Ihr Browser unterstützt keine Videos.
           </>
         )}

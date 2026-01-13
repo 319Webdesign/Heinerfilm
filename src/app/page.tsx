@@ -380,11 +380,11 @@ export default function Home() {
                   fontWeight: 'bold',
                   fontSize: '1.125rem'
                 }}>
-                  ID
+                  AH
                 </div>
                 <div>
-                  <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>ID-PLUS</p>
-                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>Kunde</p>
+                  <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Annette Himken</p>
+                  <p style={{ color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>ID-Plus</p>
                 </div>
               </div>
             </motion.div>
@@ -566,39 +566,10 @@ export default function Home() {
           >
             <Link 
               href="/contact" 
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '1rem 2rem',
-                backgroundColor: '#ef4444',
-                color: 'white',
-                fontWeight: '600',
-                borderRadius: '0.5rem',
-                textDecoration: 'none',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#dc2626';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(239, 68, 68, 0.2)';
-                const arrow = e.currentTarget.querySelector('svg');
-                if (arrow) {
-                  arrow.style.transform = 'translateX(4px)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#ef4444';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-                const arrow = e.currentTarget.querySelector('svg');
-                if (arrow) {
-                  arrow.style.transform = 'translateX(0)';
-                }
-              }}
+              className="btn btn-secondary"
             >
               Kostenloses Erstgespräch
-              <ArrowRight style={{ width: '1.25rem', height: '1.25rem', transition: 'transform 0.3s ease' }} />
+              <span className="btn-icon">→</span>
             </Link>
           </motion.div>
         </div>
@@ -726,15 +697,37 @@ export default function Home() {
       </section>
 
       {/* Contact CTA */}
-      <section className="contact-cta section section-dark">
+      <section className="contact-cta section section-dark" style={{ backgroundColor: '#050505' }}>
         <div className="container">
           <div className="contact-cta-content">
-            <h2>Bereit für Ihr nächstes Projekt?</h2>
+            <h2 style={{ color: '#ff0000' }}>Bereit für Ihr nächstes Projekt?</h2>
             <p>
               Lassen Sie uns gemeinsam etwas Außergewöhnliches schaffen. Kontaktieren Sie uns für ein unverbindliches
               Beratungsgespräch.
             </p>
-            <Link href="/contact" className="btn btn-primary">Jetzt Kontakt aufnehmen</Link>
+            <Link 
+              href="/contact" 
+              className="btn btn-primary"
+              style={{ 
+                border: '2px solid #ff0000',
+                backgroundColor: 'transparent',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#ff0000';
+                e.currentTarget.style.color = 'white';
+                const span = e.currentTarget.querySelector('span');
+                if (span) span.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'white';
+                const span = e.currentTarget.querySelector('span');
+                if (span) span.style.color = 'white';
+              }}
+            >
+              <span style={{ color: 'white' }}>Jetzt</span> Kontakt aufnehmen
+            </Link>
           </div>
         </div>
       </section>

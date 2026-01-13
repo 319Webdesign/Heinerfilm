@@ -43,6 +43,7 @@ export default function FeatureSection() {
                 loop
                 playsInline
                 className="w-full h-full object-cover"
+                eager
               />
             </div>
           </motion.div>

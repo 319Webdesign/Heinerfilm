@@ -141,16 +141,30 @@ export default function About() {
   return (
     <>
       {/* Hero Section */}
-      <section className="about-hero">
+      <section className="page-header">
+        <div className="page-header-background">
+          <Image
+            src="/img/header_uberuns.webp"
+            alt="Über uns Header"
+            fill
+            className="page-header-image"
+            style={{ objectFit: 'cover' }}
+            quality={85}
+            sizes="100vw"
+            priority
+            fetchPriority="high"
+            unoptimized
+          />
+          <div className="page-header-overlay"></div>
+        </div>
         <div className="container">
           <motion.div
-            className="about-hero-content"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="about-hero-title">Ihre Vision ist unsere Leidenschaft</h1>
-            <p className="about-hero-subtitle">
+            <h1>Ihre Vision ist unsere Leidenschaft</h1>
+            <p>
               Professionelle Videoproduktion Darmstadt – Authentisches Storytelling für Ihre Marke
             </p>
           </motion.div>
@@ -278,7 +292,7 @@ export default function About() {
       </section>
 
       {/* Gemeinsame Stärke - Team Sektion */}
-      <section className="section section-dark">
+      <section className="section section-dark" style={{ backgroundColor: '#050505' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -304,37 +318,37 @@ export default function About() {
               delay={0.1}
             />
             <TeamMemberCard
-              imageSrc="/img/pxe-team-stefan.webp"
-              alt="Stefan Reinhardt"
-              name="Stefan Reinhardt"
-              role="strategisches Marketing"
-              delay={0.2}
-            />
-            <TeamMemberCard
               imageSrc="/img/Himken_idplus.webp"
               alt="Annette Himken"
               name="Annette Himken"
               role="Corporate Design & Grafikdesign"
-              delay={0.3}
+              delay={0.2}
               objectPosition="center"
             />
             <TeamMemberCard
-              imageSrc="/img/DamianDomin.webp"
-              alt="Damian Domin"
-              name="Damian Domin"
-              role="FPV-Drohne + Videograf"
-              delay={0.4}
+              imageSrc="/img/pxe-team-stefan.webp"
+              alt="Stefan Reinhardt"
+              name="Stefan Reinhardt"
+              role="strategisches Marketing"
+              delay={0.3}
             />
             <TeamMemberCard
               imageSrc="/img/Volker.webp"
               alt="Volker Pleil"
               name="Volker Pleil"
               role="Videograf"
-              delay={0.5}
+              delay={0.4}
               objectPosition="left center"
             />
             <TeamMemberCard
-              imageSrc=""
+              imageSrc="/img/DamianDomin.webp"
+              alt="Damian Domin"
+              name="Damian Domin"
+              role="FPV-Drohne + Videograf"
+              delay={0.5}
+            />
+            <TeamMemberCard
+              imageSrc="/img/maik.webp"
               alt="Maik Schmidt"
               name="Maik Schmidt"
               role="Webdesign"

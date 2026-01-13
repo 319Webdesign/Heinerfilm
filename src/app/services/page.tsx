@@ -13,10 +13,11 @@ export default function Services() {
       <section className="page-header">
         <div className="page-header-background">
           <Image
-            src="/img/Headerbild_Leistungen_unscharf.webp"
+            src="/img/Headerbild_Leistungen_scharf.webp"
             alt="Leistungen Header"
             fill
             className="page-header-image"
+            style={{ objectFit: 'cover' }}
             quality={85}
             sizes="100vw"
             priority
@@ -47,7 +48,7 @@ export default function Services() {
                 </ul>
                 <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
-              <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative' }}>
+              <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative', backgroundColor: '#1a1a1a' }}>
                 <Image
                   src="/img/Behindthescenes-37.webp"
                   alt="Filmproduktion"
@@ -55,8 +56,8 @@ export default function Services() {
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
                   quality={80}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                  loading="lazy"
-                  fetchPriority="auto"
+                  priority
+                  fetchPriority="high"
                   unoptimized
                 />
               </div>
@@ -77,7 +78,7 @@ export default function Services() {
                 </ul>
                 <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
-              <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative' }}>
+              <div className="service-detail-image" style={{ aspectRatio: '16/9', position: 'relative', backgroundColor: '#1a1a1a' }}>
                 <Image
                   src="/img/videomarketing.webp"
                   alt="Videomarketing"
@@ -85,8 +86,8 @@ export default function Services() {
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
                   quality={80}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                  loading="lazy"
-                  fetchPriority="auto"
+                  priority
+                  fetchPriority="high"
                   unoptimized
                 />
               </div>

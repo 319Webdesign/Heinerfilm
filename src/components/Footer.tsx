@@ -18,7 +18,7 @@ export default function Footer() {
               style={{ width: '200px', height: 'auto', objectFit: 'contain', marginBottom: '1rem' }}
               loading="lazy"
             />
-            <p>Ihre Medienagentur für professionelle Filmproduktion und visuelle Medienlösungen.</p>
+            <p>Ihre Medienagentur für hochwertige Filmproduktion und Fotografie.</p>
           </div>
           <div className="footer-column">
             <h4>Navigation</h4>
@@ -52,7 +52,7 @@ export default function Footer() {
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#ff0000'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)'}
-              >0176 5679 2783</a></li>
+              >0176 56792783</a></li>
             </ul>
           </div>
           <div className="footer-column">

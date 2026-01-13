@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Image from 'next/image';
 import PortfolioFilter from '@/components/PortfolioFilter';
 
 export const metadata: Metadata = {
@@ -11,6 +12,21 @@ export default function Portfolio() {
   return (
     <>
       <section className="page-header">
+        <div className="page-header-background">
+          <Image
+            src="/img/Headerbild_Leistungen_scharf.webp"
+            alt="Portfolio Header"
+            fill
+            className="page-header-image"
+            style={{ objectFit: 'cover' }}
+            quality={85}
+            sizes="100vw"
+            priority
+            fetchPriority="high"
+            unoptimized
+          />
+          <div className="page-header-overlay"></div>
+        </div>
         <div className="container">
           <h1>Portfolio</h1>
           <p>Unsere Projekte und Referenzen</p>
@@ -32,8 +48,8 @@ export default function Portfolio() {
                 </p>
               </div>
               <div className="testimonial-author">
-                <strong>ID-PLUS</strong>
-                <span>Kunde</span>
+                <strong>Annette Himken</strong>
+                <span>ID-Plus</span>
               </div>
             </div>
             <div className="testimonial">

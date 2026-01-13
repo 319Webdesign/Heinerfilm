@@ -14,7 +14,7 @@ export default function Contact() {
       <section className="page-header">
         <div className="page-header-background">
           <Image
-            src="/img/Kontakt_headerbild01.webp"
+            src="/img/header_contact.webp"
             alt="Kontakt Header"
             fill
             className="page-header-image"
