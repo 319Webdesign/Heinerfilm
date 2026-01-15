@@ -371,16 +371,21 @@ export default function Home() {
                   width: '3rem',
                   height: '3rem',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%)',
+                  background: 'white',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: '1.125rem'
+                  overflow: 'hidden',
+                  padding: '0.25rem'
                 }}>
-                  AH
+                  <Image
+                    src="/img/idplus.png"
+                    alt="ID-Plus Logo"
+                    width={48}
+                    height={48}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                  />
                 </div>
                 <div>
                   <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Annette Himken</p>
@@ -454,16 +459,21 @@ export default function Home() {
                   width: '3rem',
                   height: '3rem',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%)',
+                  background: 'white',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: '1.125rem'
+                  overflow: 'hidden',
+                  padding: '0.1rem'
                 }}>
-                  RS
+                  <Image
+                    src="/img/klangversprechen.png"
+                    alt="Klangversprechen Logo"
+                    width={48}
+                    height={48}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%', transform: 'scale(1.3)' }}
+                  />
                 </div>
                 <div>
                   <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Robin Steitz</p>
@@ -537,16 +547,21 @@ export default function Home() {
                   width: '3rem',
                   height: '3rem',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%)',
+                  background: 'white',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: '1.125rem'
+                  overflow: 'hidden',
+                  padding: '0.25rem'
                 }}>
-                  DS
+                  <Image
+                    src="/img/noveo.png"
+                    alt="Noveo Logo"
+                    width={48}
+                    height={48}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                  />
                 </div>
                 <div>
                   <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '0.125rem' }}>Dirk Stumpf</p>

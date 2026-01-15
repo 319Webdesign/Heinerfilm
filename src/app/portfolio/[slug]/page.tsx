@@ -95,7 +95,9 @@ export default function PortfolioDetailPage({ params }: Props) {
             <div className="portfolio-hero-meta">
               <span className="portfolio-category-badge">{project.categoryLabel}</span>
             </div>
-            <h1 className="portfolio-hero-title">{project.title}</h1>
+            <h1 className="portfolio-hero-title">
+              {project.slug === 'loop-5-influencer-event' ? 'Loop5' : project.title}
+            </h1>
             {project.client && (
               <p className="portfolio-hero-client">Für {project.client}</p>
             )}

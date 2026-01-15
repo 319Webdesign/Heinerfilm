@@ -68,7 +68,16 @@ export default function PortfolioFilter() {
                     </div>
                   )}
                   <div className="portfolio-overlay">
-                    <h3>{item.title}</h3>
+                    <h3>
+                      {item.title.includes('Loop5') ? (
+                        <>
+                          Loop 5<br />
+                          The Social Mall
+                        </>
+                      ) : (
+                        item.title
+                      )}
+                    </h3>
                     <p>{item.categoryLabel}</p>
                     <Link href={`/portfolio/${item.slug}`} className="btn btn-primary">
                       Details ansehen

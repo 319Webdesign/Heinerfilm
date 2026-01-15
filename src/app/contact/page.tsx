@@ -18,7 +18,7 @@ export default function Contact() {
             alt="Kontakt Header"
             fill
             className="page-header-image"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'center top' }}
             quality={85}
             sizes="100vw"
             priority
