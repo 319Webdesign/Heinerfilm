@@ -3485,6 +3485,7 @@ p {
     .portfolio-media-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+        grid-auto-rows: auto;
     }
     
     /* Abwechselnde Bildgrößen für visuelles Interesse */
@@ -3526,8 +3527,21 @@ p {
     overflow: hidden;
 }
 
+.portfolio-media-image-wrapper-portrait {
+    aspect-ratio: 9 / 16;
+}
+
 .portfolio-media-image {
     object-fit: cover;
+}
+
+.portfolio-media-portrait .portfolio-media-image-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.portfolio-media-portrait .portfolio-media-image {
+    object-fit: contain;
+    padding: 0.5rem;
 }
 
 .portfolio-media-video {
