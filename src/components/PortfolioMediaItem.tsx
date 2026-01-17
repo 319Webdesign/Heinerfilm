@@ -9,26 +9,60 @@ interface PortfolioMediaItemProps {
   media: MediaItem;
   index: number;
   projectTitle: string;
+  onImageClick?: (index: number) => void;
 }
 
-export default function PortfolioMediaItem({ media, index, projectTitle }: PortfolioMediaItemProps) {
-  const [isPortrait, setIsPortrait] = useState(false);
+type ImageOrientation = 'portrait' | 'landscape' | 'square';
+
+export default function PortfolioMediaItem({ media, index, projectTitle, onImageClick }: PortfolioMediaItemProps) {
+  const [orientation, setOrientation] = useState<ImageOrientation>('square');
+  const [isDetected, setIsDetected] = useState(false);
+  const [blurDataUrl, setBlurDataUrl] = useState<string>('');
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Reset state when media changes
+    setOrientation('square');
+    setIsDetected(false);
+    
     if (media.type === 'image' && media.src && !media.isPlaceholder) {
       const img = new window.Image();
       img.onload = () => {
         const aspectRatio = img.width / img.height;
-        // Wenn Höhe größer als Breite (Hochkant), dann aspectRatio < 1
-        // Wir prüfen auf 9:16 Format (0.5625) oder allgemein Hochkant (< 0.7)
-        setIsPortrait(aspectRatio < 0.7);
+        
+        // Bestimme Orientierung für Bento Box Layout
+        // Portrait: aspectRatio < 0.8 (Höhe > Breite)
+        // Landscape: aspectRatio > 1.3 (Breite deutlich > Höhe)
+        // Square: 0.8 <= aspectRatio <= 1.3
+        let newOrientation: ImageOrientation = 'square';
+        if (aspectRatio < 0.8) {
+          newOrientation = 'portrait';
+        } else if (aspectRatio > 1.3) {
+          newOrientation = 'landscape';
+        }
+        
+        setOrientation(newOrientation);
+        setIsDetected(true);
+        
+        // Erstelle einfachen Blur Placeholder
+        const canvas = document.createElement('canvas');
+        canvas.width = 20;
+        canvas.height = 20;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.fillStyle = '#1a1a1a';
+          ctx.fillRect(0, 0, 20, 20);
+          setBlurDataUrl(canvas.toDataURL());
+        }
       };
       img.onerror = () => {
-        // Fallback: nicht als Hochkant behandeln
-        setIsPortrait(false);
+        setOrientation('square');
+        setIsDetected(true);
       };
       img.src = media.src;
+    } else {
+      setOrientation('square');
+      setIsDetected(true);
     }
   }, [media]);
 
@@ -58,9 +92,10 @@ export default function PortfolioMediaItem({ media, index, projectTitle }: Portf
   }
 
   if (media.type === 'video') {
+    // Videos werden standardmäßig als Landscape behandelt
     return (
-      <div className="portfolio-media-item">
-        <div className="portfolio-media-video-wrapper">
+      <div className="portfolio-media-item portfolio-media-landscape">
+        <div className="portfolio-media-video-wrapper portfolio-media-image-wrapper-landscape">
           {media.src && (
             <LazyVideo
               src={media.src}
@@ -75,28 +110,80 @@ export default function PortfolioMediaItem({ media, index, projectTitle }: Portf
             />
           )}
         </div>
+        <div className="portfolio-media-overlay">
+          <span className="portfolio-media-overlay-text">{projectTitle}</span>
+        </div>
       </div>
     );
   }
 
+  // CSS-Klassen basierend auf Orientierung
+  const orientationClass = isDetected ? `portfolio-media-${orientation}` : '';
+  const wrapperClass = isDetected ? `portfolio-media-image-wrapper-${orientation}` : 'portfolio-media-image-wrapper';
+
+  const handleClick = () => {
+    if (media.type === 'image' && media.src && !media.isPlaceholder && onImageClick) {
+      onImageClick(index);
+    }
+  };
+
   return (
-    <div className={`portfolio-media-item ${isPortrait ? 'portfolio-media-portrait' : ''}`} ref={wrapperRef}>
-      <div className={`portfolio-media-image-wrapper ${isPortrait ? 'portfolio-media-image-wrapper-portrait' : ''}`}>
-        {media.src && (
-          <Image
-            src={media.src}
-            alt={media.alt || `${projectTitle} - Bild ${index + 2}`}
-            fill
-            className="portfolio-media-image"
-            quality={80}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            loading="lazy"
-            style={{ objectFit: isPortrait ? 'contain' : 'cover' }}
-            fetchPriority="auto"
-            unoptimized={media.src?.endsWith('.webp')}
-          />
-        )}
+    <>
+      <div 
+        className={`portfolio-media-item ${orientationClass}`} 
+        ref={wrapperRef}
+        onClick={handleClick}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+      >
+        <div className={wrapperClass}>
+          {media.src && (
+            <Image
+              src={media.src}
+              alt={media.alt || `${projectTitle} - Bild ${index + 2}`}
+              fill
+              className="portfolio-media-image"
+              quality={75}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
+              placeholder={blurDataUrl ? 'blur' : 'empty'}
+              blurDataURL={blurDataUrl}
+              onLoad={(e) => {
+                // Zusätzliche Erkennung beim Laden des Next.js Image
+                const img = e.currentTarget;
+                if (img.naturalWidth && img.naturalHeight) {
+                  const aspectRatio = img.naturalWidth / img.naturalHeight;
+                  let newOrientation: ImageOrientation = 'square';
+                  if (aspectRatio < 0.8) {
+                    newOrientation = 'portrait';
+                  } else if (aspectRatio > 1.3) {
+                    newOrientation = 'landscape';
+                  }
+                  setOrientation(newOrientation);
+                  setIsDetected(true);
+                }
+              }}
+              style={{ 
+                objectFit: 'cover',
+                objectPosition: 'center',
+                width: '100%',
+                height: '100%'
+              }}
+              fetchPriority="auto"
+              unoptimized={media.src?.endsWith('.webp')}
+            />
+          )}
+        </div>
+        <div className="portfolio-media-overlay">
+          <span className="portfolio-media-overlay-text">{projectTitle}</span>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

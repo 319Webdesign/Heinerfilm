@@ -90,10 +90,10 @@ export default function Home() {
         <div className="container">
           <div className="text-center" style={{ marginBottom: '5rem' }}>
             <h2 className="section-title" style={{ color: 'white', marginBottom: '1rem' }}>
-              Warum Videos? Warum HEINERFILM?
+              Warum VIDEOS? Warum HEINERFILM?
             </h2>
             <p style={{ fontSize: '1.25rem', color: 'rgba(156, 163, 175, 1)', maxWidth: '48rem', margin: '0 auto', marginBottom: '3rem' }}>
-              Professionelle Videoproduktion in Darmstadt, die nicht nur Ihr Publikum begeistert, sondern auch messbare Ergebnisse liefert
+              Hochwertige Videoproduktionen, durchdachte Kampagnen mit maßgeschneidertem Konzept, passend für Ihre individuelle Zielgruppe
             </p>
           </div>
           
@@ -107,7 +107,7 @@ export default function Home() {
                 </div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Digitale Dominanz</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Maximieren Sie Ihre Sichtbarkeit in Google und auf Social Media durch professionelle Videoproduktion Darmstadt. Unsere Video-SEO-Strategie sorgt dafür, dass Ihre Inhalte gefunden werden und Ihre Marke in den Köpfen Ihrer Zielgruppe bleibt.
+                  Maximieren Sie Ihre Sichtbarkeit in Google und auf Social Media durch professionelle Videoproduktionen und gezielten Kampagnen, maßgeschneidert auf Ihre eigene Zielgruppe. Wir sorgen dafür, dass Ihre Inhalte gefunden werden und Ihre Marke im Gedächtnis bleibt.
                 </p>
               </div>
             </article>
@@ -119,9 +119,9 @@ export default function Home() {
                 <div className="benefits-icon">
                   <Heart style={{ width: '1.75rem', height: '1.75rem', color: '#ff0000' }} />
                 </div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Vertrauens-Bonus</h3>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Vertrauensbonus</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Authentisches Storytelling, das Kunden emotional bindet und langfristiges Vertrauen schafft. Wir erzählen Ihre Geschichte so, dass sie nicht nur gesehen, sondern auch gefühlt wird – und Ihre Marke zu einer persönlichen Verbindung wird.
+                  Wir zeigen Ihre Geschichte so, dass sie nicht nur gesehen wird, sondern auch gefühlt wird und somit Ihre Marke zu einer persönlichen Verbindung wird. Authentisches Storytelling bindet den Kunden emotional an Ihre Firma und erzeugt dadurch direkt einen Vertrauensvorschuss.
                 </p>
               </div>
             </article>
@@ -133,9 +133,9 @@ export default function Home() {
                 <div className="benefits-icon">
                   <UserCheck style={{ width: '1.75rem', height: '1.75rem', color: '#ff0000' }} />
                 </div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Fachkräfte-Magnet</h3>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Bewerbungsmagnet</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Gezielte Recruiting-Videos, die gegen den Fachkräftemangel in Darmstadt und der Region Rhein-Main wirken. Mit professioneller Videoproduktion zeigen wir authentisch, warum Ihr Unternehmen der richtige Arbeitgeber ist – und begeistern die Talente, die Sie suchen.
+                  Recruiting-Videos wirken sich gezielt auf die Suche nach neuen Mitarbeitern aus. Wir zeigen, weswegen Ihr Unternehmen der richtige Arbeitgeber ist und geben durch das Video gezielte Anreize sich zu bewerben. Mit Stellenanzeigen glänzen Sie nicht, Sie gehen in der Masse unter.
                 </p>
               </div>
             </article>
@@ -149,7 +149,7 @@ export default function Home() {
                 </div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Effiziente Kommunikation</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Komplexe Angebote schnell und einfach erklärt – Video übertrifft jeden Text und jede Präsentation. Professionelle Videoproduktion Darmstadt verwandelt komplizierte Botschaften in verständliche Geschichten, die Ihre Kunden sofort begreifen.
+                  Ein Bild spricht mehr als 1000 Worte, ein Video erzählt die ganze Geschichte. Komplexe Produkte schnell und einfach erklärt. Ein Video übertrifft jeden Text und jede Präsentation. Wir verwandeln komplizierte Botschaften in verständliche Filme, die Ihre Kunden sofort begreifen.
                 </p>
               </div>
             </article>
@@ -163,7 +163,7 @@ export default function Home() {
                 </div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Nachhaltiger Erfolg</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Strategisches Branding statt kurzfristiger Werbung – wir entwickeln mit professioneller Videoproduktion eine einzigartige Marken-Identität, die Ihre Werte transportiert und sich von der Masse abhebt. Langfristig wirkungsvoll, nachhaltig erfolgreich.
+                  Branding und Video-Marketing sind strategische Investitionen in die Zukunft Ihres Unternehmens. Es ermöglicht es Ihnen, sich von der Konkurrenz abzuheben um langfristig wettbewerbsfähig zu bleiben.
                 </p>
               </div>
             </article>
@@ -177,7 +177,7 @@ export default function Home() {
                 </div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Mehr Umsatz</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Messbare Ergebnisse durch höhere Conversion-Rates auf Ihrer Website. Professionelle Videoproduktion Darmstadt steigert die Verweildauer, reduziert die Absprungrate und verwandelt Besucher in Kunden – nachvollziehbar, messbar, erfolgreich.
+                  Mit Videos steigern Sie die Verweildauer auf Ihrer Website, reduzieren die Absprungrate und verwandeln Besucher in Kunden. Der Zuschauer sieht, was ihn erwartet, muss keine langen Texte durchlesen und bekommt direkte Anwendungsmöglichkeiten gezeigt. Nachvollziehbar, messbar und erfolgreich.
                 </p>
               </div>
             </article>
@@ -195,46 +195,36 @@ export default function Home() {
         <div className="container">
           <h2 className="section-title" style={{ color: 'white', marginBottom: '1rem' }}>Unsere Leistungen</h2>
           <p className="section-subtitle" style={{ color: 'rgba(156, 163, 175, 1)', marginBottom: '5rem' }}>
-            Von der Konzeption bis zur finalen Auslieferung – wir begleiten Ihr Projekt
+            Von der Konzeption bis zur finalen Auslieferung - wir begleiten Ihr Projekt vom Anfang bis zum Ende
           </p>
           <div className="services-grid">
             <div className="service-card-modern">
               <div className="service-card-glow"></div>
-              <div style={{ position: 'relative', zIndex: 10 }}>
+              <div style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
                 <div className="service-icon-modern">🎬</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Filmproduktion</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Professionelle Film- und Videoproduktion für Unternehmen, Events und kreative Projekte
+                  Professionelle Videoproduktionen für Unternehmen, Events oder andere kreative Projekte
                 </p>
               </div>
             </div>
             <div className="service-card-modern">
               <div className="service-card-glow"></div>
-              <div style={{ position: 'relative', zIndex: 10 }}>
+              <div style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
                 <div className="service-icon-modern">📹</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Videomarketing</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Strategische Video-Konzepte, die Ihre Marke stärken und Ihre Zielgruppe erreichen
+                  Strategische Videokonzepte, authentisches Storytelling und gezielte Kampagnen, die Ihre Marke stärken und Ihre Zielgruppe erreichen.
                 </p>
               </div>
             </div>
             <div className="service-card-modern">
               <div className="service-card-glow"></div>
-              <div style={{ position: 'relative', zIndex: 10 }}>
-                <div className="service-icon-modern">✂️</div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Post-Production</h3>
-                <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Schnitt, Farbkorrektur, Motion Graphics und visuelle Effekte für ein perfektes Ergebnis
-                </p>
-              </div>
-            </div>
-            <div className="service-card-modern">
-              <div className="service-card-glow"></div>
-              <div style={{ position: 'relative', zIndex: 10 }}>
+              <div style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
                 <div className="service-icon-modern">📸</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white', marginBottom: '1rem' }}>Fotografie</h3>
                 <p style={{ color: 'rgba(156, 163, 175, 1)', lineHeight: '1.75' }}>
-                  Professionelle Fotografie für Produkte, Events, Porträts und Image-Kampagnen
+                  Eindrucksvolle Bilder für Unternehmen, Events, Influencer oder andere kreative Projekte.
                 </p>
               </div>
             </div>

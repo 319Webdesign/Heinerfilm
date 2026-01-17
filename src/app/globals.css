@@ -3473,95 +3473,156 @@ p {
     padding: 6rem 0;
 }
 
+/* Bento Box / Masonry Grid Layout */
 .portfolio-media-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    grid-auto-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    grid-auto-rows: min-content;
+    grid-auto-flow: dense;
+    align-items: start;
 }
 
-/* Modernes variierendes Grid für bessere visuelle Dynamik */
+/* Desktop: 3 Spalten */
 @media (min-width: 1024px) {
     .portfolio-media-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Large Desktop: 4 Spalten */
+@media (min-width: 1400px) {
+    .portfolio-media-grid {
+        grid-template-columns: repeat(4, 1fr);
         gap: 2rem;
-        grid-auto-rows: auto;
     }
-    
-    /* Abwechselnde Bildgrößen für visuelles Interesse */
-    .portfolio-media-item:nth-child(3n+1) {
-        grid-row: span 1;
-    }
-    
-    .portfolio-media-item:nth-child(3n+2) {
-        grid-row: span 1;
-    }
-    
-    .portfolio-media-item:nth-child(3n+3) {
-        grid-row: span 1;
+}
+
+/* Portrait-Bilder: 2 Zeilen überspannen */
+.portfolio-media-portrait {
+    grid-row: span 2;
+}
+
+/* Landscape-Bilder: 2 Spalten überspannen */
+.portfolio-media-landscape {
+    grid-column: span 2;
+}
+
+/* Auf Mobile: Landscape-Bilder nur 1 Spalte */
+@media (max-width: 1023px) {
+    .portfolio-media-landscape {
+        grid-column: span 1;
     }
 }
 
 .portfolio-media-item {
     position: relative;
-    border-radius: 0.75rem;
+    border-radius: 1.5rem;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    height: fit-content;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .portfolio-media-item:hover {
-    transform: translateY(-8px);
-    border-color: rgba(255, 0, 0, 0.5);
-    box-shadow: 0 20px 40px rgba(255, 0, 0, 0.15);
+    transform: scale(1.05);
+    border-color: rgba(255, 0, 0, 0.4);
+    box-shadow: 0 24px 48px rgba(255, 0, 0, 0.2), 0 0 40px rgba(255, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-media-item:hover .portfolio-media-overlay {
+    opacity: 1;
+}
+
+/* Overlay mit Projekttitel */
+.portfolio-media-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.portfolio-media-overlay-text {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .portfolio-media-image-wrapper,
 .portfolio-media-video-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1;
     overflow: hidden;
+    border-radius: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 200px;
 }
 
+/* Square (Standard) */
+.portfolio-media-image-wrapper-square {
+    aspect-ratio: 1;
+}
+
+/* Portrait: Höhe > Breite */
 .portfolio-media-image-wrapper-portrait {
     aspect-ratio: 9 / 16;
 }
 
+/* Landscape: Breite > Höhe */
+.portfolio-media-image-wrapper-landscape {
+    aspect-ratio: 16 / 9;
+}
+
 .portfolio-media-image {
     object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.portfolio-media-portrait .portfolio-media-image-wrapper {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.portfolio-media-portrait .portfolio-media-image {
-    object-fit: contain;
-    padding: 0.5rem;
+.portfolio-media-item:hover .portfolio-media-image {
+    transform: scale(1.1);
 }
 
 .portfolio-media-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-media-item:hover .portfolio-media-video {
+    transform: scale(1.1);
 }
 
 .portfolio-media-placeholder {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
     border: 2px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 0.75rem;
-    transition: all 0.3s ease;
+    border-radius: 1.5rem;
+    transition: all 0.5s ease;
+    min-height: 200px;
 }
 
 .portfolio-media-item:hover .portfolio-media-placeholder {
@@ -3598,6 +3659,232 @@ p {
     text-align: center;
 }
 
+/* ============================================
+   Portfolio Lightbox
+   ============================================ */
+
+.portfolio-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    padding-bottom: 8rem;
+}
+
+.portfolio-lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    z-index: 10000;
+}
+
+.portfolio-lightbox-close:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+    border-color: rgba(255, 0, 0, 0.5);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* Navigation Buttons */
+.portfolio-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    z-index: 10000;
+}
+
+.portfolio-lightbox-nav:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+    border-color: rgba(255, 0, 0, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.portfolio-lightbox-nav-prev {
+    left: 2rem;
+}
+
+.portfolio-lightbox-nav-next {
+    right: 2rem;
+}
+
+.portfolio-lightbox-content {
+    position: relative;
+    width: 100%;
+    max-width: 90vw;
+    max-height: calc(90vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: pan-y;
+}
+
+.portfolio-lightbox-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.portfolio-lightbox-image {
+    object-fit: contain;
+    border-radius: 1rem;
+}
+
+/* Counter */
+.portfolio-lightbox-counter {
+    position: absolute;
+    bottom: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+/* Thumbnail Strip */
+.portfolio-lightbox-thumbnails {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    max-width: 90vw;
+    overflow-x: auto;
+    z-index: 10000;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.portfolio-lightbox-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+
+.portfolio-lightbox-thumbnails::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.portfolio-lightbox-thumbnails::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.portfolio-lightbox-thumbnail {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-lightbox-thumbnail:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.portfolio-lightbox-thumbnail.active {
+    border-color: rgba(255, 0, 0, 0.8);
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .portfolio-lightbox {
+        padding: 1rem;
+        padding-bottom: 6rem;
+    }
+    
+    .portfolio-lightbox-close {
+        top: 1rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+    }
+    
+    .portfolio-lightbox-nav {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .portfolio-lightbox-nav-prev {
+        left: 1rem;
+    }
+    
+    .portfolio-lightbox-nav-next {
+        right: 1rem;
+    }
+    
+    .portfolio-lightbox-content {
+        max-width: 100%;
+        max-height: calc(100vh - 200px);
+    }
+    
+    .portfolio-lightbox-counter {
+        bottom: 5rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .portfolio-lightbox-thumbnails {
+        bottom: 1rem;
+        gap: 0.25rem;
+        padding: 0.5rem;
+    }
+    
+    .portfolio-lightbox-thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
+
 /* Responsive Styles für Portfolio Detail */
 @media (max-width: 968px) {
     .portfolio-hero-title {
@@ -3610,12 +3897,25 @@ p {
     }
 
     .portfolio-media-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .portfolio-media-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .portfolio-media-item {
+        border-radius: 1rem;
+    }
+    
+    .portfolio-media-image-wrapper,
+    .portfolio-media-video-wrapper {
+        border-radius: 1rem;
+    }
     .portfolio-detail-hero {
         height: 60vh;
         min-height: 400px;

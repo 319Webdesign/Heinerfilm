@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getPortfolioItemBySlug, getAllPortfolioSlugs } from '@/data/portfolio';
 import LazyVideo from '@/components/LazyVideo';
-import PortfolioMediaItem from '@/components/PortfolioMediaItem';
+import PortfolioGallery from '@/components/PortfolioGallery';
 import { ArrowLeft } from 'lucide-react';
 
 type Props = {
@@ -140,16 +140,10 @@ export default function PortfolioDetailPage({ params }: Props) {
             <h2 className="portfolio-section-title" style={{ marginBottom: '3rem', textAlign: 'center' }}>
               Weitere Einblicke
             </h2>
-            <div className="portfolio-media-grid">
-              {remainingMedia.map((media, index) => (
-                <PortfolioMediaItem
-                  key={index}
-                  media={media}
-                  index={index}
-                  projectTitle={project.title}
-                />
-              ))}
-            </div>
+            <PortfolioGallery
+              media={remainingMedia}
+              projectTitle={project.title}
+            />
           </div>
         </section>
       )}
