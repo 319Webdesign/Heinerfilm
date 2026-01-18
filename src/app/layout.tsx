@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   title: 'Heinerfilm - Medienagentur für Film & Video',
   description: 'Heinerfilm - Ihre Medienagentur für professionelle Filmproduktion, Videomarketing und kreative visuelle Lösungen',
   icons: {
-    icon: '/img/Heinerfilm_Schriftzug_weiss.png',
-    apple: '/img/Heinerfilm_Schriftzug_weiss.png',
+    icon: '/icon.svg',
+    apple: '/icon.svg',
   },
 };
 
