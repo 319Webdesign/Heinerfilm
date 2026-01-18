@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Play } from 'lucide-react';
 
 interface LazyVideoProps {
   src: string;
@@ -38,6 +39,8 @@ export default function LazyVideo({
   const [isMobile, setIsMobile] = useState(false);
   const [posterExists, setPosterExists] = useState<boolean | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Hydration-safe: Setze mounted Flag und eager Loading
   useEffect(() => {
@@ -147,34 +150,37 @@ export default function LazyVideo({
             });
           }
 
-          // Mehrere Versuche für mobile Geräte
-          let attempts = 0;
-          const maxAttempts = 5;
-          
+          // Optimiertes Play mit Promise-Handling für iOS Low Power Mode
           const tryPlay = async () => {
-            try {
-              video.volume = 0;
-              video.muted = true;
-              video.setAttribute('muted', '');
-              await video.play();
-              onPlay?.();
-              setVideoFailed(false);
-            } catch (error) {
-              attempts++;
-              if (attempts < maxAttempts) {
-                // Kurze Pause zwischen Versuchen
-                setTimeout(tryPlay, 200);
-              } else {
-                console.log('Video autoplay failed after', maxAttempts, 'attempts. Showing poster image fallback.');
-                setVideoFailed(true);
-              }
+            video.volume = 0;
+            video.muted = true;
+            video.setAttribute('muted', '');
+            
+            // Programmatischer Play-Versuch mit Promise-Fehlerbehandlung
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  // Autoplay erfolgreich
+                  onPlay?.();
+                  setVideoFailed(false);
+                  setAutoplayBlocked(false);
+                  setIsPlaying(true);
+                })
+                .catch((error) => {
+                  // Autoplay wurde blockiert (z.B. durch Energiesparmodus)
+                  console.log('Video autoplay blocked (e.g., Low Power Mode):', error);
+                  setAutoplayBlocked(true);
+                  setVideoFailed(false); // Video ist geladen, nur Autoplay blockiert
+                });
             }
           };
           
           tryPlay();
         } catch (error) {
           console.log('Video autoplay prevented:', error);
-          setVideoFailed(true);
+          setAutoplayBlocked(true);
         }
       };
 
@@ -209,10 +215,53 @@ export default function LazyVideo({
 
     video.addEventListener('error', handleError);
 
+    // Event-Listener für Play/Pause-Zustand
+    const handlePlay = () => {
+      setIsPlaying(true);
+      setAutoplayBlocked(false);
+      onPlay?.();
+    };
+    
+    const handlePause = () => {
+      setIsPlaying(false);
+    };
+
+    video.addEventListener('play', handlePlay);
+    video.addEventListener('pause', handlePause);
+    video.addEventListener('error', handleError);
+
     return () => {
       video.removeEventListener('error', handleError);
+      video.removeEventListener('play', handlePlay);
+      video.removeEventListener('pause', handlePause);
     };
   }, [shouldLoad, isIntersecting, autoPlay, muted, playsInline, onPlay, eager]);
+
+  // Manueller Play-Handler für Fallback-Button
+  const handleManualPlay = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    try {
+      video.volume = 0;
+      video.muted = true;
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setAutoplayBlocked(false);
+            setIsPlaying(true);
+            onPlay?.();
+          })
+          .catch((error) => {
+            console.log('Manual play failed:', error);
+          });
+      }
+    } catch (error) {
+      console.log('Manual play error:', error);
+    }
+  };
 
   // Wähle die richtige Video-Quelle (mobile oder desktop)
   const videoSource = isMobile && srcMobile ? srcMobile : src;
@@ -233,7 +282,7 @@ export default function LazyVideo({
   };
 
   return (
-    <>
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <video
         ref={videoRef}
         className={className}
@@ -259,6 +308,51 @@ export default function LazyVideo({
           </>
         )}
       </video>
+      
+      {/* Play-Button Fallback wenn Autoplay blockiert wurde (z.B. Low Power Mode) */}
+      {autoplayBlocked && !isPlaying && shouldLoad && !videoFailed && (
+        <button
+          onClick={handleManualPlay}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 10,
+            width: '64px',
+            height: '64px',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(255, 0, 0, 0.9)',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'transform 0.2s, background-color 0.2s',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 0, 0, 1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 0, 0, 0.9)';
+          }}
+          aria-label="Video abspielen"
+        >
+          <Play 
+            style={{ 
+              width: '28px', 
+              height: '28px', 
+              color: 'white',
+              marginLeft: '4px' // Optische Zentrierung des Play-Icons
+            }} 
+            fill="white"
+          />
+        </button>
+      )}
+      
       {videoFailed && poster && posterExists === true && (
         // Fallback: Zeige Poster-Image wenn Video nicht lädt
         <img 
@@ -276,7 +370,7 @@ export default function LazyVideo({
           }}
         />
       )}
-    </>
+    </div>
   );
 }
 
