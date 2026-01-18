@@ -282,7 +282,7 @@ export default function LazyVideo({
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <>
       <video
         ref={videoRef}
         className={className}
@@ -318,7 +318,7 @@ export default function LazyVideo({
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            zIndex: 10,
+            zIndex: 15,
             width: '64px',
             height: '64px',
             borderRadius: '50%',
@@ -370,7 +370,7 @@ export default function LazyVideo({
           }}
         />
       )}
-    </div>
+    </>
   );
 }
 
