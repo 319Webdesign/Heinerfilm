@@ -41,6 +41,8 @@ export default function LazyVideo({
   const [mounted, setMounted] = useState(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoOpacity, setVideoOpacity] = useState(0);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   // Hydration-safe: Setze mounted Flag und eager Loading
   useEffect(() => {
@@ -48,6 +50,10 @@ export default function LazyVideo({
     if (eager) {
       setShouldLoad(true);
       setIsIntersecting(true);
+      // Für eager Videos: Setze preload sofort auf auto
+      if (videoRef.current) {
+        videoRef.current.setAttribute('preload', 'auto');
+      }
     }
   }, [eager]);
 
@@ -226,16 +232,39 @@ export default function LazyVideo({
       setIsPlaying(false);
     };
 
+    // Event-Listener für flüssiges Einblenden des Videos
+    const handleCanPlayThrough = () => {
+      setIsVideoReady(true);
+      // Sanftes Einblenden mit Transition
+      setTimeout(() => {
+        setVideoOpacity(1);
+      }, 50); // Kleine Verzögerung für flüssigen Übergang
+    };
+
+    const handleLoadedData = () => {
+      // Fallback: Wenn canplaythrough nicht feuert, nutze loadeddata
+      if (!isVideoReady && video.readyState >= 3) {
+        setIsVideoReady(true);
+        setTimeout(() => {
+          setVideoOpacity(1);
+        }, 50);
+      }
+    };
+
     video.addEventListener('play', handlePlay);
     video.addEventListener('pause', handlePause);
     video.addEventListener('error', handleError);
+    video.addEventListener('canplaythrough', handleCanPlayThrough, { once: true });
+    video.addEventListener('loadeddata', handleLoadedData, { once: true });
 
     return () => {
       video.removeEventListener('error', handleError);
       video.removeEventListener('play', handlePlay);
       video.removeEventListener('pause', handlePause);
+      video.removeEventListener('canplaythrough', handleCanPlayThrough);
+      video.removeEventListener('loadeddata', handleLoadedData);
     };
-  }, [shouldLoad, isIntersecting, autoPlay, muted, playsInline, onPlay, eager]);
+  }, [shouldLoad, isIntersecting, autoPlay, muted, playsInline, onPlay, eager, isVideoReady]);
 
   // Manueller Play-Handler für Fallback-Button
   const handleManualPlay = async () => {
@@ -286,15 +315,18 @@ export default function LazyVideo({
       <video
         ref={videoRef}
         className={className}
-        muted
+        muted={muted}
         loop={loop}
-        playsInline
+        playsInline={playsInline}
         autoPlay={autoPlay}
         preload={mounted && eager ? 'auto' : shouldLoad ? 'auto' : 'none'}
         {...(poster && posterExists === true ? { poster } : {})}
         disablePictureInPicture={disablePictureInPicture}
         controlsList={controlsList}
         style={{
+          opacity: videoOpacity,
+          transition: 'opacity 500ms ease-in-out',
+          backgroundColor: '#000000', // Schwarzer Hintergrund für flüssigen Übergang
           ...(videoFailed && poster && posterExists === true ? {
             // Verstecke Video-Element wenn Fallback verwendet wird
             display: 'none'

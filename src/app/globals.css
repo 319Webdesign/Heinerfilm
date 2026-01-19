@@ -368,19 +368,28 @@ p {
     -webkit-playsinline: true;
     -webkit-touch-callout: none;
     user-select: none;
-    /* Verhindere Flackern beim Laden */
-    background-color: #000;
+    /* Verhindere Flackern beim Laden - schwarzer Hintergrund */
+    background-color: #000000;
+    /* Opacity-Transition für flüssiges Einblenden */
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
     /* Optimierungen für Videoqualität */
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    will-change: transform;
+    will-change: transform, opacity;
     /* Hardware-Beschleunigung für Video */
     -webkit-transform: translateZ(0);
     -webkit-perspective: 1000;
     -webkit-font-smoothing: antialiased;
     /* Verhindere automatische Bildqualitätsreduktion */
     -webkit-transform-style: preserve-3d;
+}
+
+/* Video-Poster sollte die gleichen Eigenschaften wie das Video haben */
+video[poster] {
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Verstecke Play-Button-Overlay auf mobilen Geräten */
