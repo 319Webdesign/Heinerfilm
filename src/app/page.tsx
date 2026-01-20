@@ -34,7 +34,7 @@ export default function Home() {
         <div className="hero-overlay"></div>
         <div className="container">
           <div className="hero-content">
-            <h1 className="hero-title">IHRE VISION IST MEINE LEIDENSCHAFT</h1>
+            <h1 className="hero-title">IHRE VISION IST UNSERE LEIDENSCHAFT</h1>
             <p className="hero-subtitle">
               Professionelle Filmproduktion und visuelle Medienlösungen, die Ihre Geschichte zum Leben erwecken
             </p>
@@ -55,14 +55,21 @@ export default function Home() {
         <div className="container">
           <div className="about-preview-content">
             <div className="about-text">
-              <h2 className="section-title">Unsere Videos Sprechen Lauter als Worte</h2>
+              <h2 className="section-title">Unsere Videos sprechen lauter als Worte</h2>
               <p>
-              Schon sehr früh haben wir erkannt, dass Social Media nicht nur ein Zeitvertreib für zwischendurch ist. Verknüpft mit unserer Liebe und Begeisterung für die Produktion von Videos, haben wir das Potenzial erkannt und uns dazu entschieden den Schwerpunkt hierauf zulegen.
-              Seit Beginn haben wir 250 abgeschlossene Projekte und mehr als 80 zufriedene Kunden.
+                Unsere Videos sprechen lauter als Worte und genau das ist unser Anspruch. Wir erzählen 
+                Geschichten die berühren, Botschaften die wirken und Inhalte die im Gedächtnis bleiben. Mit 
+                einem klaren Fokus auf Qualität, Authentizität und visuellem Storytelling setzen wir Marken, 
+                Produkte, Veranstaltungen und Menschen so in Szene dass sie gesehen, verstanden und erinnert 
+                werden. Egal ob Imagefilm, Social Content, Event oder Werbevideo wir transformieren Ideen in 
+                bewegte Bilder die Wirkung zeigen.
               </p>
               <p>
-                Der Name „Heinerfilm" entstand nach einem Filmdreh auf einer sehr langen Autofahrt von Berlin nach Darmstadt, 
-                als auf einmal der Satz fiel: „Berlin war schön aber ich bin Stolz ein Heiner zu sein." Und der Rest ist Geschichte….
+                Genau dieselbe Leidenschaft und Präzision bringen wir auch in unsere Fotografie. Denn starke 
+                Bilder funktionieren nicht nur in Bewegung. Sie halten besondere Momente fest, schaffen Nähe 
+                und erzählen Geschichten in einem einzigen Augenblick. Von Portraits über Eventfotos bis hin zu 
+                kreativen Kampagnenmotiven sorgen wir dafür, dass jede Aufnahme Wirkung entfaltet und 
+                nachhaltig Eindruck hinterlässt.
               </p>
               <Link href="/about" className="btn btn-secondary">
                 Mehr über Heinerfilm <span className="btn-icon">→</span>
@@ -270,7 +277,7 @@ export default function Home() {
               display: 'block',
               boxSizing: 'border-box'
             }}>
-              Was Kunden über die Zusammenarbeit sagen
+              Kunden über die Zusammenarbeit mit Heinerfilm
             </h2>
             <p style={{ 
               fontSize: '1.125rem', 
@@ -283,7 +290,7 @@ export default function Home() {
               display: 'block',
               boxSizing: 'border-box'
             }}>
-              Erfahren Sie, warum Unternehmen in der Region Darmstadt auf die Expertise von Heinerfilm vertrauen.
+              Erfahren Sie, warum Unternehmen auf die Expertise von Heinerfilm vertrauen.
             </p>
           </motion.div>
 

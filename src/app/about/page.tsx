@@ -163,10 +163,7 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1>Ihre Vision ist unsere Leidenschaft</h1>
-            <p>
-              Professionelle Videoproduktion Darmstadt – Authentisches Storytelling für Ihre Marke
-            </p>
+            <h1>Ein Blick hinter die Kamera</h1>
           </motion.div>
         </div>
       </section>
@@ -236,13 +233,21 @@ export default function About() {
               <div className="zigzag-text">
                 <h2>Videoproduktion Darmstadt: Social Media Marketing mit Leidenschaft</h2>
                 <p>
-                  Schon sehr früh haben wir erkannt, dass Social Media nicht nur ein Zeitvertreib für zwischendurch ist. 
-                  Verknüpft mit unserer Liebe und Begeisterung für die Produktion von Videos, haben wir das Potenzial erkannt 
-                  und uns dazu entschieden, den Schwerpunkt hierauf zu legen.
+                  Momente festhalten. Geschichten erzählen. 
+                  Schon früh haben wir erkannt, dass Social Media weit mehr ist als ein Zeitvertreib. Verknüpft mit 
+                  unserer Liebe und Begeisterung für die Produktion von Videos, haben wir das Potenzial erkannt 
+                  und uns dazu entschieden, den Schwerpunkt hierauf zu legen. Dazu gehört auch die Produktion 
+                  von Eventfilmen, die besondere Momente eindrucksvoll festhalten.
                 </p>
                 <p>
-                  Als Videoproduktion Darmstadt verstehen wir die Kraft von visuellen Inhalten auf Social Media Plattformen. 
-                  Unsere Videos sprechen lauter als Worte und erreichen Ihre Zielgruppe dort, wo sie sich täglich aufhält.
+                  Gerade im Eventbereich kommt es darauf an, Emotionen authentisch einzufangen und 
+                  Atmosphäre spürbar zu machen. Ob Unternehmensveranstaltungen, Messen oder private 
+                  Anlässe. 
+                  Wir halten die Highlights professionell fest und verwandeln sie in hochwertige Filme.
+                </p>
+                <p>
+                  Seit Beginn haben wir mehr als 250 abgeschlossene Projekte realisiert und über 80 zufriedene 
+                  Kunden aus Industrie, Event und Gastronomie erfolgreich bei Ihrem Vorhaben unterstützt.
                 </p>
               </div>
             </div>
@@ -263,13 +268,21 @@ export default function About() {
             <div className="zigzag-text">
               <h2>Ihre Vision, unsere Expertise</h2>
               <p>
-                Seit Beginn haben wir mehr als 250 abgeschlossene Projekte realisiert und über 80 zufriedene Kunden 
-                erfolgreich bei ihrer Videoproduktion in Darmstadt und Umgebung unterstützt.
+                Wir arbeiten alle zusammen, um aus starken Ideen maßgeschneiderte Konzepte und Filme zu 
+                entwickeln.
               </p>
               <p>
-                Unser Team kombiniert kreative Vision mit technischer Präzision. Wir verstehen, dass jedes Projekt 
-                einzigartig ist und erfordert eine individuelle Herangehensweise. Von der Konzeption bis zur finalen 
-                Auslieferung begleiten wir Sie professionell und mit voller Leidenschaft.
+                Unser Team kombiniert kreative Vision mit technischer Präzision. Wir verstehen, dass jedes 
+                Projekt einzigartig ist und erfordert daher eine individuelle Herangehensweise. Von der Konzeption 
+                bis zur finalen Auslieferung begleiten wir Sie professionell und mit voller Leidenschaft.
+              </p>
+              <p>
+                Der Name „Heinerfilm" entstand nach einem Filmdreh auf einer sehr langen Autofahrt von Berlin 
+                nach Darmstadt, als auf einmal der Satz fiel: „Berlin war schön, aber ich bin stolz ein Heiner zu 
+                sein."
+              </p>
+              <p>
+                Und der Rest ist Geschichte…
               </p>
               <Link href="/contact" className="btn btn-secondary">
                 Kostenloses Erstgespräch vereinbaren

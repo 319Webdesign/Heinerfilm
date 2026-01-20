@@ -38,13 +38,12 @@ export default function Services() {
             <div className="service-detail-content">
               <div className="service-detail-text">
                 <h2>Filmproduktion</h2>
-                <p>Von der Idee bis zum fertigen Film – wir begleiten Sie durch den gesamten Produktionsprozess. Unsere Expertise umfasst:</p>
+                <p>Von der Idee bis zum fertigen Film begleiten wir Sie durch den gesamten Produktionsprozess.</p>
                 <ul>
-                  <li>Konzeption und Drehbuchentwicklung</li>
-                  <li>Professionelle Kameraarbeit und Lichtsetzung</li>
-                  <li>Tonaufnahme und Sounddesign</li>
-                  <li>Regie und Produktionsleitung</li>
-                  <li>Drehbuch für Imagefilme, Werbefilme, Dokumentationen</li>
+                  <li>Imagefilm</li>
+                  <li>Recruiting Video</li>
+                  <li>Aftermovie für Events</li>
+                  <li>Messefilm</li>
                 </ul>
                 <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
@@ -68,13 +67,13 @@ export default function Services() {
             <div className="service-detail-content">
               <div className="service-detail-text">
                 <h2>Videomarketing</h2>
-                <p>Strategische Video-Konzepte, die Ihre Marke stärken und Ihre Zielgruppe erreichen:</p>
+                <p>Verschiedene Möglichkeiten Ihre Dienstleistung oder Produkt zu vermarkten.</p>
                 <ul>
-                  <li>Social Media Videos (Instagram, TikTok, YouTube)</li>
-                  <li>Unternehmensvideos und Imagefilme</li>
-                  <li>Produktvideos und Erklärfilme</li>
-                  <li>Event-Videos und Livestreaming</li>
-                  <li>Video-Marketing Strategie und Beratung</li>
+                  <li>Kurzvideos (Instagram, TikTok, YouTube)</li>
+                  <li>Videokampagnen</li>
+                  <li>Erklärvideos</li>
+                  <li>Testimonials</li>
+                  <li>Teaser</li>
                 </ul>
                 <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
@@ -98,13 +97,13 @@ export default function Services() {
             <div className="service-detail-content">
               <div className="service-detail-text">
                 <h2>Fotografie</h2>
-                <p>Professionelle Fotografie für alle Anlässe:</p>
+                <p>Eindrucksvolle Fotografie für:</p>
                 <ul>
-                  <li>Produktfotografie</li>
-                  <li>Event-Fotografie</li>
-                  <li>Porträt- und People-Fotografie</li>
-                  <li>Image-Kampagnen</li>
-                  <li>Retusche und Bildbearbeitung</li>
+                  <li>Events</li>
+                  <li>Mitarbeiterportraits</li>
+                  <li>Imagekampagnen</li>
+                  <li>Produkte</li>
+                  <li>Unternehmen</li>
                 </ul>
                 <Link href="/contact" className="btn btn-secondary">Anfrage stellen</Link>
               </div>
@@ -133,23 +132,23 @@ export default function Services() {
           <div className="process-steps">
             <div className="process-step">
               <div className="process-number">1</div>
-              <h3>Beratung & Konzeption</h3>
-              <p>Gemeinsam entwickeln wir die Idee und das Konzept für Ihr Projekt</p>
+              <h3>Konzeption</h3>
+              <p>Ideenentwicklung und Konzepterstellung für Ihr Projekt</p>
             </div>
             <div className="process-step">
               <div className="process-number">2</div>
               <h3>Produktion</h3>
-              <p>Professionelle Umsetzung mit modernster Technik und kreativem Know-how</p>
+              <p>Professionelle Umsetzung mit modernster Technik und kreativem Know-How</p>
             </div>
             <div className="process-step">
               <div className="process-number">3</div>
-              <h3>Post-Production</h3>
-              <p>Schnitt, Bearbeitung und finale Optimierung des Materials</p>
+              <h3>Postproduktion</h3>
+              <p>Schnitt, Bearbeitung, finale Optimierung des Materials inkl. Änderungsschleifen</p>
             </div>
             <div className="process-step">
               <div className="process-number">4</div>
               <h3>Auslieferung</h3>
-              <p>Fertigstellung und Übergabe in Ihrem gewünschten Format</p>
+              <p>Fertigstellung und Übergabe in Ihrem gewünschtem Format</p>
             </div>
           </div>
         </div>

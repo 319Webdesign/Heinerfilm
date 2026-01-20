@@ -67,22 +67,24 @@ export default function LazyVideo({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Prüfe, ob Poster-Image existiert
+  // Prüfe, ob Poster-Image existiert - optimiert für sofortige Anzeige
   useEffect(() => {
     if (!poster) {
       setPosterExists(false);
       return;
     }
 
-    // Prüfe, ob das Bild existiert, ohne es zu laden
+    // Setze Poster zunächst auf true für sofortige Anzeige
+    // (Browser wird das Poster automatisch validieren)
+    setPosterExists(true);
+
+    // Optional: Prüfe, ob das Bild existiert (nicht-blockierend)
     const img = new Image();
-    const checkImage = () => {
-      img.onload = () => setPosterExists(true);
-      img.onerror = () => setPosterExists(false);
-      img.src = poster;
+    img.onerror = () => {
+      // Nur bei Fehler auf false setzen
+      setPosterExists(false);
     };
-    
-    checkImage();
+    img.src = poster;
   }, [poster]);
 
   useEffect(() => {
@@ -122,15 +124,24 @@ export default function LazyVideo({
     const video = videoRef.current;
     if (!video || !shouldLoad) return;
 
-    // Kritische Attribute für mobile Autoplay-Kompatibilität
+    // Kritische Attribute für mobile Autoplay-Kompatibilität - ZWINGEND gesetzt
     video.muted = true; // Zwingend auf true für Autoplay
     video.volume = 0; // Zusätzliche Absicherung
     video.playsInline = true; // Wichtig für iOS
+    video.loop = loop; // Loop explizit setzen
+    video.autoplay = autoPlay; // Autoplay explizit setzen
     
     // Setze HTML-Attribute explizit (wichtig für iOS/Safari)
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
-    video.setAttribute('autoplay', autoPlay ? 'true' : 'false');
+    video.setAttribute('autoplay', autoPlay ? '' : 'false');
+    video.setAttribute('loop', loop ? '' : 'false');
+    
+    // Preload auf auto setzen für sofortiges Laden
+    if (eager || shouldLoad) {
+      video.setAttribute('preload', 'auto');
+      video.preload = 'auto';
+    }
     
     // Für iOS: WebKit-spezifische Attribute
     video.setAttribute('webkit-playsinline', 'true');
@@ -233,38 +244,42 @@ export default function LazyVideo({
     };
 
     // Event-Listener für flüssiges Einblenden des Videos
-    const handleCanPlayThrough = () => {
+    // WICHTIG: loadedData feuert, sobald der erste Frame im Speicher ist
+    const handleLoadedData = () => {
+      // Sobald der erste Frame geladen ist, blende das Video sofort ein
       setIsVideoReady(true);
-      // Sanftes Einblenden mit Transition
-      setTimeout(() => {
+      // Schnelles Einblenden mit requestAnimationFrame für flüssige Performance
+      requestAnimationFrame(() => {
         setVideoOpacity(1);
-      }, 50); // Kleine Verzögerung für flüssigen Übergang
+      });
     };
 
-    const handleLoadedData = () => {
-      // Fallback: Wenn canplaythrough nicht feuert, nutze loadeddata
-      if (!isVideoReady && video.readyState >= 3) {
+    // Fallback: Wenn loadedData nicht feuert, nutze canplay
+    const handleCanPlay = () => {
+      if (!isVideoReady && video.readyState >= 2) {
         setIsVideoReady(true);
-        setTimeout(() => {
+        requestAnimationFrame(() => {
           setVideoOpacity(1);
-        }, 50);
+        });
       }
     };
 
     video.addEventListener('play', handlePlay);
     video.addEventListener('pause', handlePause);
     video.addEventListener('error', handleError);
-    video.addEventListener('canplaythrough', handleCanPlayThrough, { once: true });
+    // PRIORITÄT: loadedData - feuert wenn erster Frame im Speicher ist
     video.addEventListener('loadeddata', handleLoadedData, { once: true });
+    // Fallback: canplay falls loadedData nicht ausreicht
+    video.addEventListener('canplay', handleCanPlay, { once: true });
 
     return () => {
       video.removeEventListener('error', handleError);
       video.removeEventListener('play', handlePlay);
       video.removeEventListener('pause', handlePause);
-      video.removeEventListener('canplaythrough', handleCanPlayThrough);
       video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('canplay', handleCanPlay);
     };
-  }, [shouldLoad, isIntersecting, autoPlay, muted, playsInline, onPlay, eager, isVideoReady]);
+  }, [shouldLoad, isIntersecting, autoPlay, muted, playsInline, onPlay, eager, isVideoReady, loop]);
 
   // Manueller Play-Handler für Fallback-Button
   const handleManualPlay = async () => {
@@ -319,16 +334,15 @@ export default function LazyVideo({
         loop={loop}
         playsInline={playsInline}
         autoPlay={autoPlay}
-        preload={mounted && eager ? 'auto' : shouldLoad ? 'auto' : 'none'}
-        {...(poster && posterExists === true ? { poster } : {})}
+        preload="auto"
         disablePictureInPicture={disablePictureInPicture}
         controlsList={controlsList}
         style={{
           opacity: videoOpacity,
-          transition: 'opacity 500ms ease-in-out',
-          backgroundColor: '#000000', // Schwarzer Hintergrund für flüssigen Übergang
-          ...(videoFailed && poster && posterExists === true ? {
-            // Verstecke Video-Element wenn Fallback verwendet wird
+          transition: 'opacity 300ms ease-in-out',
+          backgroundColor: '#000000', // Schwarzer Hintergrund als Fallback während Video lädt
+          ...(videoFailed ? {
+            // Verstecke Video-Element wenn Fehler auftritt
             display: 'none'
           } : {})
         }}

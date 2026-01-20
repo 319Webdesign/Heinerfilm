@@ -338,7 +338,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #2d2d2d 100%);
+    background: #000000; /* Schwarzer Hintergrund als Fallback während Video lädt */
     color: white;
     overflow: hidden;
 }
@@ -370,14 +370,14 @@ p {
     user-select: none;
     /* Verhindere Flackern beim Laden - schwarzer Hintergrund */
     background-color: #000000;
-    /* Opacity-Transition für flüssiges Einblenden */
+    /* Opacity-Transition für flüssiges Einblenden - startet bei 0 */
     opacity: 0;
-    transition: opacity 500ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
     /* Optimierungen für Videoqualität */
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    will-change: transform, opacity;
+    will-change: opacity;
     /* Hardware-Beschleunigung für Video */
     -webkit-transform: translateZ(0);
     -webkit-perspective: 1000;
@@ -386,11 +386,11 @@ p {
     -webkit-transform-style: preserve-3d;
 }
 
-/* Video-Poster sollte die gleichen Eigenschaften wie das Video haben */
-video[poster] {
-    object-fit: cover;
-    object-position: center;
+/* Video ist bereit - zeige es mit sanftem Fade-In */
+.hero-video[style*="opacity: 1"] {
+    opacity: 1 !important;
 }
+
 
 /* Verstecke Play-Button-Overlay auf mobilen Geräten */
 .hero-video::-webkit-media-controls {
@@ -2539,7 +2539,7 @@ video[poster] {
 }
 
 .process-phase-keywords {
-    font-size: 0.875rem;
+    font-size: 1.125rem;
     font-weight: 500;
     color: rgba(255, 0, 0, 0.7);
     text-transform: uppercase;

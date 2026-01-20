@@ -9,13 +9,13 @@ const processPhases = [
     icon: Search,
     title: 'Strategische Beratung',
     keywords: 'Zielgruppen-Analyse, Markenidentität',
-    description: 'Den Grundstein für messbaren Erfolg legen. Wir analysieren Ihre Zielgruppe, definieren Ihre Markenidentität und entwickeln eine maßgeschneiderte Strategie, die Ihre Vision in messbare Ergebnisse umsetzt.',
+    description: 'Wir analysieren Ihre Zielgruppe, definieren Ihre Markenidentität und entwickeln eine maßgeschneiderte Strategie, die Ihre Vision in messbare Ergebnisse umsetzt.',
   },
   {
     number: '02',
     icon: PenTool,
     title: 'Individuelle Konzeption',
-    keywords: 'Storyboard, Strategie',
+    keywords: 'Storyboard & Drehbuch',
     description: 'Maßgeschneiderte Drehbücher, die Ihre Zielgruppe emotional binden. Jedes Konzept wird individuell auf Ihre Marke zugeschnitten und erzählt eine Geschichte, die nicht nur gesehen, sondern auch gefühlt wird.',
   },
   {
@@ -29,15 +29,15 @@ const processPhases = [
     number: '04',
     icon: Layers,
     title: 'High-End Postproduktion',
-    keywords: 'Schnitt, Color Grading, Branding',
-    description: 'Perfektion im Detail für ein Ergebnis, auf das Sie stolz sind. Professioneller Schnitt, präzises Color Grading und konsistentes Branding sorgen für ein visuelles Erlebnis, das Ihre Marke unvergesslich macht.',
+    keywords: 'Filmschnitt, Farbkorrektur, Sounddesign und Effekte',
+    description: 'Perfektion im Detail für Ergebnisse, die überzeugen. Durch präzisen Filmschnitt, fein abgestimmte Farbkorrektur sowie überzeugendes Sounddesign und Effekte entsteht ein visuelles Erlebnis, das im Gedächtnis bleibt.',
   },
   {
     number: '05',
     icon: Share2,
     title: 'Digitale Begleitung',
-    keywords: 'Social Media Content, Veröffentlichung',
-    description: 'Ganzheitliche Betreuung für langfristige Sichtbarkeit. Von der Veröffentlichung bis zur kontinuierlichen Content-Strategie begleiten wir Sie auf allen digitalen Kanälen und sorgen für nachhaltigen Erfolg.',
+    keywords: 'Veröffentlichung, Social Media Content',
+    description: 'Nach der erfolgreichen Abnahme eines Projekts unterstützen wir Sie gerne bei der Veröffentlichung. Wir verfolgen das Ziel einer ganzheitlichen Betreuung für Ihren Social Media Content, sodass langfristig professionelle Inhalte veröffentlicht werden können.',
   },
 ];
 
@@ -73,7 +73,10 @@ export default function StrategyProcessSection() {
             Strategie & Prozess
           </h2>
           <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.8)', maxWidth: '48rem', margin: '0 auto', textAlign: 'center' }}>
-            Von der ersten Idee bis zur erfolgreichen Veröffentlichung – unser bewährter 5-Phasen-Prozess garantiert messbare Ergebnisse
+            Von der ersten Idee bis zur erfolgreichen Veröffentlichung
+          </p>
+          <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.8)', maxWidth: '48rem', margin: '1rem auto 0', textAlign: 'center' }}>
+            Unser Ablauf für Ihr zukünftiges Projekt
           </p>
         </div>
 
