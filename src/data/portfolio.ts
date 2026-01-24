@@ -273,12 +273,11 @@ export const portfolioItems: PortfolioItem[] = [
       
       // Querformat-Bilder (1920x1080)
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn65.webp', alt: 'Heinerwiesn Event' },
-      { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn122.webp', alt: 'Heinerwiesn Event' },
+      { type: 'image', src: '/img/Heinerwiesn/allgaeupower01.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn150.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn219.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn220.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn296.webp', alt: 'Heinerwiesn Event' },
-      { type: 'image', src: '/img/Heinerwiesn/allgaeupower01.webp', alt: 'Heinerwiesn Event' },
       
       // Hochkant-Bilder (1080x1440)
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn20.webp', alt: 'Heinerwiesn Event' },
@@ -298,7 +297,6 @@ export const portfolioItems: PortfolioItem[] = [
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn245.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn282.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn284.webp', alt: 'Heinerwiesn Event' },
-      { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn291.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn292.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/allgaeupower09.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/allgaeupower16.webp', alt: 'Heinerwiesn Event' },

@@ -1023,6 +1023,10 @@ p {
     background-color: #000000;
 }
 
+.testimonials .section-title {
+    margin-bottom: var(--spacing-lg) !important;
+}
+
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -3513,20 +3517,40 @@ p {
         grid-auto-rows: auto;
     }
     
-    /* Klangversprechen: Spezial-Layout für erste 3 Items auf Desktop */
+    /* Klangversprechen: Spezial-Layout für erste 3 Items auf Desktop (6-Spalten-Basis) */
+    .portfolio-media-grid.project-klangversprechen {
+        grid-template-columns: repeat(6, 1fr) !important;
+    }
+    
     .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) {
-        grid-column: 1 !important;
+        grid-column: 1 / 5 !important; /* Video 1: 4 von 6 Spalten (2/3 Breite) */
         grid-row: 1 / 2 !important;
+        align-self: start !important;
     }
     
     .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) {
-        grid-column: 1 !important;
+        grid-column: 1 / 5 !important; /* Video 2: 4 von 6 Spalten (2/3 Breite) */
         grid-row: 2 / 3 !important;
+        align-self: start !important;
     }
     
     .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(3) {
-        grid-column: 2 !important;
+        grid-column: 5 / 7 !important; /* Hochkantbild: 2 von 6 Spalten (1/3 Breite) */
         grid-row: 1 / 3 !important;
+    }
+    
+    /* Videos im natürlichen Seitenverhältnis (Querformat) */
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) .portfolio-media-video-wrapper,
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) .portfolio-media-video-wrapper {
+        aspect-ratio: 16 / 9 !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Ab dem 4. Item: 2er-Grid (je 3 von 6 Spalten = halbe Breite) */
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(n+4) {
+        grid-column: span 3 !important;
+        grid-row: span 1 !important;
     }
     
     /* Fibo x Smilodox: 6-Spalten-Grid auf Desktop */
@@ -3580,20 +3604,40 @@ p {
         grid-auto-rows: auto;
     }
     
-    /* Klangversprechen: Spezial-Layout für erste 3 Items auf Large Desktop */
+    /* Klangversprechen: Spezial-Layout für erste 3 Items auf Large Desktop (6-Spalten-Basis) */
+    .portfolio-media-grid.project-klangversprechen {
+        grid-template-columns: repeat(6, 1fr) !important;
+    }
+    
     .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) {
-        grid-column: 1 !important;
+        grid-column: 1 / 5 !important; /* Video 1: 4 von 6 Spalten (2/3 Breite) */
         grid-row: 1 / 2 !important;
+        align-self: start !important;
     }
     
     .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) {
-        grid-column: 1 !important;
+        grid-column: 1 / 5 !important; /* Video 2: 4 von 6 Spalten (2/3 Breite) */
         grid-row: 2 / 3 !important;
+        align-self: start !important;
     }
     
     .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(3) {
-        grid-column: 2 !important;
+        grid-column: 5 / 7 !important; /* Hochkantbild: 2 von 6 Spalten (1/3 Breite) */
         grid-row: 1 / 3 !important;
+    }
+    
+    /* Videos im natürlichen Seitenverhältnis (Querformat) */
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) .portfolio-media-video-wrapper,
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) .portfolio-media-video-wrapper {
+        aspect-ratio: 16 / 9 !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Ab dem 4. Item: 2er-Grid (je 3 von 6 Spalten = halbe Breite) */
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(n+4) {
+        grid-column: span 3 !important;
+        grid-row: span 1 !important;
     }
     
     /* Fibo x Smilodox: 6-Spalten-Grid auf Large Desktop */
@@ -3667,22 +3711,42 @@ p {
 }
 
 /* ============================================
-   Klangversprechen: Spezial-Layout für erste 3 Items
+   Klangversprechen: Spezial-Layout für erste 3 Items (6-Spalten-Basis für Flexibilität)
    ============================================ */
-/* Videos 1+2 links untereinander, Bild 3 rechts über 2 Zeilen */
+/* 6-Spalten-Grid: Videos je 4 Spalten (=2/3), Hochkantbild 2 Spalten (=1/3), Rest 3 Spalten (=2er-Grid) */
+.portfolio-media-grid.project-klangversprechen {
+    grid-template-columns: repeat(6, 1fr) !important;
+}
+
 .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) {
-    grid-column: 1 !important;
+    grid-column: 1 / 5 !important; /* Video 1: Spalte 1-4 (4 von 6 = 2/3 Breite) */
     grid-row: 1 / 2 !important;
+    align-self: start !important; /* Video nicht vertikal strecken */
 }
 
 .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) {
-    grid-column: 1 !important;
+    grid-column: 1 / 5 !important; /* Video 2: Spalte 1-4 (4 von 6 = 2/3 Breite) */
     grid-row: 2 / 3 !important;
+    align-self: start !important; /* Video nicht vertikal strecken */
 }
 
 .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(3) {
-    grid-column: 2 !important;
-    grid-row: 1 / 3 !important;
+    grid-column: 5 / 7 !important; /* Hochkantbild: Spalte 5-6 (2 von 6 = 1/3 Breite) */
+    grid-row: 1 / 3 !important; /* über 2 Zeilen */
+}
+
+/* Videos im natürlichen Seitenverhältnis (Querformat) */
+.portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) .portfolio-media-video-wrapper,
+.portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) .portfolio-media-video-wrapper {
+    aspect-ratio: 16 / 9 !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Ab dem 4. Item: 2er-Grid (je 3 von 6 Spalten = halbe Breite) */
+.portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(n+4) {
+    grid-column: span 3 !important;
+    grid-row: span 1 !important;
 }
 
 /* ============================================
