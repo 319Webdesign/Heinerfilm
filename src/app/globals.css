@@ -3500,7 +3500,7 @@ p {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    grid-auto-rows: minmax(300px, auto);
+    grid-auto-rows: auto;
     grid-auto-flow: dense;
     align-items: start;
 }
@@ -3510,16 +3510,16 @@ p {
     .portfolio-media-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
-        grid-auto-rows: minmax(700px, auto);
+        grid-auto-rows: auto;
     }
     
     .portfolio-media-item.portfolio-media-portrait {
-        min-height: 1050px;
+        height: auto;
     }
     
     .portfolio-media-item.portfolio-media-portrait .portfolio-media-image-wrapper-portrait,
     .portfolio-media-item.portfolio-media-portrait .portfolio-media-video-wrapper {
-        min-height: 1050px;
+        height: auto;
     }
 }
 
@@ -3530,38 +3530,47 @@ p {
         gap: 2rem;
         max-width: 1600px;
         margin: 0 auto;
-        grid-auto-rows: minmax(800px, auto);
+        grid-auto-rows: auto;
     }
     
     .portfolio-media-item.portfolio-media-portrait {
-        min-height: 1150px;
+        height: auto;
     }
     
     .portfolio-media-item.portfolio-media-portrait .portfolio-media-image-wrapper-portrait,
     .portfolio-media-item.portfolio-media-portrait .portfolio-media-video-wrapper {
-        min-height: 1150px;
+        height: auto;
     }
 }
 
-/* Portrait-Bilder: 2 Zeilen überspannen */
+/* Portrait-Bilder: keine Zeilen-Überspannung mehr für besseres Grid */
 .portfolio-media-portrait {
-    grid-row: span 2;
+    /* grid-row: span 2; - entfernt für bessere Grid-Anordnung */
 }
 
-/* Portrait Video/Bild Items: Höhe beibehalten */
+/* Portrait Video/Bild Items: Nur aspect-ratio verwenden */
 .portfolio-media-item.portfolio-media-portrait {
     height: auto;
-    min-height: 800px;
 }
 
 .portfolio-media-item.portfolio-media-portrait .portfolio-media-image-wrapper-portrait,
 .portfolio-media-item.portfolio-media-portrait .portfolio-media-video-wrapper {
     aspect-ratio: 9 / 16;
+    width: 100%;
     height: auto;
-    min-height: 800px;
 }
 
-/* Landscape-Bilder: 2 Spalten überspannen */
+/* Standard-Items: 1 Spalte */
+.portfolio-media-item {
+    grid-column: span 1;
+}
+
+/* Square-Items: explizit 1 Spalte */
+.portfolio-media-square {
+    grid-column: span 1;
+}
+
+/* Landscape-Bilder/Videos: 2 Spalten überspannen */
 .portfolio-media-landscape {
     grid-column: span 2;
 }

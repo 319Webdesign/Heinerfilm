@@ -42,8 +42,8 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Klangversprechen',
     year: '2024',
     additionalMedia: [
-      { type: 'video', src: '/img/Klangversprechen/Showreel.mp4', poster: '/img/Klangversprechen/Klangversprechen-36.webp', alt: 'Klangversprechen Showreel', autoPlay: false, loop: true, muted: true },
-      { type: 'video', src: '/img/Klangversprechen/Mashup_02_Master_final_1.webm', poster: '/img/Klangversprechen/Klangversprechen-38.webp', alt: 'Klangversprechen Mashup', autoPlay: true, loop: true, muted: true },
+      { type: 'video', src: '/video/klangversprecheen2.webm', poster: '/img/Klangversprechen/Klangversprechen-36.webp', alt: 'Klangversprechen Video', autoPlay: true, loop: true, muted: true, orientation: 'square' },
+      { type: 'video', src: '/video/quer.webm', poster: '/img/Klangversprechen/Klangversprechen-38.webp', alt: 'Klangversprechen Video 2', autoPlay: true, loop: true, muted: true, orientation: 'square' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-36.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-38.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-53.webp', alt: 'Klangversprechen Projekt' },
@@ -141,6 +141,7 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Deutscher SportPresseBall',
     year: '2025',
     additionalMedia: [
+      { type: 'video', src: '/video/sportpresseball.webm', alt: 'Sportpresseball Video', autoPlay: true, loop: true, muted: true, orientation: 'landscape' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_03.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_10.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_56.webp', alt: 'Sportpresseball 2025' },
@@ -203,7 +204,7 @@ export const portfolioItems: PortfolioItem[] = [
     year: '2024',
     additionalMedia: [
       { type: 'video', src: '/video/eicke1.webm', alt: 'Eicke H+ Video 1', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
-      { type: 'video', src: '/video/eicke2.webm', alt: 'Eicke H+ Video 2', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
+      { type: 'video', src: '/video/eicke2.2.webm', alt: 'Eicke H+ Video 2', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
       { type: 'video', src: '/video/eicke3.webm', alt: 'Eicke H+ Video 3', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
     ]
   },
@@ -221,7 +222,9 @@ export const portfolioItems: PortfolioItem[] = [
     additionalMedia: [
       // Videos
       { type: 'video', src: '/video/hochkant2.webm', alt: 'Xtreme-Fitness Video', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
-      { type: 'video', src: '/video/ninaxtreme.webm', alt: 'Xtreme-Fitness Nina Video', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
+      { type: 'video', src: '/video/ninaxtreme.webm', alt: 'Xtreme-Fitness Nina Video', autoPlay: true, loop: true, muted: true, orientation: 'landscape' },
+      { type: 'video', src: '/video/xtreme3.webm', alt: 'Xtreme-Fitness Video 3', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
+      { type: 'video', src: '/video/xtreme4.webm', alt: 'Xtreme-Fitness Video 4', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
       // Alle Hochkant-Bilder (1080x1440)
       { type: 'image', src: '/img/Xtreme/xtreme-9.webp', alt: 'Xtreme-Fitness' },
       { type: 'image', src: '/img/Xtreme/xtreme-11.webp', alt: 'Xtreme-Fitness' },
@@ -297,8 +300,12 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'FS Businessforum',
     year: '2024',
     additionalMedia: [
-      // Querformat-Bilder (1920x1080)
-      { type: 'image', src: '/img/FS Businessforum/FS_BusinessforumTag01_03.webp', alt: 'FS Businessforum' },
+      // Video - groß (2 Spalten) - zuerst
+      { type: 'video', src: '/video/fsbusinesforum.webm', alt: 'FS Businessforum Video', autoPlay: true, loop: true, muted: true, orientation: 'landscape' },
+      // Bild - klein (1 Spalte) - daneben rechts
+      { type: 'image', src: '/img/FS Businessforum/FS_BusinessforumTag01_03.webp', alt: 'FS Businessforum', orientation: 'square' },
+      // Weitere Querformat-Bilder (1920x1080)
+
       { type: 'image', src: '/img/FS Businessforum/FS_BusinessforumTag01_70.webp', alt: 'FS Businessforum' },
       { type: 'image', src: '/img/FS Businessforum/FS_BusinessforumTag01_151.webp', alt: 'FS Businessforum' },
       { type: 'image', src: '/img/FS Businessforum/FS_BusinessforumTag01_277.webp', alt: 'FS Businessforum' },
