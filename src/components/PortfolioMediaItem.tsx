@@ -9,12 +9,12 @@ interface PortfolioMediaItemProps {
   media: MediaItem;
   index: number;
   projectTitle: string;
-  onImageClick?: (index: number) => void;
+  onMediaClick?: (index: number) => void;
 }
 
 type ImageOrientation = 'portrait' | 'landscape' | 'square';
 
-export default function PortfolioMediaItem({ media, index, projectTitle, onImageClick }: PortfolioMediaItemProps) {
+export default function PortfolioMediaItem({ media, index, projectTitle, onMediaClick }: PortfolioMediaItemProps) {
   const [orientation, setOrientation] = useState<ImageOrientation>('square');
   const [isDetected, setIsDetected] = useState(false);
   const [blurDataUrl, setBlurDataUrl] = useState<string>('');
@@ -91,10 +91,28 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onImage
     );
   }
 
+  const handleClick = () => {
+    if (media.src && !media.isPlaceholder && onMediaClick) {
+      onMediaClick(index);
+    }
+  };
+
   if (media.type === 'video') {
     // Videos werden standardmäßig als Landscape behandelt
     return (
-      <div className="portfolio-media-item portfolio-media-landscape">
+      <div 
+        className="portfolio-media-item portfolio-media-landscape"
+        onClick={handleClick}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+        style={{ cursor: 'pointer' }}
+      >
         <div className="portfolio-media-video-wrapper portfolio-media-image-wrapper-landscape">
           {media.src && (
             <LazyVideo
@@ -120,12 +138,6 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onImage
   // CSS-Klassen basierend auf Orientierung
   const orientationClass = isDetected ? `portfolio-media-${orientation}` : '';
   const wrapperClass = isDetected ? `portfolio-media-image-wrapper-${orientation}` : 'portfolio-media-image-wrapper';
-
-  const handleClick = () => {
-    if (media.type === 'image' && media.src && !media.isPlaceholder && onImageClick) {
-      onImageClick(index);
-    }
-  };
 
   return (
     <>

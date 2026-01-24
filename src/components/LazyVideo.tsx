@@ -12,6 +12,7 @@ interface LazyVideoProps {
   muted?: boolean;
   loop?: boolean;
   playsInline?: boolean;
+  controls?: boolean;
   controlsList?: string;
   disablePictureInPicture?: boolean;
   onPlay?: () => void;
@@ -27,6 +28,7 @@ export default function LazyVideo({
   muted = true,
   loop = false,
   playsInline = true,
+  controls = false,
   controlsList,
   disablePictureInPicture = false,
   onPlay,
@@ -43,6 +45,16 @@ export default function LazyVideo({
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoOpacity, setVideoOpacity] = useState(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
+
+  // Setze Opacity auf 1 wenn Video Controls hat (kein Autoplay) oder poster vorhanden
+  useEffect(() => {
+    if (controls || (!autoPlay && !poster)) {
+      setVideoOpacity(1);
+    } else if (poster) {
+      // Mit Poster: Blende Video erst ein wenn es bereit ist
+      setVideoOpacity(0);
+    }
+  }, [controls, autoPlay, poster]);
 
   // Hydration-safe: Setze mounted Flag und eager Loading
   useEffect(() => {
@@ -225,9 +237,27 @@ export default function LazyVideo({
     }
 
     // Error Handler für Video-Lade-Fehler
-    const handleError = () => {
-      console.log('Video loading error, showing poster fallback');
-      setVideoFailed(true);
+    const handleError = (e: Event) => {
+      const videoElement = e.target as HTMLVideoElement;
+      const error = videoElement.error;
+      
+      console.log('Video loading error:', {
+        code: error?.code,
+        message: error?.message,
+        src: videoSource,
+        networkState: videoElement.networkState,
+        readyState: videoElement.readyState
+      });
+      
+      // Bei großen Dateien: Versuche trotzdem zu laden
+      if (error?.code === MediaError.MEDIA_ERR_NETWORK && videoElement.readyState === 0) {
+        console.log('Network error, retrying video load...');
+        setTimeout(() => {
+          videoElement.load();
+        }, 1000);
+      } else {
+        setVideoFailed(true);
+      }
     };
 
     video.addEventListener('error', handleError);
@@ -334,9 +364,11 @@ export default function LazyVideo({
         loop={loop}
         playsInline={playsInline}
         autoPlay={autoPlay}
+        controls={controls}
         preload="auto"
         disablePictureInPicture={disablePictureInPicture}
         controlsList={controlsList}
+        poster={poster}
         style={{
           opacity: videoOpacity,
           transition: 'opacity 300ms ease-in-out',

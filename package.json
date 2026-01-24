@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "if exist .next rmdir /s /q .next"
+    "clean": "if exist .next rmdir /s /q .next",
+    "convert-videos": "node scripts/convert-videos-to-webm.js",
+    "optimize-showreel": "node scripts/optimize-showreel.js"
   },
   "dependencies": {
     "framer-motion": "^12.23.26",

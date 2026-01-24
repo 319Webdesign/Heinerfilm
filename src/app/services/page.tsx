@@ -125,7 +125,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="process section section-dark">
+      <section className="process section section-dark process-services">
         <div className="container">
           <h2 className="section-title">Unser Arbeitsprozess</h2>
           <p className="section-subtitle">Wie wir gemeinsam zum Erfolg kommen</p>

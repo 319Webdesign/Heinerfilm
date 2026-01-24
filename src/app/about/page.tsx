@@ -231,9 +231,8 @@ export default function About() {
                 />
               </div>
               <div className="zigzag-text">
-                <h2>Videoproduktion Darmstadt: Social Media Marketing mit Leidenschaft</h2>
+                <h2>Momente festhalten.<br />Geschichten erzählen.</h2>
                 <p>
-                  Momente festhalten. Geschichten erzählen. 
                   Schon früh haben wir erkannt, dass Social Media weit mehr ist als ein Zeitvertreib. Verknüpft mit 
                   unserer Liebe und Begeisterung für die Produktion von Videos, haben wir das Potenzial erkannt 
                   und uns dazu entschieden, den Schwerpunkt hierauf zu legen. Dazu gehört auch die Produktion 

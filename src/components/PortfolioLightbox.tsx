@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LazyVideo from './LazyVideo';
 import type { MediaItem } from '@/data/portfolio';
 
 interface PortfolioLightboxProps {
@@ -18,10 +19,9 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // Filtere nur Bilder (keine Videos, keine Placeholder)
-  const imageItems = useMemo(() => 
+  // Filtere Bilder und Videos (keine Placeholder)
+  const mediaItems = useMemo(() => 
     images.filter(item => 
-      item.type === 'image' && 
       item.src && 
       !item.isPlaceholder
     ), 
@@ -41,12 +41,12 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
   }, [isOpen, initialIndex]);
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % imageItems.length);
-  }, [imageItems.length]);
+    setCurrentIndex((prev) => (prev + 1) % mediaItems.length);
+  }, [mediaItems.length]);
 
   const goToPrevious = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + imageItems.length) % imageItems.length);
-  }, [imageItems.length]);
+    setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
+  }, [mediaItems.length]);
 
   // Keyboard Navigation
   useEffect(() => {
@@ -92,9 +92,9 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
     }
   };
 
-  if (!isOpen || imageItems.length === 0) return null;
+  if (!isOpen || mediaItems.length === 0) return null;
 
-  const currentImage = imageItems[currentIndex];
+  const currentMedia = mediaItems[currentIndex];
 
   return (
     <AnimatePresence>
@@ -124,7 +124,7 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
         </motion.button>
 
         {/* Navigation Buttons */}
-        {imageItems.length > 1 && (
+        {mediaItems.length > 1 && (
           <>
             <motion.button
               className="portfolio-lightbox-nav portfolio-lightbox-nav-prev"
@@ -132,7 +132,7 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
                 e.stopPropagation();
                 goToPrevious();
               }}
-              aria-label="Vorheriges Bild"
+              aria-label="Vorheriges Medium"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
@@ -148,7 +148,7 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
                 e.stopPropagation();
                 goToNext();
               }}
-              aria-label="Nächstes Bild"
+              aria-label="Nächstes Medium"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
@@ -160,7 +160,7 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
           </>
         )}
 
-        {/* Image Content */}
+        {/* Media Content */}
         <motion.div
           className="portfolio-lightbox-content"
           onClick={(e) => e.stopPropagation()}
@@ -179,19 +179,32 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.3 }}
-              className="portfolio-lightbox-image-wrapper"
+              className="portfolio-lightbox-media-wrapper"
             >
-              {currentImage.src && (
+              {currentMedia.type === 'image' && currentMedia.src && (
                 <Image
-                  src={currentImage.src}
-                  alt={currentImage.alt || `Bild ${currentIndex + 1}`}
+                  src={currentMedia.src}
+                  alt={currentMedia.alt || `Bild ${currentIndex + 1}`}
                   fill
                   className="portfolio-lightbox-image"
                   quality={90}
                   sizes="100vw"
                   style={{ objectFit: 'contain' }}
                   priority
-                  unoptimized={currentImage.src?.endsWith('.webp')}
+                  unoptimized={currentMedia.src?.endsWith('.webp')}
+                />
+              )}
+              {currentMedia.type === 'video' && currentMedia.src && (
+                <LazyVideo
+                  src={currentMedia.src}
+                  poster={currentMedia.poster}
+                  className="portfolio-lightbox-video"
+                  autoPlay={currentMedia.autoPlay ?? true}
+                  muted={currentMedia.muted !== undefined ? currentMedia.muted : true}
+                  loop={currentMedia.loop ?? true}
+                  playsInline
+                  controls
+                  eager={true}
                 />
               )}
             </motion.div>
@@ -199,26 +212,26 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
         </motion.div>
 
         {/* Counter */}
-        {imageItems.length > 1 && (
+        {mediaItems.length > 1 && (
           <motion.div
             className="portfolio-lightbox-counter"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            {currentIndex + 1} / {imageItems.length}
+            {currentIndex + 1} / {mediaItems.length}
           </motion.div>
         )}
 
         {/* Thumbnail Strip */}
-        {imageItems.length > 1 && imageItems.length <= 20 && (
+        {mediaItems.length > 1 && mediaItems.length <= 20 && (
           <motion.div
             className="portfolio-lightbox-thumbnails"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            {imageItems.map((item, index) => (
+            {mediaItems.map((item, index) => (
               <button
                 key={index}
                 className={`portfolio-lightbox-thumbnail ${index === currentIndex ? 'active' : ''}`}
@@ -226,9 +239,9 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
                   e.stopPropagation();
                   setCurrentIndex(index);
                 }}
-                aria-label={`Bild ${index + 1} anzeigen`}
+                aria-label={`${item.type === 'video' ? 'Video' : 'Bild'} ${index + 1} anzeigen`}
               >
-                {item.src && (
+                {item.type === 'image' && item.src && (
                   <Image
                     src={item.src}
                     alt={item.alt || `Thumbnail ${index + 1}`}
@@ -238,6 +251,20 @@ export default function PortfolioLightbox({ isOpen, onClose, images, initialInde
                     sizes="80px"
                     unoptimized={item.src?.endsWith('.webp')}
                   />
+                )}
+                {item.type === 'video' && (
+                  <div style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                  }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style={{ opacity: 0.8 }}>
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                  </div>
                 )}
               </button>
             ))}

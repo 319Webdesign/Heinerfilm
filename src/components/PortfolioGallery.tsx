@@ -14,20 +14,19 @@ export default function PortfolioGallery({ media, projectTitle }: PortfolioGalle
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const handleImageClick = (index: number) => {
-    // Filtere alle Bilder (ohne Videos und Placeholder) bis zum angeklickten Index
-    const imageItems = media
+  const handleMediaClick = (index: number) => {
+    // Filtere alle Medien (Bilder und Videos, ohne Placeholder) bis zum angeklickten Index
+    const mediaItems = media
       .slice(0, index + 1)
       .filter(item => 
-        item.type === 'image' && 
         item.src && 
         !item.isPlaceholder
       );
     
     // Der Index ist die Länge minus 1 (da wir bis index+1 slicen)
-    const imageIndex = imageItems.length - 1;
+    const mediaIndex = mediaItems.length - 1;
     
-    setLightboxIndex(imageIndex);
+    setLightboxIndex(mediaIndex);
     setLightboxOpen(true);
   };
 
@@ -40,7 +39,7 @@ export default function PortfolioGallery({ media, projectTitle }: PortfolioGalle
             media={item}
             index={index}
             projectTitle={projectTitle}
-            onImageClick={handleImageClick}
+            onMediaClick={handleMediaClick}
           />
         ))}
       </div>
