@@ -12,6 +12,7 @@ export interface MediaItem {
   autoPlay?: boolean; // Für Videos - automatisches Abspielen
   loop?: boolean; // Für Videos - Loop
   muted?: boolean; // Für Videos - Stumm
+  orientation?: 'portrait' | 'landscape' | 'square'; // Explizite Orientierung
 }
 
 export interface PortfolioItem {
@@ -201,9 +202,9 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Eicke H+',
     year: '2024',
     additionalMedia: [
-      { type: 'video', isPlaceholder: true, placeholderLabel: 'Video folgt' },
-      { type: 'image', isPlaceholder: true, placeholderLabel: 'Bild folgt' },
-      { type: 'video', isPlaceholder: true, placeholderLabel: 'Video folgt' },
+      { type: 'video', src: '/video/eicke1.webm', alt: 'Eicke H+ Video 1', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
+      { type: 'video', src: '/video/eicke2.webm', alt: 'Eicke H+ Video 2', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
+      { type: 'video', src: '/video/eicke3.webm', alt: 'Eicke H+ Video 3', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
     ]
   },
   {
@@ -219,8 +220,8 @@ export const portfolioItems: PortfolioItem[] = [
     year: '2024',
     additionalMedia: [
       // Videos
-      { type: 'video', src: '/video/hochkant2.webm', alt: 'Xtreme-Fitness Video', autoPlay: true, loop: true, muted: true },
-      { type: 'video', src: '/video/ninaxtreme.webm', alt: 'Xtreme-Fitness Nina Video', autoPlay: true, loop: true, muted: true },
+      { type: 'video', src: '/video/hochkant2.webm', alt: 'Xtreme-Fitness Video', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
+      { type: 'video', src: '/video/ninaxtreme.webm', alt: 'Xtreme-Fitness Nina Video', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
       // Alle Hochkant-Bilder (1080x1440)
       { type: 'image', src: '/img/Xtreme/xtreme-9.webp', alt: 'Xtreme-Fitness' },
       { type: 'image', src: '/img/Xtreme/xtreme-11.webp', alt: 'Xtreme-Fitness' },

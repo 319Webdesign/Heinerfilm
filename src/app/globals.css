@@ -3500,7 +3500,7 @@ p {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    grid-auto-rows: min-content;
+    grid-auto-rows: minmax(300px, auto);
     grid-auto-flow: dense;
     align-items: start;
 }
@@ -3510,20 +3510,55 @@ p {
     .portfolio-media-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
+        grid-auto-rows: minmax(700px, auto);
+    }
+    
+    .portfolio-media-item.portfolio-media-portrait {
+        min-height: 1050px;
+    }
+    
+    .portfolio-media-item.portfolio-media-portrait .portfolio-media-image-wrapper-portrait,
+    .portfolio-media-item.portfolio-media-portrait .portfolio-media-video-wrapper {
+        min-height: 1050px;
     }
 }
 
-/* Large Desktop: 4 Spalten */
+/* Large Desktop: 3 Spalten zentriert */
 @media (min-width: 1400px) {
     .portfolio-media-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+        max-width: 1600px;
+        margin: 0 auto;
+        grid-auto-rows: minmax(800px, auto);
+    }
+    
+    .portfolio-media-item.portfolio-media-portrait {
+        min-height: 1150px;
+    }
+    
+    .portfolio-media-item.portfolio-media-portrait .portfolio-media-image-wrapper-portrait,
+    .portfolio-media-item.portfolio-media-portrait .portfolio-media-video-wrapper {
+        min-height: 1150px;
     }
 }
 
 /* Portrait-Bilder: 2 Zeilen überspannen */
 .portfolio-media-portrait {
     grid-row: span 2;
+}
+
+/* Portrait Video/Bild Items: Höhe beibehalten */
+.portfolio-media-item.portfolio-media-portrait {
+    height: auto;
+    min-height: 800px;
+}
+
+.portfolio-media-item.portfolio-media-portrait .portfolio-media-image-wrapper-portrait,
+.portfolio-media-item.portfolio-media-portrait .portfolio-media-video-wrapper {
+    aspect-ratio: 9 / 16;
+    height: auto;
+    min-height: 800px;
 }
 
 /* Landscape-Bilder: 2 Spalten überspannen */

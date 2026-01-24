@@ -30,6 +30,13 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onMedia
     setOrientation('square');
     setIsDetected(false);
     
+    // Wenn explizite Orientierung gesetzt ist, diese verwenden
+    if (media.orientation) {
+      setOrientation(media.orientation);
+      setIsDetected(true);
+      return;
+    }
+    
     if (media.type === 'image' && media.src && !media.isPlaceholder) {
       const img = new window.Image();
       img.onload = () => {
