@@ -8,9 +8,10 @@ import type { MediaItem } from '@/data/portfolio';
 interface PortfolioGalleryProps {
   media: MediaItem[];
   projectTitle: string;
+  projectSlug?: string;
 }
 
-export default function PortfolioGallery({ media, projectTitle }: PortfolioGalleryProps) {
+export default function PortfolioGallery({ media, projectTitle, projectSlug }: PortfolioGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -30,9 +31,12 @@ export default function PortfolioGallery({ media, projectTitle }: PortfolioGalle
     setLightboxOpen(true);
   };
 
+  // Projektspezifische CSS-Klasse
+  const gridClassName = `portfolio-media-grid ${projectSlug ? `project-${projectSlug}` : ''}`;
+
   return (
     <>
-      <div className="portfolio-media-grid">
+      <div className={gridClassName}>
         {media.map((item, index) => (
           <PortfolioMediaItem
             key={index}

@@ -143,6 +143,7 @@ export default function PortfolioDetailPage({ params }: Props) {
             <PortfolioGallery
               media={remainingMedia}
               projectTitle={project.title}
+              projectSlug={project.slug}
             />
           </div>
         </section>

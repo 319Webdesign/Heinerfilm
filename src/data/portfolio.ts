@@ -42,25 +42,36 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Klangversprechen',
     year: '2024',
     additionalMedia: [
+      // *** SPEZIELLES LAYOUT: 2 Videos links untereinander + 1 Portrait rechts ***
       { type: 'video', src: '/video/klangversprecheen2.webm', poster: '/img/Klangversprechen/Klangversprechen-36.webp', alt: 'Klangversprechen Video', autoPlay: true, loop: true, muted: true, orientation: 'square' },
       { type: 'video', src: '/video/quer.webm', poster: '/img/Klangversprechen/Klangversprechen-38.webp', alt: 'Klangversprechen Video 2', autoPlay: true, loop: true, muted: true, orientation: 'square' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-36.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-36.webp', alt: 'Klangversprechen Projekt', orientation: 'portrait' },
+      
+      // *** Alle Querbilder (13 Stück) - nebeneinander im 2er-Grid ***
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-38.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-53.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-57.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-74.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-88.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-119.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-122.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-129.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-144.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-171.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-178.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-231.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-236.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-262.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-265.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-275.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-334.webp', alt: 'Klangversprechen Projekt' },
+      
+      // *** Alle Hochkantbilder (19 Stück) - nebeneinander im 2er-Grid ***
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-53.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-57.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-74.webp', alt: 'Klangversprechen Projekt' },
+      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-88.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-146.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-152.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-155.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-160.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-168.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-171.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-178.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-181.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-187.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-196.webp', alt: 'Klangversprechen Projekt' },
@@ -69,13 +80,8 @@ export const portfolioItems: PortfolioItem[] = [
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-221.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-226.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-227.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-231.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-232.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-236.webp', alt: 'Klangversprechen Projekt' },
       { type: 'image', src: '/img/Klangversprechen/Klangversprechen-258.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-262.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-265.webp', alt: 'Klangversprechen Projekt' },
-      { type: 'image', src: '/img/Klangversprechen/Klangversprechen-275.webp', alt: 'Klangversprechen Projekt' },
     ]
   },
   {
@@ -90,18 +96,18 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Loop 5',
     year: '2025',
     additionalMedia: [
-      { type: 'image', src: '/img/Loop/loop1.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop2.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop3.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop4.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop5.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop6.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop7.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop8.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop9.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop10.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop11.webp', alt: 'Loop5 The Social Mall Event' },
-      { type: 'image', src: '/img/Loop/loop12.webp', alt: 'Loop5 The Social Mall Event' },
+      { type: 'image', src: '/img/Loop/loop1.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop2.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop3.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop4.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop5.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop6.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop7.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop8.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop9.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop10.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop11.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
+      { type: 'image', src: '/img/Loop/loop12.webp', alt: 'Loop5 The Social Mall Event', orientation: 'square' },
     ]
   },
   {
@@ -141,28 +147,33 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Deutscher SportPresseBall',
     year: '2025',
     additionalMedia: [
-      { type: 'video', src: '/video/sportpresseball.webm', alt: 'Sportpresseball Video', autoPlay: true, loop: true, muted: true, orientation: 'landscape' },
+      // Video (Quer)
+      { type: 'video', src: '/video/sportpresseball.webm', alt: 'Sportpresseball Video', autoPlay: true, loop: true, muted: true },
+      
+      // Alle Querbilder (13 Stück) - nebeneinander im 2er-Grid
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_03.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_10.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_56.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_76.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_86.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_91.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_100.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_112.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_138.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_146.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_147.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_148.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_155.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_160.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_172.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_173.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_177.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_181.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_195.webp', alt: 'Sportpresseball 2025' },
-      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_201.webp', alt: 'Sportpresseball 2025' },
       { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_212.webp', alt: 'Sportpresseball 2025' },
+      
+      // Alle Hochkantbilder (8 Stück) - nebeneinander im 2er-Grid
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_86.webp', alt: 'Sportpresseball 2025' },
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_100.webp', alt: 'Sportpresseball 2025' },
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_112.webp', alt: 'Sportpresseball 2025' },
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_138.webp', alt: 'Sportpresseball 2025' },
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_155.webp', alt: 'Sportpresseball 2025' },
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_173.webp', alt: 'Sportpresseball 2025' },
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_181.webp', alt: 'Sportpresseball 2025' },
+      { type: 'image', src: '/img/Sportpresseball/Sportpresseball2025_201.webp', alt: 'Sportpresseball 2025' },
     ]
   },
   {
@@ -220,12 +231,15 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Xtreme-Fitness',
     year: '2024',
     additionalMedia: [
-      // Videos
-      { type: 'video', src: '/video/hochkant2.webm', alt: 'Xtreme-Fitness Video', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
+      // *** 2 Quer-Videos nebeneinander ***
       { type: 'video', src: '/video/ninaxtreme.webm', alt: 'Xtreme-Fitness Nina Video', autoPlay: true, loop: true, muted: true, orientation: 'landscape' },
+      { type: 'video', src: '/video/xtreme4.webm', alt: 'Xtreme-Fitness Video 4', autoPlay: true, loop: true, muted: true, orientation: 'landscape' },
+      
+      // *** 2 Hochkant-Videos nebeneinander ***
+      { type: 'video', src: '/video/hochkant2.webm', alt: 'Xtreme-Fitness Video', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
       { type: 'video', src: '/video/xtreme3.webm', alt: 'Xtreme-Fitness Video 3', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
-      { type: 'video', src: '/video/xtreme4.webm', alt: 'Xtreme-Fitness Video 4', autoPlay: true, loop: true, muted: true, orientation: 'portrait' },
-      // Alle Hochkant-Bilder (1080x1440)
+      
+      // *** Alle 12 Hochkant-Bilder nebeneinander (1080x1440) ***
       { type: 'image', src: '/img/Xtreme/xtreme-9.webp', alt: 'Xtreme-Fitness' },
       { type: 'image', src: '/img/Xtreme/xtreme-11.webp', alt: 'Xtreme-Fitness' },
       { type: 'image', src: '/img/Xtreme/xtreme-15.webp', alt: 'Xtreme-Fitness' },
@@ -252,6 +266,11 @@ export const portfolioItems: PortfolioItem[] = [
     client: 'Heinerwiesn',
     year: '2024',
     additionalMedia: [
+      // *** ERSTE REIHE: 3 Highlight-Bilder ***
+      { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn21.webp', alt: 'Heinerwiesn Event' },
+      { type: 'image', src: '/img/Heinerwiesn/1.webp', alt: 'Heinerwiesn Event' },
+      { type: 'image', src: '/img/Heinerwiesn/2.webp', alt: 'Heinerwiesn Event' },
+      
       // Querformat-Bilder (1920x1080)
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn65.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn122.webp', alt: 'Heinerwiesn Event' },
@@ -260,11 +279,9 @@ export const portfolioItems: PortfolioItem[] = [
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn220.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn296.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/allgaeupower01.webp', alt: 'Heinerwiesn Event' },
+      
       // Hochkant-Bilder (1080x1440)
-      { type: 'image', src: '/img/Heinerwiesn/1.webp', alt: 'Heinerwiesn Event' },
-      { type: 'image', src: '/img/Heinerwiesn/2.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn20.webp', alt: 'Heinerwiesn Event' },
-      { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn21.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn30.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn56.webp', alt: 'Heinerwiesn Event' },
       { type: 'image', src: '/img/Heinerwiesn/Heinerwiesn69.webp', alt: 'Heinerwiesn Event' },

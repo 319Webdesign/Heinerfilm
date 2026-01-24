@@ -30,11 +30,24 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onMedia
     setOrientation('square');
     setIsDetected(false);
     
-    // Wenn explizite Orientierung gesetzt ist, diese verwenden
+    // Wenn explizite Orientierung gesetzt ist, diese verwenden und NICHT automatisch erkennen
     if (media.orientation) {
       setOrientation(media.orientation);
       setIsDetected(true);
-      return;
+      
+      // Erstelle einfachen Blur Placeholder für Bilder
+      if (media.type === 'image') {
+        const canvas = document.createElement('canvas');
+        canvas.width = 20;
+        canvas.height = 20;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.fillStyle = '#1a1a1a';
+          ctx.fillRect(0, 0, 20, 20);
+          setBlurDataUrl(canvas.toDataURL());
+        }
+      }
+      return; // WICHTIG: return hier, um automatische Erkennung zu überspringen
     }
     
     if (media.type === 'image' && media.src && !media.isPlaceholder) {
@@ -206,17 +219,20 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onMedia
               blurDataURL={blurDataUrl}
               onLoad={(e) => {
                 // Zusätzliche Erkennung beim Laden des Next.js Image
-                const img = e.currentTarget;
-                if (img.naturalWidth && img.naturalHeight) {
-                  const aspectRatio = img.naturalWidth / img.naturalHeight;
-                  let newOrientation: ImageOrientation = 'square';
-                  if (aspectRatio < 0.8) {
-                    newOrientation = 'portrait';
-                  } else if (aspectRatio > 1.3) {
-                    newOrientation = 'landscape';
+                // ABER: nur wenn keine explizite Orientierung gesetzt ist
+                if (!media.orientation) {
+                  const img = e.currentTarget;
+                  if (img.naturalWidth && img.naturalHeight) {
+                    const aspectRatio = img.naturalWidth / img.naturalHeight;
+                    let newOrientation: ImageOrientation = 'square';
+                    if (aspectRatio < 0.8) {
+                      newOrientation = 'portrait';
+                    } else if (aspectRatio > 1.3) {
+                      newOrientation = 'landscape';
+                    }
+                    setOrientation(newOrientation);
+                    setIsDetected(true);
                   }
-                  setOrientation(newOrientation);
-                  setIsDetected(true);
                 }
               }}
               style={{ 

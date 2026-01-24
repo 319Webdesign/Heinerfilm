@@ -737,7 +737,7 @@ p {
 }
 
 .service-detail-item:last-child {
-    margin-bottom: 2.5rem;
+    margin-bottom: 5rem;
 }
 
 .service-detail-content {
@@ -3499,18 +3499,65 @@ p {
 .portfolio-media-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.5rem;
     grid-auto-rows: auto;
-    grid-auto-flow: dense;
+    grid-auto-flow: row;
     align-items: start;
 }
 
-/* Desktop: 3 Spalten */
+/* Desktop: 2 Spalten */
 @media (min-width: 1024px) {
     .portfolio-media-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
         grid-auto-rows: auto;
+    }
+    
+    /* Klangversprechen: Spezial-Layout für erste 3 Items auf Desktop */
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) {
+        grid-column: 1 !important;
+        grid-row: 1 / 2 !important;
+    }
+    
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) {
+        grid-column: 1 !important;
+        grid-row: 2 / 3 !important;
+    }
+    
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(3) {
+        grid-column: 2 !important;
+        grid-row: 1 / 3 !important;
+    }
+    
+    /* Fibo x Smilodox: 6-Spalten-Grid auf Desktop */
+    .portfolio-media-grid.project-fibo-x-smilodox {
+        grid-template-columns: repeat(6, 1fr) !important;
+    }
+    
+    .portfolio-media-grid.project-fibo-x-smilodox .portfolio-media-item:nth-child(-n+6) {
+        grid-column: span 3 !important;
+    }
+    
+    .portfolio-media-grid.project-fibo-x-smilodox .portfolio-media-item:nth-child(n+7) {
+        grid-column: span 2 !important;
+    }
+    
+    /* Eicke H+: 3 Videos nebeneinander auf Desktop */
+    .portfolio-media-grid.project-eicke-h-plus {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    .portfolio-media-grid.project-eicke-h-plus .portfolio-media-item {
+        grid-column: span 1 !important;
+    }
+    
+    /* Heinerwiesn: 3er-Grid auf Desktop */
+    .portfolio-media-grid.project-heinerwiesn {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    .portfolio-media-grid.project-heinerwiesn .portfolio-media-item {
+        grid-column: span 1 !important;
     }
     
     .portfolio-media-item.portfolio-media-portrait {
@@ -3523,14 +3570,61 @@ p {
     }
 }
 
-/* Large Desktop: 3 Spalten zentriert */
+/* Large Desktop: 2 Spalten zentriert */
 @media (min-width: 1400px) {
     .portfolio-media-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
         max-width: 1600px;
         margin: 0 auto;
         grid-auto-rows: auto;
+    }
+    
+    /* Klangversprechen: Spezial-Layout für erste 3 Items auf Large Desktop */
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) {
+        grid-column: 1 !important;
+        grid-row: 1 / 2 !important;
+    }
+    
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) {
+        grid-column: 1 !important;
+        grid-row: 2 / 3 !important;
+    }
+    
+    .portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(3) {
+        grid-column: 2 !important;
+        grid-row: 1 / 3 !important;
+    }
+    
+    /* Fibo x Smilodox: 6-Spalten-Grid auf Large Desktop */
+    .portfolio-media-grid.project-fibo-x-smilodox {
+        grid-template-columns: repeat(6, 1fr) !important;
+    }
+    
+    .portfolio-media-grid.project-fibo-x-smilodox .portfolio-media-item:nth-child(-n+6) {
+        grid-column: span 3 !important;
+    }
+    
+    .portfolio-media-grid.project-fibo-x-smilodox .portfolio-media-item:nth-child(n+7) {
+        grid-column: span 2 !important;
+    }
+    
+    /* Eicke H+: 3 Videos nebeneinander auf Large Desktop */
+    .portfolio-media-grid.project-eicke-h-plus {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    .portfolio-media-grid.project-eicke-h-plus .portfolio-media-item {
+        grid-column: span 1 !important;
+    }
+    
+    /* Heinerwiesn: 3er-Grid auf Large Desktop */
+    .portfolio-media-grid.project-heinerwiesn {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    .portfolio-media-grid.project-heinerwiesn .portfolio-media-item {
+        grid-column: span 1 !important;
     }
     
     .portfolio-media-item.portfolio-media-portrait {
@@ -3560,19 +3654,75 @@ p {
     height: auto;
 }
 
-/* Standard-Items: 1 Spalte */
+/* WICHTIG: Standard für ALLE Items ist 1 Spalte und 1 Zeile */
 .portfolio-media-item {
-    grid-column: span 1;
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
 }
 
-/* Square-Items: explizit 1 Spalte */
-.portfolio-media-square {
-    grid-column: span 1;
+/* Portrait-Items: 1 Spalte, 1 Zeile - nicht über mehrere Zeilen */
+.portfolio-media-item.portfolio-media-portrait {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
 }
 
-/* Landscape-Bilder/Videos: 2 Spalten überspannen */
-.portfolio-media-landscape {
-    grid-column: span 2;
+/* ============================================
+   Klangversprechen: Spezial-Layout für erste 3 Items
+   ============================================ */
+/* Videos 1+2 links untereinander, Bild 3 rechts über 2 Zeilen */
+.portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 1 / 2 !important;
+}
+
+.portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(2) {
+    grid-column: 1 !important;
+    grid-row: 2 / 3 !important;
+}
+
+.portfolio-media-grid.project-klangversprechen .portfolio-media-item:nth-child(3) {
+    grid-column: 2 !important;
+    grid-row: 1 / 3 !important;
+}
+
+/* ============================================
+   Fibo x Smilodox: 3 Items in letzter Reihe
+   ============================================ */
+/* 6-Spalten-Grid: Erste 6 Items je 3 Spalten (2er-Grid), letzte 3 Items je 2 Spalten (3er-Grid) */
+.portfolio-media-grid.project-fibo-x-smilodox {
+    grid-template-columns: repeat(6, 1fr) !important;
+}
+
+/* Erste 6 Items: je 3 Spalten (= 2 Items pro Zeile) */
+.portfolio-media-grid.project-fibo-x-smilodox .portfolio-media-item:nth-child(-n+6) {
+    grid-column: span 3 !important;
+}
+
+/* Letzte 3 Items: je 2 Spalten (= 3 Items pro Zeile) */
+.portfolio-media-grid.project-fibo-x-smilodox .portfolio-media-item:nth-child(n+7) {
+    grid-column: span 2 !important;
+}
+
+/* ============================================
+   Eicke H+: 3 Videos im Hochformat nebeneinander
+   ============================================ */
+.portfolio-media-grid.project-eicke-h-plus {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.portfolio-media-grid.project-eicke-h-plus .portfolio-media-item {
+    grid-column: span 1 !important;
+}
+
+/* ============================================
+   Heinerwiesn: 3er-Grid für alle Bilder
+   ============================================ */
+.portfolio-media-grid.project-heinerwiesn {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.portfolio-media-grid.project-heinerwiesn .portfolio-media-item {
+    grid-column: span 1 !important;
 }
 
 /* Auf Mobile: Landscape-Bilder nur 1 Spalte */
@@ -3990,14 +4140,14 @@ p {
 
     .portfolio-media-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 0.5rem;
     }
 }
 
 @media (max-width: 768px) {
     .portfolio-media-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        gap: 0.375rem;
     }
     
     .portfolio-media-item {
