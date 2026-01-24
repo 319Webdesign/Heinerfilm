@@ -17,8 +17,13 @@ type ImageOrientation = 'portrait' | 'landscape' | 'square';
 export default function PortfolioMediaItem({ media, index, projectTitle, onMediaClick }: PortfolioMediaItemProps) {
   const [orientation, setOrientation] = useState<ImageOrientation>('square');
   const [isDetected, setIsDetected] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [blurDataUrl, setBlurDataUrl] = useState<string>('');
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     // Reset state when media changes
@@ -60,6 +65,27 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onMedia
         setIsDetected(true);
       };
       img.src = media.src;
+    } else if (media.type === 'video' && media.src && !media.isPlaceholder) {
+      // Video-Orientierung erkennen
+      const video = document.createElement('video');
+      video.onloadedmetadata = () => {
+        const aspectRatio = video.videoWidth / video.videoHeight;
+        
+        let newOrientation: ImageOrientation = 'square';
+        if (aspectRatio < 0.8) {
+          newOrientation = 'portrait';
+        } else if (aspectRatio > 1.3) {
+          newOrientation = 'landscape';
+        }
+        
+        setOrientation(newOrientation);
+        setIsDetected(true);
+      };
+      video.onerror = () => {
+        setOrientation('landscape'); // Fallback für Videos
+        setIsDetected(true);
+      };
+      video.src = media.src;
     } else {
       setOrientation('square');
       setIsDetected(true);
@@ -98,10 +124,15 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onMedia
   };
 
   if (media.type === 'video') {
-    // Videos werden standardmäßig als Landscape behandelt
+    // Video-Orientierung dynamisch verwenden - nur nach dem Client-Mount
+    const orientationClass = (isMounted && isDetected) ? `portfolio-media-${orientation}` : '';
+    const wrapperClass = (isMounted && isDetected) 
+      ? `portfolio-media-video-wrapper portfolio-media-image-wrapper-${orientation}` 
+      : 'portfolio-media-video-wrapper portfolio-media-image-wrapper-square';
+    
     return (
       <div 
-        className="portfolio-media-item portfolio-media-landscape"
+        className={`portfolio-media-item ${orientationClass}`}
         onClick={handleClick}
         role="button"
         tabIndex={0}
@@ -113,7 +144,7 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onMedia
         }}
         style={{ cursor: 'pointer' }}
       >
-        <div className="portfolio-media-video-wrapper portfolio-media-image-wrapper-landscape">
+        <div className={wrapperClass}>
           {media.src && (
             <LazyVideo
               src={media.src}
@@ -135,9 +166,9 @@ export default function PortfolioMediaItem({ media, index, projectTitle, onMedia
     );
   }
 
-  // CSS-Klassen basierend auf Orientierung
-  const orientationClass = isDetected ? `portfolio-media-${orientation}` : '';
-  const wrapperClass = isDetected ? `portfolio-media-image-wrapper-${orientation}` : 'portfolio-media-image-wrapper';
+  // CSS-Klassen basierend auf Orientierung - nur nach dem Client-Mount
+  const orientationClass = (isMounted && isDetected) ? `portfolio-media-${orientation}` : '';
+  const wrapperClass = (isMounted && isDetected) ? `portfolio-media-image-wrapper-${orientation}` : 'portfolio-media-image-wrapper-square';
 
   return (
     <>
