@@ -28,6 +28,7 @@ function TeamMemberCard({
   objectPosition?: string;
 }) {
   const [imageError, setImageError] = useState(!imageSrc || imageSrc === '');
+  const [imageLoaded, setImageLoaded] = useState(false);
   const shouldUnoptimize = unoptimizedTeamImages.some(img => imageSrc.includes(img));
 
   return (
@@ -46,12 +47,19 @@ function TeamMemberCard({
               src={imageSrc}
               alt={alt}
               fill
-              style={{ objectFit: 'cover', objectPosition: objectPosition }}
+              style={{ 
+                objectFit: 'cover', 
+                objectPosition: objectPosition,
+                opacity: imageLoaded ? 1 : 0,
+                transition: 'opacity 0.3s ease-in-out'
+              }}
               quality={80}
               sizes={shouldUnoptimize ? undefined : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 450px"}
               onError={() => setImageError(true)}
+              onLoad={() => setImageLoaded(true)}
               unoptimized={shouldUnoptimize}
-              fetchPriority="auto"
+              loading="eager"
+              fetchPriority="high"
             />
           ) : (
             <div className="placeholder-image-modern" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(156, 163, 175, 1)', fontSize: '0.875rem' }}>

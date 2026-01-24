@@ -736,6 +736,10 @@ p {
     margin-top: 6rem;
 }
 
+.service-detail-item:last-child {
+    margin-bottom: 5rem;
+}
+
 .service-detail-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2788,6 +2792,7 @@ p {
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 0.75rem 0.75rem 0 0;
+    background-color: #1a1a1a;
     /* Performance-Optimierungen */
     will-change: transform;
     transform: translateZ(0);
