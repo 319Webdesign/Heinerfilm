@@ -109,7 +109,8 @@ export default function Datenschutz() {
               { id: 'cookies', label: '5. Cookies' },
               { id: 'kontaktformular', label: '6. Kontaktformular' },
               { id: 'ssl-verschluesselung', label: '7. SSL-Verschlüsselung' },
-              { id: 'aenderungen', label: '8. Änderungen der Datenschutzerklärung' },
+              { id: 'google-fonts', label: '8. Verwendung von Webfonts (Google Fonts)' },
+              { id: 'aenderungen', label: '9. Änderungen der Datenschutzerklärung' },
             ].map((item) => (
               <a
                 key={item.id}
@@ -494,7 +495,55 @@ export default function Datenschutz() {
           </div>
         </motion.section>
 
-        {/* 8. Änderungen der Datenschutzerklärung */}
+        {/* 8. Verwendung von Webfonts (Google Fonts) */}
+        <motion.section
+          id="google-fonts"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.03)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '1rem',
+            padding: '2.5rem',
+            marginBottom: '3rem',
+          }}
+        >
+          <h2 style={{
+            fontSize: '1.75rem',
+            fontWeight: '600',
+            color: '#ffffff',
+            marginBottom: '1.5rem',
+            fontFamily: 'var(--font-inter)',
+          }}>
+            8. Verwendung von Webfonts (Google Fonts)
+          </h2>
+          <div style={{
+            fontSize: '1rem',
+            lineHeight: '1.75',
+            color: 'rgba(255, 255, 255, 0.8)',
+            fontFamily: 'var(--font-inter)',
+          }}>
+            <p style={{ marginBottom: '1rem' }}>
+              Diese Website nutzt zur einheitlichen Darstellung von Schriftarten Web Fonts, die von Google bereitgestellt werden.
+            </p>
+            <p style={{ marginBottom: '1rem' }}>
+              <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>Wichtig:</strong> Die Google Fonts werden lokal auf 
+              unserem Server gehostet (Self-Hosting). Es wird <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>keine 
+              Verbindung zu Google-Servern</strong> hergestellt und es werden <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+              keine Daten an Google übertragen</strong>.
+            </p>
+            <p>
+              Durch das lokale Hosting der Schriftarten wird Ihre Privatsphäre geschützt und die Ladegeschwindigkeit 
+              der Website optimiert. Es erfolgt keine Datenübertragung an Dritte im Zusammenhang mit den verwendeten Schriftarten.
+            </p>
+          </div>
+        </motion.section>
+
+        {/* 9. Änderungen der Datenschutzerklärung */}
         <motion.section
           id="aenderungen"
           initial={{ opacity: 0, y: 20 }}
@@ -518,7 +567,7 @@ export default function Datenschutz() {
             marginBottom: '1.5rem',
             fontFamily: 'var(--font-inter)',
           }}>
-            8. Änderungen der Datenschutzerklärung
+            9. Änderungen der Datenschutzerklärung
           </h2>
           <div style={{
             fontSize: '1rem',

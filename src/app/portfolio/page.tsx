@@ -4,8 +4,8 @@ import Image from 'next/image';
 import PortfolioFilter from '@/components/PortfolioFilter';
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Heinerfilm',
-  description: 'Unsere Projekte und Referenzen',
+  title: 'Portfolio - Unsere Projekte und Referenzen | Heinerfilm',
+  description: 'Entdecken Sie unser Portfolio: Filmproduktionen, Videomarketing-Projekte und Event-Fotografie für Kunden wie Klangversprechen, Sportpresseball, Xtreme-Fitness und viele mehr.',
 };
 
 export default function Portfolio() {
