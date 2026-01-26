@@ -80,46 +80,12 @@ export async function POST(request: NextRequest) {
       `,
     };
 
-    // Bestätigungs-E-Mail an den Absender
-    const mailOptionsToSender = {
-      from: `"Heinerfilm" <${process.env.SMTP_FROM_EMAIL}>`,
-      to: email,
-      subject: 'Ihre Nachricht an Heinerfilm - Bestätigung',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #ef4444;">Vielen Dank für Ihre Nachricht!</h2>
-          <p>Hallo ${name},</p>
-          <p>wir haben Ihre Nachricht erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3>Ihre Nachricht:</h3>
-            <p><strong>Betreff:</strong> ${subject}</p>
-            <p style="white-space: pre-wrap;">${message}</p>
-          </div>
-          
-          <p>Bei Rückfragen erreichen Sie uns unter:</p>
-          <ul style="list-style: none; padding: 0;">
-            <li>📧 <a href="mailto:info@heinerfilm.de">info@heinerfilm.de</a></li>
-            <li>📞 <a href="tel:+4917656792783">0176 56792783</a></li>
-          </ul>
-          
-          <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
-          
-          <p style="color: #666; font-size: 12px;">
-            Mit freundlichen Grüßen<br>
-            Ihr Heinerfilm Team<br>
-            <a href="https://www.heinerfilm.de">www.heinerfilm.de</a>
-          </p>
-        </div>
-      `,
-    };
-
-    // Haupt-E-Mail an Heinerfilm versenden
+    // E-Mail an Heinerfilm versenden
     try {
       await transporter.sendMail(mailOptionsToYou);
-      console.log('✓ Haupt-E-Mail erfolgreich gesendet');
+      console.log('✓ E-Mail erfolgreich gesendet an:', process.env.CONTACT_EMAIL || 'info@heinerfilm.de');
     } catch (sendError: any) {
-      console.error('Fehler beim Senden der E-Mail an Heinerfilm:', sendError);
+      console.error('Fehler beim Senden der E-Mail:', sendError);
       
       // Spezifische Fehlerbehandlung für Authentifizierungsfehler
       if (sendError?.code === 'EAUTH' || sendError?.responseCode === 535) {
@@ -128,12 +94,6 @@ export async function POST(request: NextRequest) {
       
       throw new Error(`Fehler beim Senden der E-Mail: ${sendError instanceof Error ? sendError.message : 'Unbekannter Fehler'}`);
     }
-
-    // Bestätigungs-E-Mail im Hintergrund versenden (blockiert nicht die Response)
-    // Fehler werden geloggt, aber brechen den Prozess nicht ab
-    transporter.sendMail(mailOptionsToSender)
-      .then(() => console.log('✓ Bestätigungs-E-Mail erfolgreich gesendet'))
-      .catch((error) => console.error('⚠ Fehler beim Senden der Bestätigungs-E-Mail:', error));
 
     return NextResponse.json(
       { success: true, message: 'Nachricht erfolgreich gesendet!' },
