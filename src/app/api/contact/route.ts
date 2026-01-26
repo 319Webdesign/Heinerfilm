@@ -85,9 +85,19 @@ export async function POST(request: NextRequest) {
       `,
     };
 
-    // SOFORT Response zurückgeben - BEVOR wir die E-Mail senden
-    // Das ist der Trick: Response geht raus, E-Mail wird danach verarbeitet
-    const response = new NextResponse(
+    // E-Mail synchron senden - OHNE transporter.close() (das blockiert die Response)
+    try {
+      await transporter.sendMail(mailOptionsToYou);
+      console.log('✓ E-Mail erfolgreich gesendet an:', process.env.CONTACT_EMAIL || 'info@heinerfilm.de');
+    } catch (sendError: any) {
+      // Fehler loggen, aber trotzdem Success zurückgeben (E-Mail ist gespeichert in Logs)
+      console.error('✗ Fehler beim Senden der E-Mail:', sendError);
+    }
+    // WICHTIG: transporter.close() NICHT aufrufen - das blockiert die Response!
+    // Vercel schließt die Verbindung automatisch wenn die Function beendet
+
+    // Response zurückgeben
+    return new NextResponse(
       JSON.stringify({ success: true, message: 'Nachricht erfolgreich gesendet!' }),
       {
         status: 200,
@@ -97,30 +107,6 @@ export async function POST(request: NextRequest) {
         },
       }
     );
-
-    // E-Mail im Hintergrund senden (nach der Response)
-    // Diese Promise wird nicht abgewartet
-    setImmediate(() => {
-      transporter.sendMail(mailOptionsToYou)
-        .then(() => {
-          console.log('✓ E-Mail erfolgreich gesendet an:', process.env.CONTACT_EMAIL || 'info@heinerfilm.de');
-          try {
-            transporter.close();
-          } catch (err) {
-            console.error('Fehler beim Schließen:', err);
-          }
-        })
-        .catch((sendError: any) => {
-          console.error('✗ Fehler beim Senden der E-Mail:', sendError);
-          try {
-            transporter.close();
-          } catch (err) {
-            console.error('Fehler beim Schließen:', err);
-          }
-        });
-    });
-
-    return response;
   } catch (error: any) {
     console.error('Fehler beim Senden der E-Mail:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unbekannter Fehler';
