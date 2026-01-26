@@ -93,6 +93,9 @@ export async function POST(request: NextRequest) {
       }
       
       throw new Error(`Fehler beim Senden der E-Mail: ${sendError instanceof Error ? sendError.message : 'Unbekannter Fehler'}`);
+    } finally {
+      // WICHTIG: Verbindung schließen, damit Response nicht blockiert wird
+      transporter.close();
     }
 
     return NextResponse.json(
