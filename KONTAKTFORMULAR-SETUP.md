@@ -194,11 +194,48 @@ Kontakt:
 **Lösung 3: Firewall-Einstellungen**
 - Stellen Sie sicher, dass ausgehende SMTP-Verbindungen erlaubt sind
 
-### Problem: "Authentication failed"
+### Problem: "Authentication failed" / "535 5.7.8 Authentication failed"
 
-- Überprüfen Sie Benutzername und Passwort
-- Bei Gmail: Verwenden Sie ein App-Passwort, nicht Ihr normales Passwort
-- Bei manchen Anbietern: E-Mail-Versand muss zuerst aktiviert werden
+**Dieser Fehler bedeutet, dass die SMTP-Anmeldedaten falsch sind.**
+
+**Häufige Ursachen und Lösungen:**
+
+1. **Falsches Passwort**
+   - Überprüfen Sie, ob das Passwort korrekt ist
+   - Achten Sie auf Groß-/Kleinschreibung
+   - Prüfen Sie, ob Leerzeichen am Anfang/Ende vorhanden sind
+
+2. **Gmail: App-Passwort erforderlich**
+   - Bei Gmail funktioniert das normale Passwort NICHT
+   - Sie müssen ein App-Passwort erstellen:
+     1. Gehen Sie zu [Google Account → Sicherheit](https://myaccount.google.com/security)
+     2. Aktivieren Sie die 2-Faktor-Authentifizierung (falls noch nicht aktiviert)
+     3. Gehen Sie zu [App-Passwörter](https://myaccount.google.com/apppasswords)
+     4. Erstellen Sie ein neues App-Passwort für "Mail"
+     5. Verwenden Sie dieses 16-stellige Passwort (ohne Leerzeichen) in `SMTP_PASSWORD`
+
+3. **IONOS/1&1: Spezielle Anforderungen**
+   - Verwenden Sie die vollständige E-Mail-Adresse als `SMTP_USER`
+   - Stellen Sie sicher, dass SMTP-Versand in Ihrem IONOS-Konto aktiviert ist
+   - Manche IONOS-Pakete benötigen eine separate SMTP-Aktivierung
+
+4. **Falscher Benutzername**
+   - Bei manchen Anbietern: Verwenden Sie nur den Benutzernamen (ohne @domain.de)
+   - Bei anderen: Verwenden Sie die vollständige E-Mail-Adresse
+   - Prüfen Sie die Dokumentation Ihres E-Mail-Anbieters
+
+5. **Vercel/Production: Umgebungsvariablen überprüfen**
+   - Gehen Sie zu Vercel → Projekt → Settings → Environment Variables
+   - Stellen Sie sicher, dass alle Variablen korrekt gesetzt sind
+   - Achten Sie darauf, dass keine Leerzeichen oder Anführungszeichen enthalten sind
+   - Nach dem Setzen: Neues Deployment auslösen
+
+**Test-Checkliste:**
+- [ ] `SMTP_USER` ist korrekt (vollständige E-Mail oder nur Benutzername je nach Anbieter)
+- [ ] `SMTP_PASSWORD` ist korrekt (bei Gmail: App-Passwort!)
+- [ ] `SMTP_HOST` entspricht Ihrem E-Mail-Anbieter
+- [ ] `SMTP_PORT` und `SMTP_SECURE` sind korrekt konfiguriert
+- [ ] Bei Vercel: Alle Umgebungsvariablen sind gesetzt und ein neues Deployment wurde erstellt
 
 ### Problem: E-Mail landet im Spam
 
