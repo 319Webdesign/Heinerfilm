@@ -50,13 +50,13 @@ export async function POST(request: NextRequest) {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
-      pool: false, // Kein Connection-Pooling für schnellere Response
-      logger: false, // Logging deaktiviert
-      debug: false, // Debug deaktiviert
+      pool: false,
+      logger: false,
+      debug: false,
       connectionTimeout: 10000,
       greetingTimeout: 10000,
       socketTimeout: 15000,
-    });
+    } as any);
 
     // E-Mail an Sie (Heinerfilm)
     const mailOptionsToYou = {
