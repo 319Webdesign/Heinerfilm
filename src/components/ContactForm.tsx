@@ -13,7 +13,10 @@ export default function ContactForm() {
     setStatus('submitting');
     setErrorMessage('');
 
-    const formData = new FormData(e.currentTarget);
+    // Formular-Element speichern, bevor es null wird
+    const form = e.currentTarget;
+
+    const formData = new FormData(form);
     const data = {
       name: formData.get('name') as string,
       email: formData.get('email') as string,
@@ -54,7 +57,7 @@ export default function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        e.currentTarget.reset();
+        form.reset(); // Gespeicherte Form-Referenz verwenden
         
         // Erfolgs-Status nach 5 Sekunden zurücksetzen
         setTimeout(() => {
