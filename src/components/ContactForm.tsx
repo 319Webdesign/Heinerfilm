@@ -36,14 +36,20 @@ export default function ContactForm() {
     }
 
     try {
+      // AbortController mit 60 Sekunden Timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 Sekunden
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId); // Timeout abbrechen wenn Response da ist
       const result = await response.json();
 
       if (response.ok) {
@@ -58,10 +64,17 @@ export default function ContactForm() {
         setErrorMessage(result.error || 'Ein Fehler ist aufgetreten.');
         setStatus('error');
       }
-    } catch (error) {
-      setErrorMessage('Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.');
-      setStatus('error');
+    } catch (error: any) {
       console.error('Fehler beim Senden:', error);
+      
+      // Spezifische Fehlermeldung für Timeout
+      if (error.name === 'AbortError') {
+        setErrorMessage('Die Anfrage dauert zu lange. Bitte versuchen Sie es erneut. Falls das Problem bestehen bleibt, kontaktieren Sie uns bitte direkt per E-Mail.');
+      } else {
+        setErrorMessage('Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.');
+      }
+      
+      setStatus('error');
     }
   };
 

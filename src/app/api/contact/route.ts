@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+// Maximale Ausführungszeit auf 30 Sekunden erhöhen (Standard ist 10s)
+export const maxDuration = 30;
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -38,19 +41,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Nodemailer Transporter konfigurieren
+    // Nodemailer Transporter konfigurieren (optimiert für Vercel)
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true', // true für Port 465, false für andere Ports
+      secure: process.env.SMTP_SECURE === 'true',
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
-      // Timeout-Einstellungen für schnellere Antwort
-      connectionTimeout: 5000, // 5 Sekunden
-      greetingTimeout: 5000,
-      socketTimeout: 10000,
+      pool: false, // Kein Connection-Pooling für schnellere Response
+      logger: false, // Logging deaktiviert
+      debug: false, // Debug deaktiviert
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
     });
 
     // E-Mail an Sie (Heinerfilm)
@@ -80,28 +85,42 @@ export async function POST(request: NextRequest) {
       `,
     };
 
-    // E-Mail an Heinerfilm versenden
-    try {
-      await transporter.sendMail(mailOptionsToYou);
-      console.log('✓ E-Mail erfolgreich gesendet an:', process.env.CONTACT_EMAIL || 'info@heinerfilm.de');
-    } catch (sendError: any) {
-      console.error('Fehler beim Senden der E-Mail:', sendError);
-      
-      // Spezifische Fehlerbehandlung für Authentifizierungsfehler
-      if (sendError?.code === 'EAUTH' || sendError?.responseCode === 535) {
-        throw new Error('SMTP-Authentifizierung fehlgeschlagen. Bitte überprüfen Sie die SMTP-Anmeldedaten.');
+    // SOFORT Response zurückgeben - BEVOR wir die E-Mail senden
+    // Das ist der Trick: Response geht raus, E-Mail wird danach verarbeitet
+    const response = new NextResponse(
+      JSON.stringify({ success: true, message: 'Nachricht erfolgreich gesendet!' }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+        },
       }
-      
-      throw new Error(`Fehler beim Senden der E-Mail: ${sendError instanceof Error ? sendError.message : 'Unbekannter Fehler'}`);
-    } finally {
-      // WICHTIG: Verbindung schließen, damit Response nicht blockiert wird
-      transporter.close();
-    }
-
-    return NextResponse.json(
-      { success: true, message: 'Nachricht erfolgreich gesendet!' },
-      { status: 200 }
     );
+
+    // E-Mail im Hintergrund senden (nach der Response)
+    // Diese Promise wird nicht abgewartet
+    setImmediate(() => {
+      transporter.sendMail(mailOptionsToYou)
+        .then(() => {
+          console.log('✓ E-Mail erfolgreich gesendet an:', process.env.CONTACT_EMAIL || 'info@heinerfilm.de');
+          try {
+            transporter.close();
+          } catch (err) {
+            console.error('Fehler beim Schließen:', err);
+          }
+        })
+        .catch((sendError: any) => {
+          console.error('✗ Fehler beim Senden der E-Mail:', sendError);
+          try {
+            transporter.close();
+          } catch (err) {
+            console.error('Fehler beim Schließen:', err);
+          }
+        });
+    });
+
+    return response;
   } catch (error: any) {
     console.error('Fehler beim Senden der E-Mail:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unbekannter Fehler';
