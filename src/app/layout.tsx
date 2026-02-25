@@ -13,10 +13,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Heinerfilm | Professionelle Videoproduktion in Darmstadt & Pfungstadt',
-  description: 'Heinerfilm - Ihre Medienagentur für professionelle Filmproduktion, Videomarketing und Event-Fotografie in Darmstadt und Pfungstadt. Von der Konzeption bis zur finalen Auslieferung.',
+  description: 'Heinerfilm: Medienagentur aus Darmstadt',
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg',
+    icon: '/img/Heinerfilm_schriftzug_schwarz.svg',
+    apple: '/img/Heinerfilm_schriftzug_schwarz.svg',
   },
 };
 
