@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Datenschutzerklärung - Heinerfilm',
+  title: 'Datenschutzerklärung',
   description: 'Datenschutzerklärung von Heinerfilm - Informationen zum Umgang mit Ihren personenbezogenen Daten.',
+  alternates: {
+    canonical: 'https://www.heinerfilm.de/datenschutz',
+  },
 };
 
 export default function DatenschutzLayout({

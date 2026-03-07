@@ -29,9 +29,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const canonicalUrl = `https://www.heinerfilm.de/portfolio/${params.slug}`;
+
   return {
-    title: `${project.title} - Portfolio | Heinerfilm`,
+    title: `${project.title} - Portfolio`,
     description: project.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${project.title} | Heinerfilm Portfolio`,
+      description: project.description,
+      url: canonicalUrl,
+      type: 'article',
+      images: project.imageSrc ? [{ url: `https://www.heinerfilm.de${project.imageSrc}`, alt: project.title }] : undefined,
+    },
   };
 }
 

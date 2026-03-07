@@ -3,8 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Leistungen - Professionelle Videoproduktion | Heinerfilm',
+  title: 'Leistungen - Professionelle Videoproduktion',
   description: 'Unsere Leistungen: Filmproduktion, Videomarketing, Social Media Content und Event-Fotografie. Von der Konzeption bis zur finalen Auslieferung - Ihr Partner in Darmstadt und Pfungstadt.',
+  alternates: {
+    canonical: 'https://www.heinerfilm.de/services',
+  },
 };
 
 export default function Services() {
