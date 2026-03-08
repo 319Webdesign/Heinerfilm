@@ -177,7 +177,7 @@ export default function CookieBanner() {
               e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
             }}
           >
-            Weitere Informationen in unserer Datenschutzerklärung
+            Datenschutzerklärung zu Cookies und Nutzungsdaten
           </a>
         </div>
       </div>

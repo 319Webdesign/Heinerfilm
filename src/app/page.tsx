@@ -237,7 +237,7 @@ export default function Home() {
             </div>
           </div>
           <div className="text-center" style={{ marginTop: '4rem' }}>
-            <Link href="/services" className="btn btn-secondary">Alle Leistungen ansehen</Link>
+            <Link href="/services" className="btn btn-secondary">Filmproduktion, Videomarketing & Fotografie entdecken</Link>
           </div>
         </div>
       </section>
@@ -702,7 +702,7 @@ export default function Home() {
             style={{ marginTop: '4rem' }}
           >
             <Link href="/portfolio" className="btn btn-secondary">
-              Portfolio ansehen <span className="btn-icon">→</span>
+              Filmproduktionen im Portfolio entdecken <span className="btn-icon">→</span>
             </Link>
           </motion.div>
         </div>

@@ -166,7 +166,7 @@ export default function PortfolioDetailPage({ params }: Props) {
         <div className="container">
           <Link href="/portfolio" className="btn btn-secondary">
             <ArrowLeft style={{ width: '1rem', height: '1rem', marginRight: '0.5rem' }} />
-            Alle Projekte ansehen
+            Zurück zur Portfolio-Übersicht – alle Filmproduktionen
           </Link>
         </div>
       </section>

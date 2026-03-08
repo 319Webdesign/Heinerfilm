@@ -80,7 +80,7 @@ export default function PortfolioFilter() {
                     </h3>
                     <p>{item.categoryLabel}</p>
                     <Link href={`/portfolio/${item.slug}`} className="btn btn-primary">
-                      Details ansehen
+                      {item.title} – Projektdetails ansehen
                     </Link>
                   </div>
                 </div>
