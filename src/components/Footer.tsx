@@ -90,7 +90,7 @@ export default function Footer() {
         </div>
         <div style={{ textAlign: 'center', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
           <a 
-            href="https://319Webdesign.com" 
+            href="https://www.319webdesign.de/" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none', transition: 'color 0.3s ease' }}
